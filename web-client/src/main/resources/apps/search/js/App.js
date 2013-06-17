@@ -748,7 +748,7 @@ GeoNetwork.app = function () {
             } catch (e) {
                 // TODO: IE7 does not support help panel
             }
-            createHeader();
+            //createHeader();
             
             // Search form
             searchForm = createSearchForm();

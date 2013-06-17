@@ -418,7 +418,7 @@ GeoNetwork.app = function () {
                                             Ext.getCmp('searchForm').getForm().reset();
                                         }
                                     }
-                                })
+                                });
                             ]
                     },
                     
@@ -999,7 +999,7 @@ GeoNetwork.app = function () {
                 metadataEditFn : edit
             });
 
-            createHeader();
+            //createHeader();
 
             // Options Panel
             optionsForm = createOptionsForm();
@@ -1056,6 +1056,8 @@ GeoNetwork.app = function () {
                         new Ext.TabPanel({
                             region : 'center',
                             id : 'GNtabs',
+                            boxMaxHeight: 700,
+                            renderTo: 'GeoNetworkContent',
                             deferredRender : false,
                             plain : true,
                             autoScroll : true,
