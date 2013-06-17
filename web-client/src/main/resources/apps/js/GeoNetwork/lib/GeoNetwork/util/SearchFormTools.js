@@ -400,8 +400,8 @@ GeoNetwork.util.SearchFormTools = {
             fields: ['id', 'name'],
             data: [['relevance#', OpenLayers.i18n('relevance')], 
                     ['title#reverse', OpenLayers.i18n('title')], 
-                    ['changeDate#', OpenLayers.i18n('changeDate')], 
-                    ['rating#', OpenLayers.i18n('rating')], 
+                    ['changeDate#', OpenLayers.i18n('changeDate')],
+                    // OEH (Nchan-062013) - Removed ratings panel. 
                     ['popularity#', OpenLayers.i18n('popularity')], 
                     ['denominator#', OpenLayers.i18n('scaleDesc')], 
                     ['denominator#reverse', OpenLayers.i18n('scaleAsc')]]
@@ -876,6 +876,96 @@ GeoNetwork.util.SearchFormTools = {
         items.push(GeoNetwork.util.SearchFormTools.getPublicationDateField(anyTime));
 
         return items;
+        
+    },
+	// OEH (Nchan-13062013) - Customized 'when' advanced search panel
+    getOehWhen: function(){
+		
+    	function resetForm(ck, checked) {
+			if (checked) {
+				ck.ownerCt.items.each(function(item, index, length){
+					if (item.getXType() === 'datefield') {
+						item.setValue('');
+						item.disable();
+					}
+					if (item.getXType() === 'radio') {
+						if (item.name != ck.name) {
+							item.setValue(false);
+						}
+					}
+				});
+			}
+    	}
+    	
+		function enableDates(toId, fromId, checked) {
+			if (checked) {
+				Ext.getCmp(toId).enable();
+				Ext.getCmp(fromId).enable();
+			}
+		}
+		
+		function setDateRangeLayout(fields) {
+			// From field
+			setDateFieldLayout(fields[0]);
+			fields[0].fieldLabel = 'from';
+			// To field
+			setDateFieldLayout(fields[1]);
+			fields[1].fieldLabel = 'to';
+		}
+		
+		function setDateFieldLayout(field) {
+			field.disabled = true;
+			field.labelStyle = 'text-align: right;';
+			field.labelSeparator = '';
+		}
+		
+        var anyTime = new Ext.form.Radio({
+            name: 'timeType',
+            checked: true,
+			hideLabel: true,
+            boxLabel: OpenLayers.i18n('anyTime'),
+            handler: function(ck, checked){
+            	resetForm(ck, checked);
+            }
+        });
+        
+        var temporalExtent = new Ext.form.Radio({
+            name: 'temporalExtent',
+            checked: false,
+			hideLabel: true,
+			boxLabel: 'Data Extent:',
+            handler: function(ck, checked){
+            	resetForm(ck, checked);
+				enableDates('extTo', 'extFrom', checked);
+            }
+        });
+        
+		var temporalExtentDates = GeoNetwork.util.SearchFormTools.getTemporalExtentField(anyTime);
+		setDateRangeLayout(temporalExtentDates);
+		
+        var metadataChange = new Ext.form.Radio({
+            name: 'metadataChange',
+            checked: false,
+			hideLabel: true,
+			boxLabel: 'Metadata Changed:',
+            handler: function(ck, checked){
+            	resetForm(ck, checked);
+				enableDates('dateTo', 'dateFrom', checked);
+            }
+        });
+	
+		var metadataChangeDates = GeoNetwork.util.SearchFormTools.getMetadataDateField(anyTime);
+		setDateRangeLayout(metadataChangeDates);
+		
+	var items = [
+		anyTime,
+		temporalExtent,
+		temporalExtentDates,
+		metadataChange,
+		metadataChangeDates
+	];
+	
+    return items;
         
     },
     /** api:method[getMetadataDateField]
