@@ -1,11 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    
     <title>Office of Environment and Heritage - NSW</title>
-<!-- start inc_OEHhomehead inc -->
-<!-- most OEH pages use inc_DECChead_v2 inc - difference is the jquery used and old applications use inc_DECChead inc -->
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -74,72 +71,29 @@
     <link rel="stylesheet" type="text/css" href="css/gnmetadatadefault.css"/>
     <link rel="stylesheet" type="text/css" href="../js/OpenLayers/theme/default/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/metadata-view.css"/>
-    <link rel="Stylesheet" type="text/css" href="css/Custom.css" />
 
-<!--[if IE]>
-<link rel="stylesheet" href="css/CustomIE.css" type="text/css" />
-<![endif]-->
-    
+    <style>
 
- 
-<!-- end inc_OEHhomehead inc -->
-<meta name="path" content="Home/WORKAREA/content/index.htm" />
- 
-    <script type="text/javascript">
-        var currentPic = 0;
-        var okayToGo = false;
-        function countdown(id) {
-            okayToGo = true;
-            setTimeout("disappear('parkList')", 500);
+        body,p,td,li,th {font-family:arial;}
+
+        #actions li {
+            margin:.3em;
         }
-        function disappear(id) {
-            if (okayToGo == true) {
-                document.getElementById(id).style.display = 'none';
+        #actions li a {
+            color:#666688;
+            text-decoration:none;
             }
+        .sb {
+            width:140px;height:24px;font-size:18px;color:#999999;
         }
-        function appear(id) {
-            okayToGo = false;
-            document.getElementById(id).style.display = 'block';
+        .cntLrg, .cntLrg td{
+            text-align:center;font-size:18px;
         }
 
-        function checkEnter(e) { //e is event object passed from function invocation
-            var characterCode
-
-            if (e && e.which) { //if which property of event object is supported (NN4)
-                e = e
-                characterCode = e.which //character code is contained in NN4's which property
-            } else {
-                e = event
-                characterCode = e.keyCode //character code is contained in IE's keyCode property
-            }
-
-            if (characterCode == 13) { //if generated character code is equal to ascii 13 (if enter key)
-                document.forms[0].submit() //submit the form
-                return false
-            } else {
-                return true
-            }
-        }
-    </script>
-
-
-
-    <style type="text/css">
-
-       
+        #GNtabs .x-tab-right {padding-left:12px !important}
+        #GNtabs .x-tab-left{padding-right:12px !important}
+        #GNtabs .x-tab-strip-text{font-size:14px  !important;padding:6px 0 !important}
     </style>
-
-        <style type="text/css">
-
-
-
-</style>
-
-<script type="text/javascript">
-
-
-
-</script>
 </head>
 <body>
 
@@ -208,345 +162,23 @@
 <div id="header">
     <div id="title" class="mn-main"> </div>
 </div>
-
-
+<div id="mn-top">
+    <div class="pipe"><a href="javascript:void(app.getHelpWindow().show());">Help</a></div>
+    <div class="pipe" id="lang-form"></div>
+    <div class="pipe" id="login-form"></div>
+        </div>
 
 <div id="tag"></div>
 
 <div id="shortcut" style="display:none;"></div>
-<div id="Div1" style="height:20px; background-color:#ffffff;"></div>
-
-<div id="GeoNetworkContent"></div>
-
-<div id="FeatureMainContainer">
-<div id="GIS-feature-container">
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">What's New</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Acid sulfte soil risk maps</li>
-<li>Who Cares about the Environment</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">All themes</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li><a href ="#">NSW State of the Environment report with indicators, tables, figures and maps</a></li>
-<li>State of the Catchment reports and data inventory</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Air</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Air quality: <a href ="#">Current index, current data, all data, monitoring sites</a></li>
-<li>Greenhouse gas emmissions</li>
-<li>SoE report: Atmosphere</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Land and soil</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Soil profiles</li>
-<li>Soil maps</li>
-<li>Acid sulfate soil risk maps</li>
-<li>SoE report: Land</li>
-<li>Search for <a href="javascript:GetID('soil data');" id="soil">soil data</a></li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Water and coast</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Beach watch: data, sampling locations, annual reports</li>
-<li>Seabed habibat mapping</li>
-<li>SoE report: water</li>
-<li>Search for water data</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Wildlife</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Wildlilfe Atlas</li>
-<li>Threatened species</li>
-<li>SoE report: Native fauna & threatened species</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Vegetation</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Vegetation: data inventory, maps, types, benchmarks, public registers</li>
-<li>SoE report: Native vegetation</li>
-<li>Cumberland Plain maps</li>
-<li>Search for vegetation data</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Biodivercity & conservation</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Bioregions</li>
-<li>BioBanking public registers</li>
-<li>SoE report: biodiversity</li>
-<li>Search for vegetation data</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Parks</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Interactive maps (Avenza)</li>
-<li>Walking tracks</li>
-<li>Explore our parks</li>
-<li>Search for <a href="javascript:GetID('parks data');">parks data</a></li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Heritage</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Aboriginal heritage: mapping, database, atlas</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Community</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>Who Cares about the Environment</li>
-<li>SoE report: People and the Environment</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-<div class="GIS-feature" >
-<h2><a href="/climatechange/whatis.htm">Waste & pollution</a></h2>
-<a href="/climatechange/whatis.htm" class="ImgBg">
-<img alt="New England agriculture. D Barnes I&amp;I NSW" src="http://www.environment.nsw.gov.au/images/decc/feature/climatechange/feature_whatisclimatechange.png" border="0" />
-</a> 
-<div class="FeatureTxt">
-<ul>
-<li>POEO public register (pollution & noise control)</li>
-<li>Local government waste & resource recovery data</li>
-<li>Underground petrolium storage</li>
-</ul>
-</div>
-<p class="feature-link" >
-</p>
-</div>
-
-
-
-
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
 
     <script type="text/javascript" src="../js/ext/adapter/ext/ext-base.js"></script>
     <script type="text/javascript" src="../js/ext/ext-all.js"></script>
     <script type="text/javascript" src="js/App-mini.js"></script>
-    <script type="text/javascript" src="js/Custom.js"></script>
 
- 
-<script language="javascript" type="text/javascript">
-
-
-    
-
-   
-
-
-</script>
-    <script type="text/javascript">
-
-       
-
-        </script>
-
-<!--Start footer-->
-<DIV id=footerContainer>
-<DIV id=footer>
-<DIV class="footerlist connect"><SPAN>Connect</SPAN> 
-<UL>
-  <LI><A class="f-twitter f-icon" title=Twitter 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
-  <LI><A class="f-facebook f-icon" title=Facebook 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
-  <LI><A class="f-youtube f-icon" title=YouTube 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
-  <LI><A class="f-flickr f-icon" title=Flickr 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
-  <LI><A class="f-rss f-icon" title=RSS 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A></LI></UL><A 
-href="http://www.environment.nsw.gov.au/contact/SocialMedia.htm">Social Media 
-Centre</A> 
-<UL>
-  <LI>
-  <DIV class=icon-text><A class="f-enews f-icon" title=E-news 
-  href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm"></A><BR><A 
-  href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm">E-news</A> 
-  </DIV>
-  <LI>
-  <DIV class="icon-text mob-div"><A class="f-mobile f-icon" 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile"></A><BR><A 
-  href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile">Mobile</A> 
-  </DIV>
-  <LI>
-  <DIV class="icon-text share-div"><!-- AddThis Button BEGIN --><A 
-  class="show addthis_button f-share f-icon" 
-  href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4e7192194bc39d38"><IMG 
-  alt=Share 
-  src="http://www.environment.nsw.gov.au/images/footericons/share-inactive.png"> 
-  </A>
-  <SCRIPT type=text/javascript 
-  src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e7192194bc39d38"></SCRIPT>
- 
-  <SCRIPT type=text/javascript>
-      var addthis_config = {
-          data_ga_property: 'UA-1477612-1',
-
-          data_ga_social: true
-      }; 
-							</SCRIPT>
-<!-- AddThis Button END --><BR><A 
-  href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4e7192194bc39d38">Share</A> 
-  </DIV></LI></UL></DIV>
-<DIV class="footerlist items"><SPAN>Feedback</SPAN> 
-<UL>
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/feedback/ratethissite.htm">Website 
-  survey</A> 
-  <LI><A href="http://www.environment.nsw.gov.au/feedback/">Web support</A> 
-  <LI><A href="http://www.environment.nsw.gov.au/consult/">Public 
-  consultation</A> </LI></UL></DIV>
-<DIV class="footerlist items"><SPAN>Contact</SPAN> 
-<UL>
-  <LI><A href="http://www.environment.nsw.gov.au/contact">Contact us</A> <!--<li><a href="/askenvironmentapp">Ask Environment Line</a></li>-->
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/contact/onlineservices.htm">Online 
-  services</A> 
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/contact/locations.htm">Offices</A> 
-  <LI><A href="http://www.environment.nsw.gov.au/pollution">Report pollution</A> 
-  </LI></UL></DIV>
-<DIV class="footerlist items"><SPAN>Government</SPAN> 
-<UL>
-  <LI><A href="http://www.nsw.gov.au/">NSW Government</A> 
-  <LI><A href="http://www.jobs.nsw.gov.au/">jobs.nsw</A> </LI></UL></DIV>
-<DIV class="footerlist items"><SPAN>About</SPAN> 
-<UL>
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/help/index.htm">Accessibility</A> 
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/help/disclaimer.htm">Disclaimer</A> 
-  <LI><A href="http://www.environment.nsw.gov.au/help/privacy.htm">Privacy</A> 
-  <LI><A 
-  href="http://www.environment.nsw.gov.au/help/copyright.htm">Copyright</A> 
-</LI></UL></DIV></DIV></DIV>
-<SCRIPT type=text/javascript 
-src="http://www.environment.nsw.gov.au/js/decc/web-tracker.js"></SCRIPT>
-
-<!--End footer-->
-
-
+<!--<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("language", "1");
+</script>-->
 </body>
 </html>

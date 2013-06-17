@@ -13,21 +13,21 @@ GeoNetwork.app = function () {
     var resultPanel;
 
     /**
-	 * Application parameters are : * any search form ids (eg. any) * mode=1 for
-	 * visualization * advanced: to open advanced search form by default *
-	 * search: to trigger the search * uuid: to display a metadata record based
-	 * on its uuid * extent: to set custom map extent
-	 */
+     * Application parameters are : * any search form ids (eg. any) * mode=1 for
+     * visualization * advanced: to open advanced search form by default *
+     * search: to trigger the search * uuid: to display a metadata record based
+     * on its uuid * extent: to set custom map extent
+     */
     var urlParameters = {};
 
     /**
-	 * Catalogue manager
-	 */
+     * Catalogue manager
+     */
     var catalogue;
 
     /**
-	 * An interactive map panel for data visualization
-	 */
+     * An interactive map panel for data visualization
+     */
     var iMap;
 
     var searchForm;
@@ -61,10 +61,10 @@ GeoNetwork.app = function () {
     }
     
     /**
-	 * Create a mapControl
-	 * 
-	 * @return
-	 */
+     * Create a mapControl
+     * 
+     * @return
+     */
     function initMap() {
         iMap = new GeoNetwork.mapApp();
         var layers={}, options={};
@@ -81,10 +81,10 @@ GeoNetwork.app = function () {
     }
 
     /**
-	 * Create a language switcher mode
-	 * 
-	 * @return
-	 */
+     * Create a language switcher mode
+     * 
+     * @return
+     */
     function createLanguageSwitcher(lang) {
         return new Ext.form.FormPanel({
             renderTo : 'lang-form',
@@ -114,12 +114,12 @@ GeoNetwork.app = function () {
     }
     
     /**
-	 * Error message in case of bad login
-	 * 
-	 * @param cat
-	 * @param user
-	 * @return
-	 */
+     * Error message in case of bad login
+     * 
+     * @param cat
+     * @param user
+     * @return
+     */
     function loginAlert(cat, user) {
         Ext.Msg.show({
             title : 'Login',
@@ -131,10 +131,10 @@ GeoNetwork.app = function () {
     }
     
     /**
-	 * Create a default login form and register extra events in case of error.
-	 * 
-	 * @return
-	 */
+     * Create a default login form and register extra events in case of error.
+     * 
+     * @return
+     */
     function createLoginForm() {
         var loginForm = new GeoNetwork.LoginForm({
             renderTo : 'login-form',
@@ -199,23 +199,22 @@ GeoNetwork.app = function () {
             map.zoomToMaxExtent();
         }
         
-        // change map height in result details - May 2013, Kalpesh
         var mapPanel = new GeoExt.MapPanel({
-            id: "resultsMap",
-            height: 220,
-            width: 250,
+            id : "resultsMap",
+            height : 125,
+            width : 250,
             stateful: false,
-            map: map
+            map : map
         });
         
         return mapPanel;
     }
 
     /**
-	 * Create a default search form with advanced mode button
-	 * 
-	 * @return
-	 */
+     * Create a default search form with advanced mode button
+     * 
+     * @return
+     */
     function createSearchForm() {
         // Add advanced mode criteria to simple form - start
         var advancedCriteria = [];
@@ -293,9 +292,16 @@ GeoNetwork.app = function () {
             hidden : true
         });
 
-        advancedCriteria.push(themekeyField, orgNameField, categoryField,
-                spatialTypes, denominatorField, catalogueField, groupField,
-                metadataTypeField, validField, ownerField, isHarvestedField);
+        // OEH (Nchan-13062013) - Add title and abstract search fields.
+        var titleField = GeoNetwork.util.SearchFormTools.getTitleField();
+        var abstractField = GeoNetwork.util.SearchFormTools.getAbstractField();
+        
+        // OEH (Nchan-13062013) - Customise what fields to display.  
+        advancedCriteria.push(
+        		titleField,
+        		abstractField,
+        		themekeyField
+        	);
 
         // Hide or show extra fields after login event
         var adminFields = [ groupField, metadataTypeField, validField ];
@@ -330,31 +336,9 @@ GeoNetwork.app = function () {
             search();
             setTab('results');
             
-            // / Trigger the onsearch event which update search form state
+            /// Trigger the onsearch event which update search form state
             Ext.getCmp('searchForm').fireEvent('onsearch');
         };
-        
-        
-     // Radio button list under search text box - May 2013, Kalpesh
-        var radioGroup = {
-        id:'radiogroupID',
-        xtype: 'fieldset',
-        title: 'Radio Groups',
-        height:50,
-        boxMaxWidth: '500px',
-        cls:'FormatRadio',
-        items: [{
-            xtype: 'radiogroup',
-            cls:'FormatRadio',
-            items: [ 
-                {boxLabel: '<span id="SpaAll"><span class="rdDottedline">All results</span></span>', name: 'rb-auto', inputValue: 1, id:'rd1', checked: true },
-                {boxLabel: '<span id="SpaDownload"><span class="rdDottedline">Downloads</span></span>', name: 'rb-auto', id: 'rd2', inputValue: 2 },
-                {boxLabel: '<span id="SpaWebService"><span class="rdDottedline">Web services</span></span>', name: 'rb-auto', inputValue: 3, id: 'rd3' }
-            ]
-        }]
-    };
-
-
         
         return new GeoNetwork.SearchFormPanel({
             id : 'searchForm',
@@ -421,14 +405,6 @@ GeoNetwork.app = function () {
                                 });
                             ]
                     },
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     // Panel with Advanced search, Help and About Links
                     {
                         layout : {
@@ -458,6 +434,7 @@ GeoNetwork.app = function () {
                                 OpenLayers.i18n('About') + '</a><br/><br/>'
                         }]
                     },
+					// OEH (Nchan-13062013) - Customized advance search form.
                     // Advanced search form
                     {
                         id : 'advSearchTabs',
@@ -471,25 +448,44 @@ GeoNetwork.app = function () {
                         border : false,
                         autoScroll : true,
                         deferredRender : false,
-                        defaults : {
-                            bodyStyle : 'padding:10px'
-                        },
-                        items : [{
-                                title : OpenLayers.i18n('What'),
-                                margins : '0 5 0 0',
-                                layout : 'form',
+                        items : [
+                            {
+								layoutConfig : {
+									type : 'vbox',
+									align : 'stretch',
+									pack : 'center'
+								},
+								border : false,
                                 items : [
-                                        advancedCriteria,
-                                        GeoNetwork.util.SearchFormTools
-                                                .getTypesField(
-                                                        GeoNetwork.searchDefault.activeMapControlExtent,
-                                                        true)
-                                    ]
+                                         // What panel
+                                         {
+                                             title : OpenLayers.i18n('What'),
+                                             layout : 'form',
+											 bodyStyle : 'padding: 5px; text-align: left;',
+                                             items : [
+                                                     advancedCriteria
+                                                 ]
+                                         },
+										 {
+											layout : 'vbox',
+											border : false,
+											height: 10
+										 },
+                                         // Options panel
+                                         {
+                                             title : OpenLayers.i18n('Options'),
+                                             layout : 'form',
+											 bodyStyle : 'padding: 5px',
+                                             items : [
+                                                      optionsForm
+                                                 ]
+                                         }
+                                    ]                            	
                             },
                             // Where panel
                             {
                                 title : OpenLayers.i18n('Where'),
-                                margins : '0 5 0 5',
+                                margins : '0 10 0 10',
                                 bodyStyle : 'padding:0px',
                                 layout : 'form',
                                 items : [ GeoNetwork.util.SearchFormTools
@@ -499,159 +495,21 @@ GeoNetwork.app = function () {
                                                 false)
                                 ]
                             },
-                            // When & Options panel
+                            // When panel
                             {
-                                title : OpenLayers.i18n('When') + ' & ' + OpenLayers.i18n('Options'),
-                                margins : '0 5 0 5',
-                                defaultType : 'datefield',
+                                title : OpenLayers.i18n('When'),
                                 layout : 'form',
+								bodyStyle : 'padding: 5px; text-align: left;',
+								defaultType : 'datefield',
                                 items : [
-                                        GeoNetwork.util.SearchFormTools
-                                                .getWhen(), {
-                                            xtype : 'box',
-                                            autoEl : 'div',
-                                            height : 20
-                                        }, 
-                                        optionsForm
+                                        GeoNetwork.util.SearchFormTools.getOehWhen()
                                     ]
-                            },
-                            // INSPIRE panel
-                            {
-                                title : 'INSPIRE',
-                                margins : '0 5 0 5',
-                                // hidden: hideInspirePanel,
-                                defaultType : 'datefield',
-                                layout : 'form',
-                                items : GeoNetwork.util.INSPIRESearchFormTools
-                                        .getINSPIREFields(
-                                                catalogue.services,
-                                                true)
                             }
+                            // OEH (Nchan-13062013) - Remove inspire panel.
                         ]
-                    },
-                 
-
-                    
-                 // Radio button list under search text box - May 2013, Kalpesh
-                    radioGroup,
-                    {
-                    layout: {
-                        type: "hbox",
-                        pack: "center",
-                        align: "center"
-                    },
-                    id: "advSearch",
-                    autoScroll: true,
-                    border: false,
-                    height: 60,
-                    defaults: {
-                        bodyStyle: {},
-                        margins: "0 10 0 10",
-                        border: false
-                    },
-
-                   // Show and Hide Advance Option and Change browse tiles position - May 2013, Kalpesh
-                                   items: [{
-                                    // html: '<a href=javascript:void(Ext.get("advSearchTabs").toggle())>' + OpenLayers.i18n("Advanced") + "</a>"                   
-                                    xtype: 'button',
-                                    text:'<div id="AdvanceImg" class="AdvanceImgdown"><u>Show advanced options</u></div>',
-                                    width: 150,
-                                   // html:'<div id="AdvanceImg" style="width: 50px; background-image:url("../tabsearch/images/ImgDown.jpg"); background-position:left; background-repeat:no-repeat;"></div>',
-                                    handler: function()
-                                    {
-                                       var visible = Ext.fly('advSearchTabs').getStyle('visibility');
-                                      // Ext.MessageBox.alert('Status1', visible, 'test1');                   
-                                        if(visible == 'hidden')
-                                        {       
-                                            Ext.get("GNtabs").setHeight(550);
-                                            Ext.get("ext-gen17").setHeight(425);
-                                           // Ext.get("advSearchTabs").show();
-                                            Ext.get("advSearchTabs").slideIn();  
-                                            Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');                    
-                      
-                                        }
-                                        else
-                                        {                        
-                                           Ext.get("GNtabs").setHeight(250);
-                                              
-                                          // Ext.get("advSearchTabs").slideOut(); 
-                                           Ext.get("advSearchTabs").slideOut('t', {
-                                                           easing: 'easeOut',
-                                                           duration: .1,
-                                                           remove: false,
-                                                           useDisplay: false
-                                                       });                                         
-                                               Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown');
-                                           Ext.get("ext-gen17").setHeight(140); 
-                                          // Ext.get("advSearchTabs").hide();  
-
-                                           
-                                        }
-                                    }
-                                     
-                                   }]
-                               }, {
-                                   id: "advSearchTabs",
-                                   layout: {
-                                       type: "hbox",
-                                       pack: "center",
-                                       align: "center"
-                                   },
-                                   plain: true,
-                                   autoHeight: true,
-                                   border: false,
-                                   autoScroll: true,
-                                   deferredRender: false,
-                                   defaults: {
-                                       bodyStyle: "padding:10px"
-                                   },
-                                   items: [{
-                                       title: OpenLayers.i18n("What"),
-                                       margins: "0 5 0 0",
-                                       layout: "form",
-                                       items: [advancedCriteria, GeoNetwork.util.SearchFormTools.getTypesField(GeoNetwork.searchDefault.activeMapControlExtent, true)]
-                                   }, {
-                                       title: OpenLayers.i18n("Where"),
-                                       margins: "0 5 0 5",
-                                       bodyStyle: "padding:0px",
-                                       layout: "form",
-                                       items: [GeoNetwork.util.SearchFormTools.getSimpleMap(GeoNetwork.map.BACKGROUND_LAYERS, GeoNetwork.map.MAP_OPTIONS, false)]
-                                   }, {
-                                       title: OpenLayers.i18n("When") + " & " + OpenLayers.i18n("Options"),
-                                       margins: "0 5 0 5",
-                                       defaultType: "datefield",
-                                       layout: "form",
-                                       items: [GeoNetwork.util.SearchFormTools.getWhen(), {
-                                           xtype: "box",
-                                           autoEl: "div",
-                                           height: 20
-                                       },
-                                                   optionsForm
-                                               ]
-                                   }
-                                       ]
-                               }
-
-                    
-                    
-                    
-                    
+                    }
                 ]
         });
-        
-        
-        
-        
-        // hide advance search and setup initial height for form and GNtabs - May 2013, Kalpesh
-        Ext.get("advSearchTabs").hide();       
-        Ext.get("GNtabs").setHeight(250);      
-        
-        Ext.get("ext-gen17").setHeight(140);                        
-        Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown');   
-
-        //-----------------------------------------------------------//  
-        
-        
     }
 
     function search() {
@@ -668,10 +526,10 @@ GeoNetwork.app = function () {
 
     }
     /**
-	 * Bottom bar
-	 * 
-	 * @return
-	 */
+     * Bottom bar
+     * 
+     * @return
+     */
     function createBBar() {
 
         var previousAction = new Ext.Action({
@@ -698,25 +556,21 @@ GeoNetwork.app = function () {
             scope : this
         });
 
-      // reducing bottom toolbar height - May 2013, Kalpesh
-        return new Ext.Toolbar({           
-            height:45,           
-            items: [previousAction, "|", nextAction, "|", {
-                xtype: "tbtext",
-                text: "",
-                id: "info"
-            }
-            ]
-        })
-;
+        return new Ext.Toolbar({
+            items : [ previousAction, '|', nextAction, '|', {
+                xtype : 'tbtext',
+                text : '',
+                id : 'info'
+            } ]
+        });
 
     }
 
     /**
-	 * Results panel layout with top, bottom bar and DataView
-	 * 
-	 * @return
-	 */
+     * Results panel layout with top, bottom bar and DataView
+     * 
+     * @return
+     */
     function createResultsPanel(permalinkProvider) {
         metadataResultsView = new GeoNetwork.MetadataResultsView({
             catalogue : catalogue,
@@ -758,18 +612,18 @@ GeoNetwork.app = function () {
         if (!success) {
             // createMainTagCloud();
             // createLatestUpdate();
-// } else {
+//        } else {
             Ext.get('helpPanel').getUpdater().update({
                 url : 'help_eng.html'
             });
         }
     }
     /**
-	 * private: methode[creatAboutPanel] About information panel displayed on
-	 * load
-	 * 
-	 * :return:
-	 */
+     * private: methode[creatAboutPanel] About information panel displayed on
+     * load
+     * 
+     * :return:
+     */
     function creatAboutPanel() {
         return new Ext.Panel({
             border : true,
@@ -785,10 +639,10 @@ GeoNetwork.app = function () {
         });
     }
     /**
-	 * private: methode[createHelpPanel] Help panel displayed on load
-	 * 
-	 * :return:
-	 */
+     * private: methode[createHelpPanel] Help panel displayed on load
+     * 
+     * :return:
+     */
     function createHelpPanel() {
         return new Ext.Panel({
             border : false,
@@ -811,10 +665,10 @@ GeoNetwork.app = function () {
     }
 
     /**
-	 * Main tagcloud displayed in the information panel
-	 * 
-	 * @return
-	 */
+     * Main tagcloud displayed in the information panel
+     * 
+     * @return
+     */
     function createMainTagCloud() {
         var tagCloudView = new GeoNetwork.TagCloudView({
             catalogue : catalogue,
@@ -826,8 +680,8 @@ GeoNetwork.app = function () {
         return tagCloudView;
     }
     /**
-	 * Create latest metadata panel.
-	 */
+     * Create latest metadata panel.
+     */
     function createLatestUpdate() {
         var latestView = new GeoNetwork.MetadataResultsView({
             catalogue : catalogue,
@@ -849,11 +703,11 @@ GeoNetwork.app = function () {
                 true, latestView.getStore());
     }
     /**
-	 * Extra tag cloud to displayed current search summary TODO : not really a
-	 * narrow your search component.
-	 * 
-	 * @return
-	 */
+     * Extra tag cloud to displayed current search summary TODO : not really a
+     * narrow your search component.
+     * 
+     * @return
+     */
     function createTagCloud() {
         var tagCloudView = new GeoNetwork.TagCloudView({
             catalogue : catalogue
@@ -1032,9 +886,9 @@ GeoNetwork.app = function () {
                 defaultType: 'button',
                 border: false,
                 split: false
-// layoutConfig: {
-// columns:3
-// }
+//                layoutConfig: {
+//                    columns:3
+//                }
             });
             facetsPanel = new GeoNetwork.FacetsPanel({
                 searchForm: searchForm,
@@ -1119,85 +973,38 @@ GeoNetwork.app = function () {
                                     items : [ resultPanel ]
                                 } ],
                                 /*
-								 * Hide tab panel until a search is done Seem
-								 * "hidden:true" as in other places doesn't work
-								 * for Tabs, and need to use a listener!
-								 * 
-								 * See
-								 * http://www.sencha.com/forum/showthread.php?65441-Starting-A-Tab-Panel-with-a-Hidden-Tab
-								 */
+                                 * Hide tab panel until a search is done
+                                 * Seem "hidden:true" as in other places
+                                 * doesn't work for Tabs, and need to
+                                 * use a listener!
+                                 * 
+                                 * See
+                                 * http://www.sencha.com/forum/showthread.php?65441-Starting-A-Tab-Panel-with-a-Hidden-Tab
+                                 */
                                 listeners : {
                                     render : function (c) {
                                         c.ownerCt.hideTabStripItem(c);
                                     }
                                 }
 
-                            }
-                           /*
-							 * // Hide Map tab - May 2013, Kalpesh , {// map id :
-							 * 'map', title : OpenLayers.i18n('Map'), layout :
-							 * 'fit', margins : margins, listeners : { // Only
-							 * initialized the map // application when the tab
-							 * is // activated // then the layout is done and
-							 * all // sub widget like printPanel could // access
-							 * the map layout. activate : function (p) {
-							 * p.add(iMap.getViewport()); p.doLayout(); } } }
-							 */
-                            ],
-                            
-                            
-                         // Show and hide browse tiles, change position and
-							// Show and hide Advance Option based on tab change
-							// - May 2013, Kalpesh //
-   						 listeners: {
-   								'tabchange': function(tab){
-    
-                                       var activeTab = tab.getActiveTab();
-                                      // Ext.MessageBox.alert('Status',
-										// activeTab.id, tab.id);
-   									if(tab.id == 'GNtabs')
-   									{
-                                           if(activeTab.id == 'searchtab')
-                                           {     
-                                               var check = Ext.get("GIS-feature-container");
-                                               check.show(); 
-                                               
-                                                   var visible = Ext.fly('advSearchTabs').getStyle('visibility');                                                                  
-                                                    if(visible == 'hidden')
-                                                    {       
-                                                           Ext.get("advSearchTabs").hide();
-                                                           Ext.get("GNtabs").setHeight(250);                                                        
-                                                           Ext.get("ext-gen17").setHeight(140);                        
-                                                           Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown');  
-
-                                                    }
-                                                    else
-                                                    {                                                   
-                                                        Ext.get("GNtabs").setHeight(550);
-                                                        Ext.get("ext-gen17").setHeight(425);
-                                                        Ext.get("advSearchTabs").show();
-                                                        Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');
-
-                           
-                                                    }                                       
-                                           } 
-                                           else
-                                           {
-                                           var check = Ext.get("GIS-feature-container");
-                                           check.setStyle('display', 'none');  
-                                           // for results and other tab
-                                           Ext.get("GNtabs").setHeight(700); 
-                                           Ext.get("ext-gen17").setHeight(500);                                    
-    
-                                           }
-   									}
-                                      
-                                       
-   								}
-   							}
-
-                            
-                            
+                            }, {// map
+                                id : 'map',
+                                title : OpenLayers.i18n('Map'),
+                                layout : 'fit',
+                                margins : margins,
+                                listeners : {
+                                    // Only initialized the map
+                                    // application when the tab is
+                                    // activated
+                                    // then the layout is done and all
+                                    // sub widget like printPanel could
+                                    // access the map layout.
+                                    activate : function (p) {
+                                        p.add(iMap.getViewport());
+                                        p.doLayout();
+                                    }
+                                }
+                            } ]
                         }),
                         {
                             id : 'footer',
@@ -1321,11 +1128,11 @@ GeoNetwork.app = function () {
             return metadataResultsView;
         },
         /**
-		 * Do layout
-		 * 
-		 * @param response
-		 * @return
-		 */
+         * Do layout
+         * 
+         * @param response
+         * @return
+         */
         loadResults : function (response) {
             // Show "List results" panel
             var tabPanel = Ext.getCmp("GNtabs");
@@ -1362,8 +1169,8 @@ GeoNetwork.app = function () {
             Ext.ux.Lightbox.register('a[rel^=lightbox]');
         },
         /**
-		 * Activate map tab
-		 */
+         * Activate map tab
+         */
         switchMode : function () {
             setTab('map');
         }
