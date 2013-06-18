@@ -214,6 +214,11 @@ OEH.Popup.show = function(type, callback, options) {
 							if (OEH.Popup.SERVICE_WMS == type) {
 								var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
 								if (!wmsUrlPanel.isVisible()) {
+									//TODO - Rename submit link
+									Ext.get('submitLink').update('Close');
+									//TODO - Hide reset link
+									Ext.getCmp('resetLink').getEl().hide();
+									//TODO - Show WMS url panel
 									wmsUrlPanel.show();
 								} else {
 									window.close();
@@ -238,6 +243,7 @@ OEH.Popup.show = function(type, callback, options) {
 			var wmsPanel = {
 				id: 'wmsUrlPanel',
 				name: 'wmsUrlPanel',
+				padding: 10,
 				html:  '<table border="0" width="100%">' +
 							'<tr>' +
 								'<td colspan="3">' +
@@ -246,7 +252,7 @@ OEH.Popup.show = function(type, callback, options) {
 							'</tr>' +
 							'<tr>' +
 								'<td colspan="3">' +
-									'<input type="text" name="wmsUrl" value="' + options.wmsUrl + '" readonly>' +
+									'<input type="text" name="wmsUrl" value="' + options.wmsUrl + '" style="width:100%;" onClick="this.select();" readonly>' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
@@ -270,7 +276,7 @@ OEH.Popup.show = function(type, callback, options) {
 		if (OEH.Popup.DOWNLOAD_OEH == type) {
 			height = 390;
 		} else if (OEH.Popup.SERVICE_WMS == type) {
-			height = 420;
+			height = 400;
 		}
 		var window = createWindow(width, height, items);
 		
@@ -404,7 +410,8 @@ OEH.Popup.show = function(type, callback, options) {
 			height = 420;
 		}
 		
-		return createWindow(width, height, [formPanel]);
+		var window = createWindow(width, height, [formPanel]);
+		return window;
 		
 	}
 	
