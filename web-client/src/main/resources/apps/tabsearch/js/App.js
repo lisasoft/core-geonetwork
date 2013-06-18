@@ -292,9 +292,16 @@ GeoNetwork.app = function () {
             hidden : true
         });
 
-        advancedCriteria.push(themekeyField, orgNameField, categoryField,
-                spatialTypes, denominatorField, catalogueField, groupField,
-                metadataTypeField, validField, ownerField, isHarvestedField);
+        // OEH (Nchan-13062013) - Add title and abstract search fields.
+        var titleField = GeoNetwork.util.SearchFormTools.getTitleField();
+        var abstractField = GeoNetwork.util.SearchFormTools.getAbstractField();
+        
+        // OEH (Nchan-13062013) - Customise what fields to display.  
+        advancedCriteria.push(
+        		titleField,
+        		abstractField,
+        		themekeyField
+        	);
 
         // Hide or show extra fields after login event
         var adminFields = [ groupField, metadataTypeField, validField ];
@@ -427,6 +434,7 @@ GeoNetwork.app = function () {
                                 OpenLayers.i18n('About') + '</a><br/><br/>'
                         }]
                     },
+                    // OEH (Nchan-13062013) - Customized advance search form.
                     // Advanced search form
                     {
                         id : 'advSearchTabs',
@@ -440,62 +448,64 @@ GeoNetwork.app = function () {
                         border : false,
                         autoScroll : true,
                         deferredRender : false,
-                        defaults : {
-                            bodyStyle : 'padding:10px'
-                        },
-                        items : [{
-                                title : OpenLayers.i18n('What'),
-                                margins : '0 5 0 0',
-                                layout : 'form',
-                                items : [
-                                        advancedCriteria,
-                                        GeoNetwork.util.SearchFormTools
-                                                .getTypesField(
-                                                        GeoNetwork.searchDefault.activeMapControlExtent,
-                                                        true)
-                                    ]
-                            },
-                            // Where panel
-                            {
-                                title : OpenLayers.i18n('Where'),
-                                margins : '0 5 0 5',
-                                bodyStyle : 'padding:0px',
-                                layout : 'form',
-                                items : [ GeoNetwork.util.SearchFormTools
-                                        .getSimpleMap(
-                                                GeoNetwork.map.BACKGROUND_LAYERS,
-                                                GeoNetwork.map.MAP_OPTIONS,
-                                                false)
-                                ]
-                            },
-                            // When & Options panel
-                            {
-                                title : OpenLayers.i18n('When') + ' & ' + OpenLayers.i18n('Options'),
-                                margins : '0 5 0 5',
-                                defaultType : 'datefield',
-                                layout : 'form',
-                                items : [
-                                        GeoNetwork.util.SearchFormTools
-                                                .getWhen(), {
-                                            xtype : 'box',
-                                            autoEl : 'div',
-                                            height : 20
-                                        }, 
-                                        optionsForm
-                                    ]
-                            },
-                            // INSPIRE panel
-                            {
-                                title : 'INSPIRE',
-                                margins : '0 5 0 5',
-                                // hidden: hideInspirePanel,
-                                defaultType : 'datefield',
-                                layout : 'form',
-                                items : GeoNetwork.util.INSPIRESearchFormTools
-                                        .getINSPIREFields(
-                                                catalogue.services,
-                                                true)
-                            }
+                        items : [
+                                 {
+     								layoutConfig : {
+     									type : 'vbox',
+     									align : 'stretch',
+     									pack : 'center'
+     								},
+     								border : false,
+                                     items : [
+                                              // What panel
+                                              {
+                                                  title : OpenLayers.i18n('What'),
+                                                  layout : 'form',
+     											 bodyStyle : 'padding: 5px; text-align: left;',
+                                                  items : [
+                                                          advancedCriteria
+                                                      ]
+                                              },
+     										 {
+     											layout : 'vbox',
+     											border : false,
+     											height: 10
+     										 },
+                                              // Options panel
+                                              {
+                                                  title : OpenLayers.i18n('Options'),
+                                                  layout : 'form',
+     											 bodyStyle : 'padding: 5px',
+                                                  items : [
+                                                           optionsForm
+                                                      ]
+                                              }
+                                         ]                            	
+                                 },
+                                 // Where panel
+                                 {
+                                     title : OpenLayers.i18n('Where'),
+                                     margins : '0 10 0 10',
+                                     bodyStyle : 'padding:0px',
+                                     layout : 'form',
+                                     items : [ GeoNetwork.util.SearchFormTools
+                                             .getSimpleMap(
+                                                     GeoNetwork.map.BACKGROUND_LAYERS,
+                                                     GeoNetwork.map.MAP_OPTIONS,
+                                                     false)
+                                     ]
+                                 },
+                                 // When panel
+                                 {
+                                     title : OpenLayers.i18n('When'),
+                                     layout : 'form',
+     								bodyStyle : 'padding: 5px; text-align: left;',
+     								defaultType : 'datefield',
+                                     items : [
+                                             GeoNetwork.util.SearchFormTools.getOehWhen()
+                                         ]
+                                 }
+                                 // OEH (Nchan-13062013) - Remove inspire panel.
                         ]
                     }
                 ]

@@ -116,7 +116,8 @@ GeoNetwork.Templates = Ext.extend(Ext.XTemplate, {
 GeoNetwork.Templates.SHORT_TITLE ='<h1><input type="checkbox" <tpl if="selected==\'true\'">checked="true"</tpl> class="selector" onclick="javascript:catalogue.metadataSelect((this.checked?\'add\':\'remove\'), [\'{uuid}\']);"/><a href="#" onclick="javascript:catalogue.metadataShow(\'{uuid}\');return false;">{[Ext.util.Format.ellipsis(values.title, 50, true)]}</a>' +
                                     '<span class="md-action-menu"> - <a rel="mdMenu">' + OpenLayers.i18n('mdMenu') + '</a></span></h1>';
 
-GeoNetwork.Templates.TITLE = '<h1><input type="checkbox" <tpl if="selected==\'true\'">checked="true"</tpl> class="selector" onclick="javascript:catalogue.metadataSelect((this.checked?\'add\':\'remove\'), [\'{uuid}\']);"/><a href="#" onclick="javascript:catalogue.metadataShow(\'{uuid}\');return false;">{title}</a>' +
+// OEH (Nchan-062013) - Added space between checkbox and title.
+GeoNetwork.Templates.TITLE = '<h1><input type="checkbox" <tpl if="selected==\'true\'">checked="true"</tpl> class="selector" onclick="javascript:catalogue.metadataSelect((this.checked?\'add\':\'remove\'), [\'{uuid}\']);"/>&nbsp;&nbsp;<a href="#" onclick="javascript:catalogue.metadataShow(\'{uuid}\');return false;">{title}</a>' +
                                 '<span class="md-action-menu"> - <a rel="mdMenu">' + OpenLayers.i18n('mdMenu') + '</a></span></h1>';
 GeoNetwork.Templates.RATING_TPL = '<tpl if="isharvested==\'n\' || harvestertype==\'geonetwork\'"><div class="rating">' +
                                            '<input type="radio" name="rating{values.uuid}" <tpl if="rating==\'1\'">checked="true"</tpl> value="1"/>' + 
@@ -136,9 +137,9 @@ GeoNetwork.Templates.SIMPLE = new Ext.XTemplate(
     '<ul>',
         '<tpl for=".">',
             '<li class="md md-simple" title="{abstract}" style="{featurecolorCSS}">',
-                '<table><tr><td style="width:30px;">',  // FIXME
-                GeoNetwork.Templates.LOGO,
-                '</td><td id="{uuid}">',
+                '<table><tr>',  // FIXME
+					// OEH (Nchan-062013) - Removed logo beside title.
+                '<td id="{uuid}">',
                 GeoNetwork.Templates.TITLE,
                 '<tpl if="subject">',
                     '<span class="subject"><tpl for="subject">',
@@ -163,7 +164,7 @@ GeoNetwork.Templates.THUMBNAIL = new Ext.XTemplate(
             '<tpl for=".">',
                 '<li class="md md-thumbnail" style="{featurecolorCSS}">',
                 '<div class="md-wrap" id="{uuid}" title="{abstract}">',
-                    GeoNetwork.Templates.SHORT_TITLE,
+                	// OEH (Nchan-062013) - Removed logo beside title.
                     '<div class="thumbnail">',
                         '<tpl if="thumbnail">',
                             '<a rel="lightbox" href="{overview}"><img src="{thumbnail}" alt="Thumbnail"/></a>', 
@@ -193,9 +194,7 @@ GeoNetwork.Templates.FULL = new Ext.XTemplate(
           '<tpl for=".">',
             '<li class="md md-full" style="{featurecolorCSS}">',
                 '<table><tr>',
-                '<td class="left">',
-                    GeoNetwork.Templates.LOGO,
-                '</td>',
+					// OEH (Nchan-062013) - Removed logo beside title.
                 '<td id="{uuid}">',
                     GeoNetwork.Templates.TITLE,
                     '<p class="abstract">{[Ext.util.Format.ellipsis(Ext.util.Format.stripTags(values.abstract), 350, true)]}</p>',    // FIXME : 250 as parameters
@@ -207,7 +206,7 @@ GeoNetwork.Templates.FULL = new Ext.XTemplate(
                     '<div class="md-links" id="md-links-{id}">',
                     '</div>',
                 '</td><td class="thumb">',
-                        GeoNetwork.Templates.RATING_TPL,
+						// OEH (Nchan-062013) - Removed ratings panel.
                         '<div class="thumbnail">',
                             '<tpl if="thumbnail">',
                                 '<a rel="lightbox" href="{overview}"><img src="{thumbnail}" alt="Thumbnail"/></a>', 
@@ -241,15 +240,7 @@ GeoNetwork.Templates.FULL = new Ext.XTemplate(
                 '</td></tr></table>',
                 '<div class="relation" title="' + OpenLayers.i18n('relateddatasets') + '"><span></span><ul id="md-relation-{id}"></ul></div>',
                 '<div class="md-contact">',
-                  '<tpl for="contact">',
-                      // metadata contact are not displayed.
-                      '<tpl if="applies==\'resource\'">',
-                          '<span title="{role} - {applies}"><tpl if="values.logo !== undefined && values.logo !== \'\'">',
-                              '<img src="{logo}" class="orgLogo"/>',
-                          '</tpl>',
-                          '{name}&nbsp;&nbsp;</span>',
-                      '</tpl>',
-                  '</tpl>',
+					// OEH (Nchan-062013) - Removed organisation display.
                   '<tpl if="edit==\'true\' && isharvested!=\'y\'">',
                       '<br/><span class="md-mn md-mn-user" title="' + OpenLayers.i18n('ownerName') + '">{ownername} - ' + OpenLayers.i18n('lastUpdate') + '{[values.changedate.split(\'T\')[0]]}</span>',
                   '</tpl>',

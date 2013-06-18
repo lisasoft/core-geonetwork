@@ -231,28 +231,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
             scope: this
         });
 
-        /* Rating menu */
-        if (!this.catalogue.isReadOnly() && Ext.ux.RatingItem) { // Check required widget are loaded before displaying context menu
-            // If more actions are placed in context menu, this needs improvements.
-            this.ratingWidget = new Ext.ux.RatingItem(null, {
-                canReset: false,
-                name: 'rating',
-                disabled: true,
-                nbStars: 5,
-                cls: 'ux-menu-rating-item',
-                listeners: {
-                    change: function(e, value, star){
-                        if (value) {
-                            var uuid = this.record.get('uuid');
-                            this.catalogue.metadataRate(uuid, value, this.hide());
-                            this.ratingWidget.reset();
-                        }
-                        // TODO : if nb update current rating
-                    },
-                    scope: this
-                }
-            });
-        }
+        // OEH (Nchan-062013) - Removed ratings panel.
         
         /* TODO : add categories / privileges / create child */
         this.updateMenu();
@@ -289,10 +268,8 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
         this.add(this.printAction);
         this.add(this.getMEFAction);
         
-        /* Rating menu */
-        if (!this.catalogue.isReadOnly() && Ext.ux.RatingItem) { // Check required widget are loaded before displaying context menu
-            this.add(this.ratingWidget);
-        }
+        // OEH (Nchan-062013) - Removed ratings panel.
+        
     },
     
     /**
@@ -341,15 +318,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
         this.categoryAction.setDisabled((!isEditable && !isHarvested) || isReadOnly);
         this.deleteAction.setDisabled((!isEditable && !isHarvested) || isReadOnly);
         
-        if (this.ratingWidget) {
-            this.ratingWidget.reset();
-            if ((isHarvested && harvesterType !== 'geonetwork') || isReadOnly) {
-                /* TODO : add tooltip message to explain why */
-                this.ratingWidget.disable();
-            } else {
-                this.ratingWidget.enable();
-            }
-        }
+        // OEH (Nchan-062013) - Removed ratings panel.
         
     },
     /** private: method[initComponent] 
