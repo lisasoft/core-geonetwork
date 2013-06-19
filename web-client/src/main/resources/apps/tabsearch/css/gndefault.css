@@ -259,6 +259,22 @@ table.related * a:hover,
     background-image : url(../../images/default/map/server_vector.png);
 }
 
+/* Custom icons for OEH customisation */
+.oeh-gearth {
+  background-image : url(../images/oeh/gearth_icon.png);
+}
+.oeh-wms {
+  background-image : url(../images/oeh/gis_icon.png);
+}
+.oeh-request {
+  background-image : url(../images/oeh/mail_icon.png);
+}
+.oeh-download {
+  background-image : url(../images/oeh/download_icon.png);
+}
+.oeh-rest {
+  background-image : url(../images/oeh/webservices_icon.jpg);
+}
 
 /* Other icons */
 .md-mn-reset {
