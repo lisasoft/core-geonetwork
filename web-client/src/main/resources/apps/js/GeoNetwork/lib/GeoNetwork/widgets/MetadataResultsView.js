@@ -645,6 +645,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 // [NChan] When File Download, it is also generated here
                                 if (displayLink) {
                                 	if (record.get('href').indexOf('resources.get') !== -1) {
+                                		label = 'Download Data (XX MB)'; //TODO Get actual size from metadata
                                     	linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
@@ -719,22 +720,27 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
     	var isLargeFile = false;
     	var linkLabel = label;
     	var linkIconCls = GeoNetwork.Util.protocolToCSS[currentType] || currentType;
+    	
     	if (currentType == "application/vnd.google-earth.kml+xml") {
     		linkIconCls = 'oeh-gearth';
     		linkLabel = 'View in Google Earth';
-    	} else if (currentType == "application/vnd.ogc.wms_xml") {
+    	} else if (currentType == "application/vnd.ogc.wms_xml"
+    		|| currentType == 'application/vnd.ogc.wmc'
+    			|| currentType == 'OGC:WMS') {
     		linkIconCls = 'oeh-wms';
     		linkLabel = 'View in GIS';
     	} else if (currentType == "REST") { //TODO - Fix this with correct values
     		linkIconCls = 'oeh-rest';
     		linkLabel = 'Connect to REST Service';
-    	} else if (currentType == "application/zip") {
+    	} else if (currentType == "application/zip"
+    		|| currentType == 'application/x-compressed'
+    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
     		if (isLargeFile) {
     			linkIconCls = 'oeh-request';
     			linkLabel = 'Request Data';
     		} else {
     			linkIconCls = 'oeh-download';
-    			linkLabel = 'Download Data';
+    			// Label is set in calling function 
     		}
     	}
     	
@@ -744,7 +750,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
             };
             bt = new Ext.Button({
                 text: linkLabel,
-                tooltip: linkButton[0].text,
+                //[NChan] Removed tooltips
                 handler: handler,
                 iconCls: linkIconCls,
                 renderTo: el
