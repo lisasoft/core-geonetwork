@@ -604,7 +604,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
 											var wmsUrl = record.get('href');
                                         	OEH.Popup.show(OEH.Popup.SERVICE_WMS, function() {}, {
 												wmsUrl : wmsUrl,
-												wmsSampleMap: wmsUrl,
+												wmsSampleMap: wmsUrl + '?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:102100&FORMAT=image/png&TRANSPARENT=TRUE&EXCEPTIONS=INIMAGE&BBOX=15625344.26,-4574548.91,17179065.4,-3204873.971&WIDTH=500&HEIGHT=440&LAYERS=0&STYLES=',
 												wmsCapabilities: wmsUrl + '?request=GetCapabilities&service=WMS'
                                         	});
                                         }
