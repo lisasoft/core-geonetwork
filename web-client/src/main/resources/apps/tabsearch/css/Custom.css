@@ -1,4 +1,4 @@
-﻿ body,p,td,li,th {font-family:arial;}
+ body,p,td,li,th {font-family:arial;}
 
         #actions li {
             margin:.3em;
@@ -137,7 +137,11 @@ div.GIS-feature p.feature-link a
     text-decoration: none; 
 }
 */
-#ext-gen3
+
+.x-viewport body  {
+overflow:scroll
+}
+#ext--gen3
 {
     overflow-y: scroll;
     overflow-h:hidden;
@@ -145,7 +149,10 @@ div.GIS-feature p.feature-link a
 div.GIS-feature .ImgBg
 {
     background-color:#d0ddeb;    
-
+}
+#GeoNetworkContent {
+width:990px;
+position:relative;
 }
 div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-feature p a:hover 
 { 
@@ -160,6 +167,15 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 #GNtabs[style]
 {
     width:990px !important;
+    border-bottom: dashed 1px #999999;
+    height:200px;
+}
+
+#GNtabs1 > div > div[style]{
+width: 990px;
+height:200px;
+}
+.x-tab-panel-body, .x-panel-bwrap, .x-column-inner, #ext--comp-1191{
 
 }
 .x-tab-strip-wrap
@@ -168,30 +184,27 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 }
 
 /* Form styles */
-#ext-gen17[style]
+#ext--gen17[style]
 {
     border:1px solid #8fb3e3;
-   
-    width:970px !important;
     margin-left:10px !important;
     margin-top:20px !important;
 }
 .x-panel-body x-panel-body-noheader x-panel-body-noborder x-form
 {
-    width:980px !important;
     margin-left:20px !important;
 
 }
-#ext-comp-1022 h1
+#ext--comp-1022 h1
 {
     color:#d66b03;
     padding-right:25px;
 }
-#ext-gen110[style]
+#ext--gen110[style]
 {
     padding-top:20px !important;
 }
-#ext-gen118[style]
+#ext--gen118[style]
 {
 
     height:30px !important;
@@ -202,12 +215,12 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 
 
 /* Search div and text box styles */
-#ext-gen115[style]
+#ext--gen115[style], #search
 {
-    width:980px !important;
+
 }
 
-#ext-gen125 h1
+#ext--gen125 h1
 {
     color:#d66b03;
     font-size:16px;
@@ -246,28 +259,28 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 }
 #advSearchTabs[style]
 {
-    width:960px !important;
+    width:890px !important;
 
 }
-#ext-comp-1025
+#ext--comp-1025-nu
 {
     width:300px !important;
     left:30px !important;
     
 }
-#ext-comp-1026
+#ext--comp-1026
 {
     width:300px !important;
     left:340px !important;
     
 }
-#ext-comp-1037
+#ext--comp-1037
 {
     width:300px !important;
     left:650px !important;
     
 }
-#ext-comp-1002[style]
+#ext--comp-1002[style]
 {
     width:100px !important;
 }
@@ -291,15 +304,15 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 {
     width:100px !important;
 }
-#ext-comp-1029[style]
+#ext--comp-1029[style]
 {
-    width:300px !important;
+    width:500px !important;
 }
-#ext-gen292[style]
+#ext--gen292[style]
 {
     height: 220px!important;
 }
-#ext-gen291[style]
+#ext--gen291[style]
 {
     width:300px !important;
     height: 30px!important;
@@ -309,13 +322,13 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 {
     width:300px !important;    
 }
-#ext-gen286[style]
+#ext--gen286[style]
 {
     width:300px !important;
     height: 30px !important;
     background-color:#dbdbdb !important;
 }
-#ext-gen287[style]
+#ext--gen287[style]
 {
      height: 220px !important;
 }
@@ -325,7 +338,7 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
     vertical-align:top !important;
 }
 
-#ext-gen292[style]
+#ext--gen292[style]
 {
     background-image: url("../../../images/map/icon_zoomin.png") !important;
     height: 20px !important;
@@ -334,19 +347,19 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 
 
 /* Tabpanel styles */
-#ext-gen80[style]
+#ext--gen80[style]
 {
      width:990px !important;
 }
-#ext-gen83[style]
+#ext---gen83[style]
 {
      width:990px !important;
 }
-#ext-gen85 
+#ext---gen85 
 {
      width:990px !important;
 }
-#ext-gen85 li
+#ext---gen85 li
 {
      margin-left:10px !important;
 }
@@ -373,11 +386,34 @@ ul.x-tab-strip-top {
 
 
 /* Search and reset button styles*/
-#searchBt[style]
+#searchBt[style],#resetBt[style],#helpBt[style]
 {
     background-color: transparent !important;
     background-image: none !important;
     top:-4px !important;
+
+}
+#resetBt[style] button,#helpBt[style] button, #radiogroup label
+{
+text-decoration:underline;
+}
+/* Search and reset button styles*/
+#searchBt[style] button
+{
+    background-color: #eeeeee;
+    border: 1px solid black;
+    height:18px;
+    width:50px;
+        -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px
+    
+   
 }
 
 .x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
@@ -385,7 +421,7 @@ ul.x-tab-strip-top {
     height:0px !important;
     
 }
-.x-btn-mc button
+.x-btn-mc1 button
 {
     font-size:12px !important;
     color:#3f5059 !important;
@@ -399,6 +435,11 @@ ul.x-tab-strip-top {
     width:100px;
 }
 /* Radio button styles */
+#radiogroupID[style], #x-form-el-radiogroup
+{ 
+    width:500px;
+    padding: 0px;
+}
 .FormatRadio 
 {
     border:1px solid #ffffff !important;
@@ -409,12 +450,9 @@ ul.x-tab-strip-top {
     font-size:12px;
     color:#787469;
 }
-#radiogroupID[style]
-{
-    width:900px !important;    
-    margin-top:-15px !important;    
-    height:30px !important;
-}
+/*
+
+
 
 #SpaDownload
 {
@@ -448,13 +486,32 @@ ul.x-tab-strip-top {
         background-position: 30px 3px; 
         height:35px;        
 } 
-
+*/
 .rdDottedline
 {
     border-bottom:1px dashed #787469;
 }
 
 /* Result details */
+#HomePanel {
+width: 990px;
+height:200px;
+border-bottom: dashed 1px #999999;
+}
+#HomePanel > div > div{
+width: 990px;
+height:200px;
+}
+
+#results {
+width: 990px  !important;
+height:550;
+position:relative;
+}
+
+div#MetadataResultsToolbar,  #metadataResultsView{
+width:740px !important;
+}
 
 .x-panel-tbar-noborder
 {

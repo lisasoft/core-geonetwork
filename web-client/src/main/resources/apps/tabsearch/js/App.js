@@ -48,8 +48,10 @@ GeoNetwork.app = function () {
 
 
     function setTab(id) {
+
         var tabPanel = Ext.getCmp("GNtabs"),
              tabs = tabPanel.find('id', id);
+          
         if (tabs[0]) {
             tabPanel.setActiveTab(tabs[0]);
         }
@@ -137,6 +139,7 @@ GeoNetwork.app = function () {
      */
     function createLoginForm() {
         var loginForm = new GeoNetwork.LoginForm({
+            id:'loginForm',
             renderTo : 'login-form',
             catalogue : catalogue,
             layout : 'hbox',
@@ -201,7 +204,7 @@ GeoNetwork.app = function () {
         
         var mapPanel = new GeoExt.MapPanel({
             id : "resultsMap",
-            height : 125,
+           height: 220,
             width : 250,
             stateful: false,
             map : map
@@ -339,11 +342,46 @@ GeoNetwork.app = function () {
             /// Trigger the onsearch event which update search form state
             Ext.getCmp('searchForm').fireEvent('onsearch');
         };
+                // Radio button list under search text box - May 2013, Kalpesh
+        var radioGroup = {
+            id:'radiogroupID',
+            xtype: 'fieldset',
+            title: 'Radio Groups',
+            height:50,
+            maxWidth: 400,
+            cls:'FormatRadio',
+            items: [{
+                xtype: 'radiogroup',
+                id:'radiogroup',
+                columns:3,
+                width:400,
+                maxWidth: 400,
+                vertical:false,
+                items: [ 
+                    {
+                        boxLabel: 'All results', 
+                        name: 'rb-auto', 
+                        inputValue: 1, 
+                        id:'rd1', 
+                        checked: true 
+                    },
+                    {boxLabel: 'Downloads', 
+                    name: 'rb-auto', 
+                    id: 'rd2',
+                    inputValue: 2 },
+                    {boxLabel: 'Web services', 
+                    name: 'rb-auto', 
+                    inputValue: 3, 
+                    id: 'rd3' }
+                ]
+            }]
+        };
         
         return new GeoNetwork.SearchFormPanel({
             id : 'searchForm',
             stateId: 's',
             bodyStyle : 'text-align: center;',
+            width: 890,
             border : false,
             searchBt: null,
             searchCb: searchCb,
@@ -360,7 +398,8 @@ GeoNetwork.app = function () {
                             align : 'center'
                         },
                         border : false,
-                        items : [
+                        width:800,
+                        items :[
                                 {
                                     html : '<h1>' + 
                                         OpenLayers.i18n('Searchforspatialdataon') + '</h1>',
@@ -380,8 +419,6 @@ GeoNetwork.app = function () {
                                     text : OpenLayers.i18n('search'),
                                     id : 'searchBt',
                                     margins : '3 5 3 5',
-                                    icon : '../images/default/find.png',
-                                    iconAlign : 'right',
                                     listeners : {
                                         click : searchCb
                                     }
@@ -394,19 +431,30 @@ GeoNetwork.app = function () {
                                     // iconCls: 'md-mn-reset',
                                     id : 'resetBt',
                                     margins : '3 5 3 5',
-                                    icon : '../images/default/cross.png',
-                                    iconAlign : 'right',
                                     listeners : {
                                         click : function () {
                                             facetsPanel.reset();
                                             Ext.getCmp('searchForm').getForm().reset();
                                         }
                                     }
-                                });
+                                }),
+                                
+                                new Ext.Button({
+                                    text : 'help',
+                                    // iconCls: 'md-mn-reset',
+                                    id : 'helpBt',
+                                    margins : '3 5 3 5',
+                                    listeners : {
+                                        click : function () {
+                                            //Ext.getCmp('searchForm').getForm().reset();
+                                            app.getHelpWindow().show();
+                                        }
+                                    }
+                                })
                             ]
                     },
                     // Panel with Advanced search, Help and About Links
-                    {
+                   /* {
                         layout : {
                             type : 'hbox',
                             pack : 'center',
@@ -415,7 +463,7 @@ GeoNetwork.app = function () {
                         id : 'advSearch',
                         autoScroll : true,
                         border : false,
-                        height : 60,
+                        //HERE: height : 60,
                         defaults : {
                             bodyStyle : {},
                             margins : '0 10 0 10',
@@ -433,7 +481,10 @@ GeoNetwork.app = function () {
                             html : '<a href="javascript:void(app.getAboutWindow().show());">' + 
                                 OpenLayers.i18n('About') + '</a><br/><br/>'
                         }]
-                    },
+                    },*/
+                                // Radio button list under search text box - May 2013, Kalpesh
+                    radioGroup,
+                    
 					// OEH (Nchan-13062013) - Customized advance search form.
                     // Advanced search form
                     {
@@ -441,13 +492,15 @@ GeoNetwork.app = function () {
                         layout : {
                             type : 'hbox',
                             pack : 'center',
-                            align : 'center'
+                            align : 'left'
                         },
+                        maxWidth: 910,
                         plain : true,
                         autoHeight : true,
                         border : false,
                         autoScroll : true,
                         deferredRender : false,
+                        visibility:Ext.Element.NONE,
                         items : [
                             {
 								layoutConfig : {
@@ -455,11 +508,13 @@ GeoNetwork.app = function () {
 									align : 'stretch',
 									pack : 'center'
 								},
+                                id:'tabs',
 								border : false,
                                 items : [
                                          // What panel
                                          {
                                              title : OpenLayers.i18n('What'),
+                                             id:'WhatPanel',
                                              layout : 'form',
 											 bodyStyle : 'padding: 5px; text-align: left;',
                                              items : [
@@ -474,6 +529,7 @@ GeoNetwork.app = function () {
                                          // Options panel
                                          {
                                              title : OpenLayers.i18n('Options'),
+                                             id:'OptionsPanel',
                                              layout : 'form',
 											 bodyStyle : 'padding: 5px',
                                              items : [
@@ -485,6 +541,7 @@ GeoNetwork.app = function () {
                             // Where panel
                             {
                                 title : OpenLayers.i18n('Where'),
+                                id:'WherePanel',
                                 margins : '0 10 0 10',
                                 bodyStyle : 'padding:0px',
                                 layout : 'form',
@@ -498,7 +555,9 @@ GeoNetwork.app = function () {
                             // When panel
                             {
                                 title : OpenLayers.i18n('When'),
+                                id:'WhenPanel',
                                 layout : 'form',
+                                width: 260,
 								bodyStyle : 'padding: 5px; text-align: left;',
 								defaultType : 'datefield',
                                 items : [
@@ -507,9 +566,64 @@ GeoNetwork.app = function () {
                             }
                             // OEH (Nchan-13062013) - Remove inspire panel.
                         ]
+                    },
+                    
+                    {
+                        layout: {
+                            type: "hbox",
+                            pack: "center",
+                            align: "center"
+                        },
+                        id: "advSearch",
+                        autoScroll: true,
+                        border: false,
+                        defaults: {
+                            bodyStyle: {},
+                            margins: "0 10 0 10",
+                            border: false
+                        },
+                        // Show and Hide Advance Option and Change browse tiles position - May 2013, Kalpesh
+                        items: [{         
+                         id: 'AdvanceImg',
+                         xtype: 'button',
+                         cls: 'AdvanceImg',
+                         text:'Show advanced options',
+                         width: 150,
+                         handler: function()
+                         {
+                            var display = Ext.fly('advSearchTabs').getStyle('display');
+                           //Ext.MessageBox.alert('Status1', 'visible: ' + visible + 'display: ' + display, 'test1');   
+                           Ext.get("advSearchTabs").setVisibilityMode(Ext.Element.DISPLAY);
+                             if(display == 'block')
+                             {        
+                                 Ext.get("advSearchTabs").slideOut('t', {
+                                    easing: 'easeOut',
+                                    duration: .5
+                                });
+                                 
+                                 Ext.get("GNtabs").scale(980,200); 
+                                 Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown'); 
+           
+                             }
+                             else
+                             {                             
+                               //Ext.get("advSearchTabs").hide(); 
+                               Ext.get("advSearchTabs").slideIn('t', {
+                                    easing: 'easeOut',
+                                    duration: .5
+                                }); 
+                               Ext.get("GNtabs").scale(980,450); 
+                               Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');
+                             }
+                         }
+                          
+                        }]
                     }
                 ]
         });
+    }
+    
+    function done(){
     }
 
     function search() {
@@ -555,8 +669,9 @@ GeoNetwork.app = function () {
             },
             scope : this
         });
-
+//reducing bottom toolbar height - May 2013, Kalpesh
         return new Ext.Toolbar({
+            height:45,           
             items : [ previousAction, '|', nextAction, '|', {
                 xtype : 'tbtext',
                 text : '',
@@ -573,6 +688,9 @@ GeoNetwork.app = function () {
      */
     function createResultsPanel(permalinkProvider) {
         metadataResultsView = new GeoNetwork.MetadataResultsView({
+            id:'metadataResultsView',
+            width:900,
+            maxWidth:900,
             catalogue : catalogue,
             displaySerieMembers : true,
             autoScroll : true,
@@ -582,6 +700,9 @@ GeoNetwork.app = function () {
         catalogue.resultsView = metadataResultsView;
 
         tBar = new GeoNetwork.MetadataResultsToolbar({
+         id:'MetadataResultsToolbar',
+            width:740,
+            maxWidth:740,
             catalogue : catalogue,
             searchBtCmp : Ext.getCmp('searchBt'),
             sortByCmp : Ext.getCmp('E_sortBy'),
@@ -597,7 +718,9 @@ GeoNetwork.app = function () {
             hidden : true,
             bodyCssClass : 'md-view',
             autoScroll : true,
-            autoWidth : true,
+            width: 400,
+            maxWidth: 400,
+            header: null,
             tbar : tBar,
             layout : 'fit',
             items : metadataResultsView,
@@ -684,6 +807,7 @@ GeoNetwork.app = function () {
      */
     function createLatestUpdate() {
         var latestView = new GeoNetwork.MetadataResultsView({
+            id:'latestView',
             catalogue : catalogue,
             autoScroll : true,
             tpl : GeoNetwork.Settings.latestTpl
@@ -694,6 +818,7 @@ GeoNetwork.app = function () {
             Ext.ux.Lightbox.register('a[rel^=lightbox]');
         });
         var p = new Ext.Panel({
+            id: 'md-view',
             border : false,
             bodyCssClass : 'md-view',
             items : latestView,
@@ -757,7 +882,7 @@ GeoNetwork.app = function () {
                 resizable : true,
                 // constrain: true,
                 width : 980,
-                height : 800
+                //height : 800
             });
             this.editorPanel.setContainer(this.editorWindow);
             this.editorPanel.on('editorClosed', function () {
@@ -802,7 +927,8 @@ GeoNetwork.app = function () {
 
     // public space:
     return {
-        init : function () {
+        init : function () 
+        {
             geonetworkUrl = GeoNetwork.URL || window.location.href.match(
                             /(http.*\/.*)\/apps\/tabsearch.*/, '')[1];
 
@@ -839,6 +965,8 @@ GeoNetwork.app = function () {
                 statusBarId : 'info',
                 lang : lang,
                 hostUrl : geonetworkUrl,
+                width: 740,
+                maxWidth: 740,
                 mdOverlayedCmpId : 'resultsPanel',
                 adminAppUrl : geonetworkUrl + '/srv/' + lang + '/admin',
                 // Declare default store to be used for records and
@@ -863,8 +991,8 @@ GeoNetwork.app = function () {
 
             // Top navigation widgets
             // createModeSwitcher();
-            createLanguageSwitcher(lang);
-            createLoginForm();
+            //createLanguageSwitcher(lang);
+            //createLoginForm();
             edit();
 
             // Results map
@@ -901,16 +1029,20 @@ GeoNetwork.app = function () {
                 layout : 'border',
                 id : 'vp',
                 items : [ // todo: should add header here?
-                        {
+                        /*{
                             id : 'header',
                             height : 80,
+                            width: 990,
                             region : 'north',
                             border : false
-                        },
-                        new Ext.TabPanel({
+                        },*/
+                        new Ext.TabPanel(
+                        {
                             region : 'center',
                             id : 'GNtabs',
-                            boxMaxHeight: 700,
+                            maxWidth : 990,
+                            width:990,
+                            //height:200,
                             renderTo: 'GeoNetworkContent',
                             deferredRender : false,
                             plain : true,
@@ -921,109 +1053,110 @@ GeoNetwork.app = function () {
                             margins : '0 0 0 0',
                             border : false,
                             activeTab : 0,
-                            items : [ {// basic search panel
-                                title : OpenLayers.i18n('Home'),
-                                // contentEl:'dvZoeken',
-                                layout : 'fit',
-                                closable : false,
-                                autoScroll : true,
-                                items : [ {
-                                    id : 'alignCenter',
-                                    border : false,
-                                    layout : 'column',
-                                    layoutConfig : {
-                                        pack : 'center',
-                                        align : 'center'
-                                    },
-                                    items : [{
-                                        columnWidth : 0.05,
-                                        border : false,
-                                        html : '&nbsp;'
-                                    }, {
-                                        columnWidth : 0.90,
-                                        border : false,
-                                        items : [ searchForm ]
-                                    }, {
-                                        border : false,
-                                        columnWidth : 0.05,
-                                        items : [ tagCloudViewPanel ]
-                                    } ]
-                                } ]
-                            }, {// search results panel
-                                id : 'results',
-                                title : OpenLayers.i18n('List'),
-                                autoScroll : false,
-                                layout : 'border',
-                                items : [{
-                                    region : 'north',
-                                    border : false,
-                                    height: 30,
-                                    items : [ breadcrumb ]
-                                }, {// sidebar searchform
-                                    region : 'west',
-                                    id : 'west',
-                                    border : true,
-                                    width : 250,
-                                    items : [ resultsMap, facetsPanel  ]
-                                }, {
-                                    layout : 'fit',
-                                    region : 'center',
-                                    border : false,
+                             listeners: {
+                                  tabchange: function(tp,newTab){
+                                    var id = newTab.id;
+                                    homeContent = Ext.get(FeatureMainContainer);
+                                    if (id !='HomePanel') {
+                                        homeContent.hide();
+                                        Ext.get("GNtabs").scale(980,580); 
+                                    } else {
+                                        homeContent.show();
+                                        Ext.get("GNtabs").scale(980,200); 
+                                    }
+                                    if (tabs[0]) {
+                                        tabPanel.setActiveTab(tabs[0]);
+                                    }
+                               }
+                               },
+                            items : [ 
+                                {   // basic search panel
+                                    title : OpenLayers.i18n('Search'),
+                                    id:'HomePanel',
+                                    // contentEl:'dvZoeken',
+                                    layout : 'absolute',
+                                    height: 200,
+                                    width: 990,
+                                    maxWidth: 990,
+                                    autoSize: true,
+                                    closable : false,
                                     autoScroll : true,
-                                    items : [ resultPanel ]
-                                } ],
-                                /*
-                                 * Hide tab panel until a search is done
-                                 * Seem "hidden:true" as in other places
-                                 * doesn't work for Tabs, and need to
-                                 * use a listener!
-                                 * 
-                                 * See
-                                 * http://www.sencha.com/forum/showthread.php?65441-Starting-A-Tab-Panel-with-a-Hidden-Tab
-                                 */
-                                listeners : {
-                                    render : function (c) {
-                                        c.ownerCt.hideTabStripItem(c);
+                                    items : [ {
+                                        id : 'alignCenter',
+                                        border : false,
+                                        layout : 'column',
+                                        layoutConfig : {
+                                            pack : 'center',
+                                            align : 'center'
+                                        },
+                                        items : [{
+                                            columnWidth : 0.05,
+                                            border : false,
+                                            html : '&nbsp;'
+                                        }, {
+                                            columnWidth : 0.90,
+                                            border : false,
+                                            items : [ searchForm ]
+                                        }, {
+                                            border : false,
+                                            columnWidth : 0.05,
+                                            items : [ tagCloudViewPanel ]
+                                        } ]
+                                    } ]
+                                }, 
+                                {// search results panel
+                                    id : 'results',
+                                    title : OpenLayers.i18n('List'),
+                                    autoScroll : false,
+                                    layout : 'border',
+                                    width:990,
+                                    maxWidth:990,
+                                    //height: 200,
+                                    autoSize: true,
+                                    items : [ {// sidebar searchform
+                                        region : 'west',
+                                        id : 'west',
+                                        border : true,
+                                        width : 250,
+                                        items : [ resultsMap, facetsPanel  ]
+                                    }, {
+                                        layout : 'fit',
+                                        region : 'center',
+                                        border : false,
+                                        maxWidth : 640,
+                                        autoScroll : true,
+                                        items : [ resultPanel ]
+                                    }
+                                    ],
+                                    /*
+                                     * Hide tab panel until a search is done
+                                     * Seem "hidden:true" as in other places
+                                     * doesn't work for Tabs, and need to
+                                     * use a listener!
+                                     * 
+                                     * See
+                                     * http://www.sencha.com/forum/showthread.php?65441-Starting-A-Tab-Panel-with-a-Hidden-Tab
+                                     */
+                                    listeners : {
+                                        render : function (c) {
+                                            c.ownerCt.hideTabStripItem(c);
+                                        }
                                     }
                                 }
-
-                            }, {// map
-                                id : 'map',
-                                title : OpenLayers.i18n('Map'),
-                                layout : 'fit',
-                                margins : margins,
-                                listeners : {
-                                    // Only initialized the map
-                                    // application when the tab is
-                                    // activated
-                                    // then the layout is done and all
-                                    // sub widget like printPanel could
-                                    // access the map layout.
-                                    activate : function (p) {
-                                        p.add(iMap.getViewport());
-                                        p.doLayout();
-                                    }
-                                }
-                            } ]
-                        }),
-                        {
-                            id : 'footer',
-                            region : 'south',
-                            align : 'left',
-                            bodyStyle : {
-                                'text-align' : 'left',
-                                padding : '0px 3px'
-                            },
-                            border : true,
-                            html : "<span class='madeBy'>" + OpenLayers.i18n('Poweredby') + 
-                            " <a href='http://geonetwork-opensource.org/'><img style='width:80px' src='../images/default/gn-logo.png' title='GeoNetwork OpenSource' border='0' /></a></span></div>",
-                            layout : 'fit'
-                        }
-                    ]
+                            ]
+                        })
+                ]
+               
             });
-
             // Hide advanced search options
-            Ext.get("advSearchTabs").hide();
+            //Ext.get("advSearchTabs").hide();
+             Ext.get("FeatureMainContainer").setVisibilityMode(Ext.Element.DISPLAY);
+            Ext.get("HomePanel").setVisibilityMode(Ext.Element.DISPLAY);
+            Ext.get("results").setVisibilityMode(Ext.Element.DISPLAY);
+            Ext.get("advSearchTabs").setVisibilityMode(Ext.Element.DISPLAY);
+            Ext.get("advSearchTabs").setDisplayed(false);
+            //Ext.get("results").hide();
+             //Ext.get("GNtabs").setHeight(200);
 
             // Ext.getCmp('mapprojectionselector').syncSize();
             // Ext.getCmp('mapprojectionselector').setWidth(130);
@@ -1155,7 +1288,6 @@ GeoNetwork.app = function () {
             } else {
                 Ext.getCmp('sortByToolBar').setValue(
                         Ext.getCmp('E_sortBy').getValue());
-
             }
 
             // Fix for width sortBy combo in toolbar
@@ -1163,7 +1295,7 @@ GeoNetwork.app = function () {
             // http://www.sencha.com/forum/showthread.php?122454-TabPanel-deferred-render-false-nested-toolbar-layout-problem
             Ext.getCmp('sortByToolBar').syncSize();
             Ext.getCmp('sortByToolBar').setWidth(130);
-
+            //resultsPanel.setWidth(990);
             resultsPanel.syncSize();
 
             Ext.ux.Lightbox.register('a[rel^=lightbox]');
@@ -1220,6 +1352,7 @@ Ext.onReady(function () {
             }
             
             var aResTab = new GeoNetwork.view.ViewPanel({
+                id:'aResTab',
                 serviceUrl : catalogue.services.mdView + '?uuid=' + uuid,
                 lang : catalogue.lang,
                 autoScroll : true,
