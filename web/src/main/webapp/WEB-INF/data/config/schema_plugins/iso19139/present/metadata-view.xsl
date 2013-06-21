@@ -590,18 +590,17 @@
 									<!-- Else -->
 				                   <xsl:otherwise>
 				                   		<!-- TODO Get the correct license details / license code. -->
-							          	<xsl:variable name="licenseDetails" select="gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
+							          	<xsl:variable name="licenseDetails" select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
 							          	<xsl:choose>
-						                   <xsl:when test="contains('environment.nsw.gov.au', 'environment.nsw.gov.au')">
-						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, '{$url}');" class="oeh-download oeh-icon-link">
-							          				Download Data (XX MB)
-							          			</a>            
-						                   </xsl:when>
-						                   <xsl:otherwise>
+						                   <xsl:when test="contains('$licenseDetails', 'CC BY 3.0 AU')">
 						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, '{$url}');" class="oeh-download oeh-icon-link">
 							          				Download Data (XX MB)
 							          			</a>  
-							          			<xsl:value-of select="$licenseDetails"/>              
+						                   </xsl:when>
+						                   <xsl:otherwise>
+												<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, '{$url}');" class="oeh-download oeh-icon-link">
+							          				Download Data (XX MB)
+							          			</a>            
 						                   </xsl:otherwise>
 						          		</xsl:choose>
 						          		               
