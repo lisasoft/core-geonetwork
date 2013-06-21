@@ -15,19 +15,11 @@ var OEH = {
  * Creates a popup for data actions.
  *
  * @param type - See popup constants.
-<<<<<<< HEAD
- * @param callback - The default action of the link (ex. download file, opening service url, etc). This will be called on submit of the form.
- * @param options - Additional options map.
- *
- */
-OEH.Popup.show = function(type, callback, options) {
-=======
  * @param url - Default URL of the action (ex. download file, opening service url, etc). This will be called on submit of the form.
  * @param options - Additional options map.
  *
  */
 OEH.Popup.show = function(type, url, options) {
->>>>>>> origin/OEH-2.10.0
 	
 	// Returns an organistion form field.
 	function getOrganisationField() {
@@ -138,17 +130,6 @@ OEH.Popup.show = function(type, url, options) {
 		});
 	}
 	
-<<<<<<< HEAD
-	/**
-	 * Creates a popup for licensed types (eg. licensed downloads and services).
-	 *
-	 * WMS Popup Options:
-	 *  - options.wmsUrl
-	 *  - options.wmsSampleMap
-	 *  - options.wmsCapabilities
-	 */
-	function createLicensedPopup(type, callback, options) {
-=======
 	function openUrl(url) {
 		if (url && url != null && url != '') {
 			window.open(url);
@@ -159,7 +140,6 @@ OEH.Popup.show = function(type, url, options) {
 	 * Creates a popup for licensed types (eg. licensed downloads and services).
 	 */
 	function createLicensedPopup(type, url, options) {
->>>>>>> origin/OEH-2.10.0
 		
 		var title = 'Download Data';
 		if (OEH.Popup.SERVICE_KML == type) {
@@ -235,26 +215,17 @@ OEH.Popup.show = function(type, url, options) {
 							if (OEH.Popup.SERVICE_WMS == type) {
 								var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
 								if (!wmsUrlPanel.isVisible()) {
-<<<<<<< HEAD
-=======
 									//TODO - Rename submit link
 									Ext.get('submitLink').update('Close');
 									//TODO - Hide reset link
 									Ext.getCmp('resetLink').getEl().hide();
 									//TODO - Show WMS url panel
->>>>>>> origin/OEH-2.10.0
 									wmsUrlPanel.show();
 								} else {
 									window.close();
 								}
 							} else {
-<<<<<<< HEAD
-								if (callback) {
-									callback();
-								}
-=======
 								openUrl(url);
->>>>>>> origin/OEH-2.10.0
 								window.close();
 							}							
 						}),
@@ -268,11 +239,6 @@ OEH.Popup.show = function(type, url, options) {
 		
 		var items = [formPanel];
 		if (OEH.Popup.SERVICE_WMS == type) {
-<<<<<<< HEAD
-			var wmsPanel = {
-				id: 'wmsUrlPanel',
-				name: 'wmsUrlPanel',
-=======
 			
 			var wmsUrl = url;
 			var wmsSampleMap = url + '?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:102100&FORMAT=image/png&TRANSPARENT=TRUE&EXCEPTIONS=INIMAGE&BBOX=15625344.26,-4574548.91,17179065.4,-3204873.971&WIDTH=500&HEIGHT=440&LAYERS=0&STYLES=';
@@ -282,7 +248,6 @@ OEH.Popup.show = function(type, url, options) {
 				id: 'wmsUrlPanel',
 				name: 'wmsUrlPanel',
 				padding: 10,
->>>>>>> origin/OEH-2.10.0
 				html:  '<table border="0" width="100%">' +
 							'<tr>' +
 								'<td colspan="3">' +
@@ -291,21 +256,12 @@ OEH.Popup.show = function(type, url, options) {
 							'</tr>' +
 							'<tr>' +
 								'<td colspan="3">' +
-<<<<<<< HEAD
-									'<input type="text" name="wmsUrl" value="' + options.wmsUrl + '" readonly>' +
-								'</td>' +
-							'</tr>' +
-							'<tr>' +
-								'<td><a href="' + options.wmsSampleMap + '" target="_blank">Sample Map</a></td>' +
-								'<td><a href="' + options.wmsCapabilities + '" target="_blank">Capabilities XML</a></td>' +
-=======
 									'<input type="text" name="wmsUrl" value="' + wmsUrl + '" style="width:100%;" onClick="this.select();" readonly>' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td><a href="' + wmsSampleMap + '" target="_blank">Sample Map</a></td>' +
 								'<td><a href="' + wmsCapabilities + '" target="_blank">Capabilities XML</a></td>' +
->>>>>>> origin/OEH-2.10.0
 								'<td><a href="http://en.wikipedia.org/wiki/Web_Map_Service" target="_blank">What is WMS?</a></td>' +
 							'</tr>' +
 						'</table>',
@@ -324,11 +280,7 @@ OEH.Popup.show = function(type, url, options) {
 		if (OEH.Popup.DOWNLOAD_OEH == type) {
 			height = 390;
 		} else if (OEH.Popup.SERVICE_WMS == type) {
-<<<<<<< HEAD
-			height = 420;
-=======
 			height = 400;
->>>>>>> origin/OEH-2.10.0
 		}
 		var window = createWindow(width, height, items);
 		
@@ -339,11 +291,7 @@ OEH.Popup.show = function(type, url, options) {
 	/**
 	 * Creates a popup for requested types (eg. large file download and enquiry).
 	 */
-<<<<<<< HEAD
-	function createRequestPopup(type, callback, options) {
-=======
 	function createRequestPopup(type, url, options) {
->>>>>>> origin/OEH-2.10.0
 		
 		var title = "Request Data";
 		if (OEH.Popup.ENQUIRY == type) {
@@ -440,15 +388,8 @@ OEH.Popup.show = function(type, url, options) {
 						border : false
 					},
 					createLink('submitLink', '#', 'Submit', function() {
-<<<<<<< HEAD
-						//TODO - Submit form and save log details
-						if (callback) {
-							callback();
-						}
-=======
 						//TODO - Send request
 						//TODO - Save log details
->>>>>>> origin/OEH-2.10.0
 						window.close();
 					}),
 					createLink('resetLink', '#', 'Reset', function() {
@@ -471,12 +412,8 @@ OEH.Popup.show = function(type, url, options) {
 			height = 420;
 		}
 		
-<<<<<<< HEAD
-		return createWindow(width, height, [formPanel]);
-=======
 		var window = createWindow(width, height, [formPanel]);
 		return window;
->>>>>>> origin/OEH-2.10.0
 		
 	}
 	
@@ -484,15 +421,9 @@ OEH.Popup.show = function(type, url, options) {
 	if (OEH.Popup.DOWNLOAD_CC == type || OEH.Popup.DOWNLOAD_OEH == type
 			|| OEH.Popup.SERVICE_KML == type || OEH.Popup.SERVICE_REST == type
 			|| OEH.Popup.SERVICE_WMS == type) {
-<<<<<<< HEAD
-		popup = createLicensedPopup(type, callback, options);
-	} else if (OEH.Popup.DOWNLOAD_LF == type || OEH.Popup.ENQUIRY == type) {
-		popup = createRequestPopup(type, callback, options);
-=======
 		popup = createLicensedPopup(type, url, options);
 	} else if (OEH.Popup.DOWNLOAD_LF == type || OEH.Popup.ENQUIRY == type) {
 		popup = createRequestPopup(type, url, options);
->>>>>>> origin/OEH-2.10.0
 	}
 	popup.show();
 	
