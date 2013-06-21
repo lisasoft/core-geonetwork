@@ -275,6 +275,12 @@ table.related * a:hover,
 .oeh-rest {
   background-image : url(../images/oeh/webservices_icon.jpg);
 }
+.oeh-icon-link {
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  height: 16px;
+  padding-left: 18px;
+}
 
 /* Other icons */
 .md-mn-reset {

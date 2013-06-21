@@ -15,11 +15,11 @@ var OEH = {
  * Creates a popup for data actions.
  *
  * @param type - See popup constants.
- * @param callback - The default action of the link (ex. download file, opening service url, etc). This will be called on submit of the form.
+ * @param url - Default URL of the action (ex. download file, opening service url, etc). This will be called on submit of the form.
  * @param options - Additional options map.
  *
  */
-OEH.Popup.show = function(type, callback, options) {
+OEH.Popup.show = function(type, url, options) {
 	
 	// Returns an organistion form field.
 	function getOrganisationField() {
@@ -130,15 +130,16 @@ OEH.Popup.show = function(type, callback, options) {
 		});
 	}
 	
+	function openUrl(url) {
+		if (url && url != null && url != '') {
+			window.open(url);
+		}
+	}
+	
 	/**
 	 * Creates a popup for licensed types (eg. licensed downloads and services).
-	 *
-	 * WMS Popup Options:
-	 *  - options.wmsUrl
-	 *  - options.wmsSampleMap
-	 *  - options.wmsCapabilities
 	 */
-	function createLicensedPopup(type, callback, options) {
+	function createLicensedPopup(type, url, options) {
 		
 		var title = 'Download Data';
 		if (OEH.Popup.SERVICE_KML == type) {
@@ -224,9 +225,7 @@ OEH.Popup.show = function(type, callback, options) {
 									window.close();
 								}
 							} else {
-								if (callback) {
-									callback();
-								}
+								openUrl(url);
 								window.close();
 							}							
 						}),
@@ -240,6 +239,11 @@ OEH.Popup.show = function(type, callback, options) {
 		
 		var items = [formPanel];
 		if (OEH.Popup.SERVICE_WMS == type) {
+			
+			var wmsUrl = url;
+			var wmsSampleMap = url + '?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:102100&FORMAT=image/png&TRANSPARENT=TRUE&EXCEPTIONS=INIMAGE&BBOX=15625344.26,-4574548.91,17179065.4,-3204873.971&WIDTH=500&HEIGHT=440&LAYERS=0&STYLES=';
+			var wmsCapabilities = url + '?request=GetCapabilities&service=WMS';
+			
 			var wmsPanel = {
 				id: 'wmsUrlPanel',
 				name: 'wmsUrlPanel',
@@ -252,12 +256,12 @@ OEH.Popup.show = function(type, callback, options) {
 							'</tr>' +
 							'<tr>' +
 								'<td colspan="3">' +
-									'<input type="text" name="wmsUrl" value="' + options.wmsUrl + '" style="width:100%;" onClick="this.select();" readonly>' +
+									'<input type="text" name="wmsUrl" value="' + wmsUrl + '" style="width:100%;" onClick="this.select();" readonly>' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td><a href="' + options.wmsSampleMap + '" target="_blank">Sample Map</a></td>' +
-								'<td><a href="' + options.wmsCapabilities + '" target="_blank">Capabilities XML</a></td>' +
+								'<td><a href="' + wmsSampleMap + '" target="_blank">Sample Map</a></td>' +
+								'<td><a href="' + wmsCapabilities + '" target="_blank">Capabilities XML</a></td>' +
 								'<td><a href="http://en.wikipedia.org/wiki/Web_Map_Service" target="_blank">What is WMS?</a></td>' +
 							'</tr>' +
 						'</table>',
@@ -287,7 +291,7 @@ OEH.Popup.show = function(type, callback, options) {
 	/**
 	 * Creates a popup for requested types (eg. large file download and enquiry).
 	 */
-	function createRequestPopup(type, callback, options) {
+	function createRequestPopup(type, url, options) {
 		
 		var title = "Request Data";
 		if (OEH.Popup.ENQUIRY == type) {
@@ -384,10 +388,8 @@ OEH.Popup.show = function(type, callback, options) {
 						border : false
 					},
 					createLink('submitLink', '#', 'Submit', function() {
-						//TODO - Submit form and save log details
-						if (callback) {
-							callback();
-						}
+						//TODO - Send request
+						//TODO - Save log details
 						window.close();
 					}),
 					createLink('resetLink', '#', 'Reset', function() {
@@ -419,9 +421,9 @@ OEH.Popup.show = function(type, callback, options) {
 	if (OEH.Popup.DOWNLOAD_CC == type || OEH.Popup.DOWNLOAD_OEH == type
 			|| OEH.Popup.SERVICE_KML == type || OEH.Popup.SERVICE_REST == type
 			|| OEH.Popup.SERVICE_WMS == type) {
-		popup = createLicensedPopup(type, callback, options);
+		popup = createLicensedPopup(type, url, options);
 	} else if (OEH.Popup.DOWNLOAD_LF == type || OEH.Popup.ENQUIRY == type) {
-		popup = createRequestPopup(type, callback, options);
+		popup = createRequestPopup(type, url, options);
 	}
 	popup.show();
 	

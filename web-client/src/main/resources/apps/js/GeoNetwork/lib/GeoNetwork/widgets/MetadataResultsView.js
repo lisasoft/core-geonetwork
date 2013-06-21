@@ -601,12 +601,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                     linkButton.push({
                                         text: record.get('title') || record.get('name'),
                                         handler: function (b, e) {
-											var wmsUrl = record.get('href');
-                                        	OEH.Popup.show(OEH.Popup.SERVICE_WMS, function() {}, {
-												wmsUrl : wmsUrl,
-												wmsSampleMap: wmsUrl + '?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:102100&FORMAT=image/png&TRANSPARENT=TRUE&EXCEPTIONS=INIMAGE&BBOX=15625344.26,-4574548.91,17179065.4,-3204873.971&WIDTH=500&HEIGHT=440&LAYERS=0&STYLES=',
-												wmsCapabilities: wmsUrl + '?request=GetCapabilities&service=WMS'
-                                        	});
+                                        	OEH.Popup.show(OEH.Popup.SERVICE_WMS, record.get('href'));
                                         }
                                     });
                                 }
@@ -624,9 +619,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 linkButton.push({
                                     text: record.get('title') || record.get('name'),
                                     handler: function (b, e) {
-                                    	OEH.Popup.show(OEH.Popup.SERVICE_REST, function() {
-                                    		window.open(record.get('href'));
-                                    	});
+                                    	OEH.Popup.show(OEH.Popup.SERVICE_REST, record.get('href'));
                                     }
                                 });
                             } else {
@@ -635,7 +628,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 var displayLink = true;
                                 if (record.get('href').indexOf('resources.get') !== -1) {
                                     displayLink = allowDownload;
-                                } else if (currentType === 'application/vnd.google-earth.kml+xml') {
+                                } else if (currentType === 'application/vnd.google-earth.kml+xml'
+                                	|| currentType === 'GLG:KML-2.0-http-get-map') {
                                     // Google earth link is provided when a WMS is provided
                                     displayLink = allowDynamic;
                                 }
@@ -644,38 +638,36 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 // [NChan] When Google/KML, it is also generated here
                                 // [NChan] When File Download, it is also generated here
                                 if (displayLink) {
-                                	if (record.get('href').indexOf('resources.get') !== -1) {
+                                	if (record.get('href').indexOf('resources.get') !== -1
+                                			|| currentType == "application/zip"
+                                	    		|| currentType == 'application/x-compressed'
+                                	    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
                                 		label = 'Download Data (XX MB)'; //TODO Get actual size from metadata
                                     	linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
                                             	var isLargeFile = false;
-                                            	var license = 'AA';
+                                            	var license = 'OEH';
                                             	if (isLargeFile) {
-                                                	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, function() {});                                            		
+                                                	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
                                             	} else {
 													var downloadUrl = record.get('href');
                                             		if (license == 'OEH') {
-                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, function() {
-                                                    		window.open(downloadUrl);
-                                                    	});                                 
+                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, downloadUrl);
                                             		} else if (license == 'CC') {
-                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, function() {
-                                                    		window.open(downloadUrl);
-                                                    	});                                 
+                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, downloadUrl);
                                             		} else {
 														window.open(downloadUrl);
 													}
                                             	}
                                             }
                                         });            
-                                    } else if (currentType === 'application/vnd.google-earth.kml+xml') {
+                                    } else if (currentType === 'application/vnd.google-earth.kml+xml'
+                                    	|| currentType === 'GLG:KML-2.0-http-get-map') {
                                     	linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
-                                            	OEH.Popup.show(OEH.Popup.SERVICE_KML, function() {
-                                            		window.open(record.get('href'));
-                                            	});
+                                            	OEH.Popup.show(OEH.Popup.SERVICE_KML, record.get('href'));
                                             }
                                         });
                                     } else {
@@ -721,7 +713,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
     	var linkLabel = label;
     	var linkIconCls = GeoNetwork.Util.protocolToCSS[currentType] || currentType;
     	
-    	if (currentType == "application/vnd.google-earth.kml+xml") {
+    	if (currentType == "application/vnd.google-earth.kml+xml"
+    		|| currentType === 'GLG:KML-2.0-http-get-map') {
     		linkIconCls = 'oeh-gearth';
     		linkLabel = 'View in Google Earth';
     	} else if (currentType == "application/vnd.ogc.wms_xml"

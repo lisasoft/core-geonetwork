@@ -8,7 +8,6 @@
   xmlns:saxon="http://saxon.sf.net/" extension-element-prefixes="saxon"
   exclude-result-prefixes="gmx xsi gmd gco gml gts srv xlink exslt geonet">
 
-
   <xsl:template name="view-with-header-iso19139">
     <xsl:param name="tabs"/>
     
@@ -524,16 +523,35 @@
           <td class="main"></td><td></td>
         </tr>
         <xsl:for-each-group select="descendant::gmd:onLine[gmd:CI_OnlineResource/gmd:linkage/gmd:URL!='']" group-by="gmd:CI_OnlineResource/gmd:protocol">
+        <xsl:variable name="protocol" select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
         <tr>
           <td class="main">
             <!-- Usually, protocole format is OGC:WMS-version-blahblah, remove ':' and get
             prefix of the protocol to set the CSS icon class-->
-            <span class="{translate(substring-before(current-grouping-key(), '-'), ':', '')} icon">
-                <xsl:value-of select="/root/gui/schemas/iso19139/labels/element[@name = 'gmd:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>
+            <!--span class="{translate(substring-before(current-grouping-key(), '-'), ':', '')} icon"-->
+            <span>
+               <xsl:choose>
+	          		<!-- If REST Service -->
+                   <xsl:when test="$protocol='REST'">
+                   		REST Service
+                   </xsl:when>
+                   <!-- ElseIf WMS -->
+                   <xsl:when test="contains($protocol, 'OGC:WMS')">
+                    	OGC Web Map Service
+                    </xsl:when>
+                   <!-- ElseIf Google Earth -->
+                   <xsl:when test="$protocol='GLG:KML-2.0-http-get-map'">
+                   		KML Service for Google Earth
+                   </xsl:when>
+                   <!-- Else use default -->
+                   <xsl:otherwise>
+                   		<xsl:value-of select="/root/gui/schemas/iso19139/labels/element[@name = 'gmd:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>               
+                   </xsl:otherwise>
+          		</xsl:choose> 
             </span>
           </td>
           <td>
-            <ul>
+
               <xsl:for-each select="current-group()">
                 <xsl:variable name="desc">
                   <xsl:apply-templates mode="localised"
@@ -541,11 +559,86 @@
                     <xsl:with-param name="langId" select="$langId"/>
                   </xsl:apply-templates>
                 </xsl:variable>
-                <li>
+                
+                <xsl:variable name="url" select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+                <xsl:choose>
+		          	<!-- If WMS -->
+                    <xsl:when test="contains($protocol, 'OGC:WMS')">
+                    	<a href="#" onclick="OEH.Popup.show(OEH.Popup.SERVICE_WMS, '{$url}');" class="oeh-wms oeh-icon-link">
+			          		Connect to Web Map Service (view in GIS)
+			          	</a>                           
+                    </xsl:when>
+                    <!-- ElseIf REST -->
+                    <xsl:when test="$protocol='REST'">
+                    	<a href="#" onclick="OEH.Popup.show(OEH.Popup.SERVICE_REST, '{$url}');" class="oeh-rest oeh-icon-link">
+			          		Connect to REST Service (JSON, SOAP)
+			          	</a>                           
+                    </xsl:when>
+                    <!-- Else -->
+                    <xsl:otherwise>
+		                <xsl:choose>
+				          	<!-- If Download -->
+		                    <xsl:when test="$protocol='WWW:DOWNLOAD-1.0-http--download'">
+		                    	<xsl:variable name="functionCode" select="gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode"/>
+					          	<xsl:choose>
+									<!-- If Large File download -->
+				                   <xsl:when test="$functionCode='order'">
+				                    	<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);" class="oeh-request oeh-icon-link">
+							          		Request Data
+							          	</a>
+				                   </xsl:when>
+									<!-- Else -->
+				                   <xsl:otherwise>
+				                   		<!-- TODO Get the correct license details / license code. -->
+							          	<xsl:variable name="licenseDetails" select="gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
+							          	<xsl:choose>
+						                   <xsl:when test="contains('environment.nsw.gov.au', 'environment.nsw.gov.au')">
+						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, '{$url}');" class="oeh-download oeh-icon-link">
+							          				Download Data (XX MB)
+							          			</a>            
+						                   </xsl:when>
+						                   <xsl:otherwise>
+						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, '{$url}');" class="oeh-download oeh-icon-link">
+							          				Download Data (XX MB)
+							          			</a>  
+							          			<xsl:value-of select="$licenseDetails"/>              
+						                   </xsl:otherwise>
+						          		</xsl:choose>
+						          		               
+				                   </xsl:otherwise>
+				          		</xsl:choose> 
+					          	
+		                    </xsl:when>
+		                    <!-- ElseIf Google Earth -->
+		                    <xsl:when test="$protocol='GLG:KML-2.0-http-get-map'">
+		                    	<a href="#" onclick="OEH.Popup.show(OEH.Popup.SERVICE_KML, '{$url}');" class="oeh-gearth oeh-icon-link">
+					          		Connect to KML Service (view in Google Earth)
+					          	</a>                           
+		                    </xsl:when>
+		                    <!-- Else - Web Link -->
+		                    <xsl:otherwise>
+				          		<a href="{$url}" target="_blank">
+						          <xsl:choose>
+						          	  <xsl:when test="normalize-space($desc)!=''">
+                            			<xsl:value-of select="$desc"/>
+			                          </xsl:when>
+			                          <xsl:when test="normalize-space(gmd:CI_OnlineResource/gmd:name/gco:CharacterString)!=''">
+			                            <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString"/>
+			                          </xsl:when>
+			                          <xsl:otherwise>
+			                            <xsl:value-of select="$url"/>
+			                          </xsl:otherwise>
+		                          </xsl:choose>
+				          		</a>                           
+		                    </xsl:otherwise>
+			          	</xsl:choose> 
+                    </xsl:otherwise>
+	          	</xsl:choose>          
+                
+                <!--
                   <a href="{gmd:CI_OnlineResource/gmd:linkage/gmd:URL}">
                     <xsl:choose>
                       <xsl:when test="contains(current-grouping-key(), 'OGC') or contains(current-grouping-key(), 'DOWNLOAD')">
-                        <!-- Name contains layer, feature type, coverage ... -->
                         <xsl:choose>
                           <xsl:when test="normalize-space($desc)!=''">
                             <xsl:value-of select="$desc"/>
@@ -578,8 +671,10 @@
                       </xsl:otherwise>
                     </xsl:choose>
                   </a>
+                  -->
                   
                   <!-- Display add to map action for WMS -->
+                  <!--
                   <xsl:if test="contains(current-grouping-key(), 'WMS')">
                   &#160;
                   <a href="#" class="md-mn addLayer"
@@ -588,9 +683,10 @@
                               '{gmd:CI_OnlineResource/gmd:linkage/gmd:URL}', 
                               '{gmd:CI_OnlineResource/gmd:name/gco:CharacterString}', '{generate-id()}']]);">&#160;</a>
                   </xsl:if>
-                </li>
+                  -->
+
               </xsl:for-each>
-            </ul>
+
           </td>
         </tr>
       </xsl:for-each-group>
