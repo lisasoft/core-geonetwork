@@ -594,15 +594,14 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                             
                             var text = null, handler = null;
                             
+                            // [NChan] When WMS, it is also generated here
                             // Only display WMS link if dynamic property set to true for current user & record
                             if ((currentType === 'application/vnd.ogc.wms_xml' || currentType === 'OGC:WMS')) {
                                 if (allowDynamic) {
                                     linkButton.push({
                                         text: record.get('title') || record.get('name'),
                                         handler: function (b, e) {
-                                            // FIXME : ref to app
-                                            app.switchMode('1', true);
-                                            app.getIMap().addWMSLayer([[record.get('title'), record.get('href'), record.get('name'), uuid]]);
+                                        	OEH.Popup.show(OEH.Popup.SERVICE_WMS, record.get('href'));
                                         }
                                     });
                                 }
@@ -615,21 +614,68 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                         app.getIMap().addWMC(record.get('href'));
                                     }
                                 });
+                                // [NChan] TODO - Fix this with correct values
+                            } else if (currentType === "REST") {
+                                linkButton.push({
+                                    text: record.get('title') || record.get('name'),
+                                    handler: function (b, e) {
+                                    	OEH.Popup.show(OEH.Popup.SERVICE_REST, record.get('href'));
+                                    }
+                                });
                             } else {
                                 // If link is uploaded to GeoNetwork the resources.get service is used
                                 // Check if allowDownload 
                                 var displayLink = true;
                                 if (record.get('href').indexOf('resources.get') !== -1) {
                                     displayLink = allowDownload;
-                                } else if (currentType === 'application/vnd.google-earth.kml+xml') {
+                                } else if (currentType === 'application/vnd.google-earth.kml+xml'
+                                	|| currentType === 'GLG:KML-2.0-http-get-map') {
                                     // Google earth link is provided when a WMS is provided
                                     displayLink = allowDynamic;
                                 }
+                                // [NChan] When href != null but no protocol and type == plain, display plain web link
+                                // or protocol == 'WWW:LINK-1.0-http--link'
+                                // [NChan] When Google/KML, it is also generated here
+                                // [NChan] When File Download, it is also generated here
                                 if (displayLink) {
-                                    linkButton.push({
-                                        text: (record.get('title') || record.get('name')),
-                                        href: record.get('href')
-                                    });
+                                	if (record.get('href').indexOf('resources.get') !== -1
+                                			|| currentType == "application/zip"
+                                	    		|| currentType == 'application/x-compressed'
+                                	    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
+                                		label = 'Download Data (XX MB)'; //TODO Get actual size from metadata
+                                    	linkButton.push({
+                                            text: record.get('title') || record.get('name'),
+                                            handler: function (b, e) {
+                                            	var isLargeFile = false;
+                                            	var license = 'OEH';
+                                            	if (isLargeFile) {
+                                                	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
+                                            	} else {
+													var downloadUrl = record.get('href');
+                                            		if (license == 'OEH') {
+                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, downloadUrl);
+                                            		} else if (license == 'CC') {
+                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, downloadUrl);
+                                            		} else {
+														window.open(downloadUrl);
+													}
+                                            	}
+                                            }
+                                        });            
+                                    } else if (currentType === 'application/vnd.google-earth.kml+xml'
+                                    	|| currentType === 'GLG:KML-2.0-http-get-map') {
+                                    	linkButton.push({
+                                            text: record.get('title') || record.get('name'),
+                                            handler: function (b, e) {
+                                            	OEH.Popup.show(OEH.Popup.SERVICE_KML, record.get('href'));
+                                            }
+                                        });
+                                    } else {
+                                        linkButton.push({
+                                            text: (record.get('title') || record.get('name')), //[NChan] This is the tooltip
+                                            href: record.get('href')
+                                        });                                		
+                                	}
                                 }
                             }
                             
@@ -661,22 +707,52 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
      *  and display a dropdown menu if not.
      */
     addLinkMenu: function (linkButton, label, currentType, el) {
+    	    	
+    	//[NChan] Customize icons and labels to show for action links
+    	var isLargeFile = false;
+    	var linkLabel = label;
+    	var linkIconCls = GeoNetwork.Util.protocolToCSS[currentType] || currentType;
+    	
+    	if (currentType == "application/vnd.google-earth.kml+xml"
+    		|| currentType === 'GLG:KML-2.0-http-get-map') {
+    		linkIconCls = 'oeh-gearth';
+    		linkLabel = 'View in Google Earth';
+    	} else if (currentType == "application/vnd.ogc.wms_xml"
+    		|| currentType == 'application/vnd.ogc.wmc'
+    			|| currentType == 'OGC:WMS') {
+    		linkIconCls = 'oeh-wms';
+    		linkLabel = 'View in GIS';
+    	} else if (currentType == "REST") { //TODO - Fix this with correct values
+    		linkIconCls = 'oeh-rest';
+    		linkLabel = 'Connect to REST Service';
+    	} else if (currentType == "application/zip"
+    		|| currentType == 'application/x-compressed'
+    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
+    		if (isLargeFile) {
+    			linkIconCls = 'oeh-request';
+    			linkLabel = 'Request Data';
+    		} else {
+    			linkIconCls = 'oeh-download';
+    			// Label is set in calling function 
+    		}
+    	}
+    	
         if (linkButton.length === 1) {
             var handler = linkButton[0].handler || function () {
                 window.open(linkButton[0].href);
             };
             bt = new Ext.Button({
-                text: label,
-                tooltip: linkButton[0].text,
+                text: linkLabel,
+                //[NChan] Removed tooltips
                 handler: handler,
-                iconCls: GeoNetwork.Util.protocolToCSS[currentType] || currentType,
+                iconCls: linkIconCls,
                 renderTo: el
             });
         } else {
             bt = new Ext.Button({
-                text: label,
+                text: linkLabel,
                 menu: new Ext.menu.Menu({cls: 'links-mn', items: linkButton}),
-                iconCls: GeoNetwork.Util.protocolToCSS[currentType] || currentType,
+                iconCls: linkIconCls,
                 renderTo: el
             });
         }

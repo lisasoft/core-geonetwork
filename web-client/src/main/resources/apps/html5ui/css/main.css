@@ -1,67 +1,22 @@
 
 /** Fonts **/
 @font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-Regular.ttf') format('truetype');
+  font-family:'OpenSans';
+  src: url('fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype'),
+       url('fonts/Open_Sans/OpenSans-Regular.eot') format('embedded-opentype');
 }
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-Bold.ttf') format('truetype');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-Italic.ttf') format('truetype');
-  font-style: italic, oblique;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-BoldItalic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: italic, oblique;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-ExtraBold.ttf') format('truetype');
-  font-weight: bolder;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-ExtraBoldItalic.ttf') format('truetype');
-  font-weight: bolder;
-  font-style: italic, oblique;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-Light.ttf') format('truetype');
-  font-weight: lighter;
-}
-
-@font-face {
-  font-family: OpenSans';
-  src: url('OpenSans-LightItalic.ttf') format('truetype');
-  font-weight: lighter;
-  font-style: italic, oblique;
-}
-
 
 /* to keep footer down -- from http://matthewjamestaylor.com/blog/keeping-footers-at-the-bottom-of-the-page */
 html,body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	font-family: OpenSans, Serif, sans-serif; 
+	font-family: OpenSans; 
 }
 
 /** Overriding fonts from gnmetadataview.css **/
 div#page-container #metadata-info * , div#page-container div#latest-metadata header h1, div#page-container div#popular-metadata header h1 {
-	font-family: OpenSans, Serif, sans-serif;
+	font-family: OpenSans;
 }
 
 /** General settings **/
@@ -74,8 +29,8 @@ div#page-container #metadata-info * , div#page-container div#latest-metadata hea
 #main {
 	padding: 3px;
 	padding-bottom: 150px; /* height of the footer */
-	margin-left: 15%;
-	margin-right: 15%;
+	margin-left: 7%;
+	margin-right: 7%;
 }
 
 #footer {
@@ -490,6 +445,16 @@ div#resultsPanel * div.x-panel-tbar>div {
 #layerManager-accordion .x-panel-btns {
 	padding: 5px;
 	overflow: initial;
+}
+
+#layerManager-accordion input, #layerManager-accordion textarea {
+	min-width: 90px;
+}
+
+#printToPdfPanel form {
+	overflow-y: scroll;
+	display: inline-block;
+	max-width: 100%;
 }
 
 div#resultsPanel .x-panel-bbar div {
@@ -1260,6 +1225,7 @@ div.facets * a {
 	right: 15%;
 	top: 40px;
 	background: none;
+	z-index: 50;
 }
 
 #login_div {
@@ -1389,7 +1355,7 @@ a#administration_button:hover {
 	background-position-y: -39px;
 }
 
-#metadata-info .title {
+#metadata-info span.title {
 	font-size: 20px;
 }
 
@@ -1504,10 +1470,6 @@ body * ul.x-menu-list {
 	border-radius: 4px;
 }
 
-legend[id*="MD_Metadata"][id*="root"] span span div.alert {
-	display: none;
-}
-
 .alert * h2 {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
@@ -1587,6 +1549,11 @@ ul li.tag-cloud a {
 #latest-metadata header h1 span,#popular-metadata header h1 span{
 	padding:12px;
 	background: white;
+	min-height: 20px;
+}
+
+#latest-metadata, #popular-metadata {
+	min-height: 100px;
 }
 
 #latest-metadata input {
@@ -1669,4 +1636,41 @@ dl.xml * dd {
 	font-size: 26px;
 	color: #3B6688;
 	text-align: center;
+}
+
+/* For small screens */
+
+
+@media (max-width: 1200px) {
+	#main {
+		margin-right: 4%;
+		margin-left: 4%;
+	}
+}
+
+@media (max-width: 1100px) {
+	#main {
+		margin-right: 3%;
+		margin-left: 3%;
+	}
+}
+
+@media (max-width: 1000px) {
+	#main {
+		margin-right: 2%;
+		margin-left: 2%;
+	}
+}
+
+@media (max-width: 900px) {
+	#main {
+		margin-right: 1%;
+		margin-left: 1%;
+	}
+}
+@media (max-width: 800px) {
+	#main {
+		margin-right: 0%;
+		margin-left: 0%;
+	}
 }

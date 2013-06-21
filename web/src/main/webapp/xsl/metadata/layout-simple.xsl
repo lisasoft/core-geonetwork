@@ -24,12 +24,10 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="2">
           <xsl:copy-of select="$abstract"/>
         </td>
-        <td class="right">
-          <xsl:copy-of select="$logo"/>
-        </td>
+        <!-- [Nchan] Removed logo. -->
       </tr>
       <tr>
         <td colspan="2">
