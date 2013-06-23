@@ -517,6 +517,9 @@
 -->
   <xsl:template mode="relatedResources"
     match="gmd:distributionInfo">
+
+   	<xsl:variable name="useLimitation" select="../gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
+    
     <table class="related">
       <tbody>
         <tr style="display:none;"><!-- FIXME needed by JS to append other type of relation from xml.relation service -->
@@ -589,10 +592,8 @@
 				                   </xsl:when>
 									<!-- Else -->
 				                   <xsl:otherwise>
-				                   		<!-- TODO Get the correct license details / license code. -->
-							          	<xsl:variable name="licenseDetails" select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useLimitation/gco:CharacterString"/>
 							          	<xsl:choose>
-						                   <xsl:when test="contains('$licenseDetails', 'CC BY 3.0 AU')">
+						                   <xsl:when test="contains('$useLimitation', 'CC BY 3.0 AU')">
 						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, '{$url}');" class="oeh-download oeh-icon-link">
 							          				Download Data (XX MB)
 							          			</a>  
@@ -600,7 +601,7 @@
 						                   <xsl:otherwise>
 												<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, '{$url}');" class="oeh-download oeh-icon-link">
 							          				Download Data (XX MB)
-							          			</a>            
+							          			</a>
 						                   </xsl:otherwise>
 						          		</xsl:choose>
 						          		               
