@@ -647,17 +647,15 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
                                             	var isLargeFile = false;
-                                            	var license = 'OEH';
                                             	if (isLargeFile) {
                                                 	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
                                             	} else {
 													var downloadUrl = record.get('href');
-                                            		if (license == 'OEH') {
-                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, downloadUrl);
-                                            		} else if (license == 'CC') {
+													var license = r.data.constraints;
+                                            		if (license.indexOf("CC BY 3.0 AU") !== -1) {
                                             			OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, downloadUrl);
                                             		} else {
-														window.open(downloadUrl);
+                                            			OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, downloadUrl);
 													}
                                             	}
                                             }

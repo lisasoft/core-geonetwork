@@ -593,7 +593,7 @@
 									<!-- Else -->
 				                   <xsl:otherwise>
 							          	<xsl:choose>
-						                   <xsl:when test="contains('$useLimitation', 'CC BY 3.0 AU')">
+						                   <xsl:when test="contains($useLimitation, 'CC BY 3.0 AU')">
 						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, '{$url}');" class="oeh-download oeh-icon-link">
 							          				Download Data (XX MB)
 							          			</a>  
