@@ -283,6 +283,13 @@ GeoNetwork.data.MetadataResultsStore = function(){
             return 0;
         }
     }
+    function getConstraints(v, record){
+        if (record['Constraints']) {
+            return record['Constraints'][0].value;
+        } else {
+            return '';
+        }
+    }
     
     return new Ext.data.JsonStore({
         totalProperty: 'summary.count',
@@ -387,6 +394,9 @@ GeoNetwork.data.MetadataResultsStore = function(){
         }, {
             name: 'valid_details',
             convert: getValidationInfo
+        }, {
+            name: 'constraints',
+            convert: getConstraints
         }]
     });
 };
