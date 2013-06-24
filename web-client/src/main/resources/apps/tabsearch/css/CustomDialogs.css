@@ -1,0 +1,51 @@
+/* Styles for OEH custom popups */
+
+.oeh-popup div
+{
+	font-size:12px;
+}
+
+.oeh-popup table
+{
+	margin-bottom: 0px;
+}
+
+.oeh-popup-title-text
+{
+	color: #D36B08;
+	font-size:15px;
+	font-weight: bold;
+}
+
+.oeh-popup-title
+{
+	padding-top: 5px;
+	padding-bottom: 10px;	
+}
+
+.oeh-popup-subtitle
+{
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.oeh-popup-footer
+{
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.oeh-popup-wms-panel div
+{
+	background-color: #EEF3F9;
+}
+
+.oeh-popup-wms-panel input
+{
+	width: 100%;
+}
+
+.oeh-popup-wms-panel-header
+{
+	font-weight: bold;
+}
