@@ -74,15 +74,12 @@ OEH.Popup.show = function(type, url, options) {
 	
 	// Returns the CC license footnote text
 	function getCcLicenseFootnote() {
-		return '<p>This data is provided under ' + getCreativeCommonsLink() + '.</p>' + 
-				'<p>Attribute the <b>Office of Environment and Heritage NSW</b> in publications using this data.</p>';
+		return "<p>This data is provided under a Creative Commons Attribution 3.0 Australia Licence (CC BY 3.0 AU): http://creativecommons.org/licenses/by/3.0/au Attribute 'Office of Environment and Heritage NSW' in publications using this data.</p>";
 	}
 	
 	// Returns the OEH license footnote text
 	function getOehLicenseFootnote() {
-		return '<p>This data is provided under license by the Office of Environment and Heritage.</p>' + 
-				'<p>Read the license conditions in the readme.txt file contained in the downloaded zip file before using the data.</p>' + 
-				'<p>Unless otherwise stated in the readme.txt, attribute the <b>Office of Environment and Heritage NSW</b> in publications using this data.</p>';
+		return "<p>This data is provided under licence by the Office of Environment and Heritage. Read the licence conditions in the readme.txt file contained in the downloaded zip file before using the data. Unless otherwise stated in the readme.txt, attribute 'Office of Environment and Heritage NSW' in publications using this data.</p>";
 	}
 	
 	// Returns a mandatory marker styled span
