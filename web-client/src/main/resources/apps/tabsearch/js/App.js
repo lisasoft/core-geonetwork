@@ -550,18 +550,41 @@ GeoNetwork.app = function () {
                                                 false)
                                 ]
                             },
-                            // When panel
                             {
-                                title : OpenLayers.i18n('When'),
-                                id:'WhenPanel',
-                                layout : 'form',
-                                width: 260,
-								bodyStyle : 'padding: 5px; text-align: left;',
-								defaultType : 'datefield',
+								layoutConfig : {
+									type : 'vbox',
+									align : 'stretch',
+									pack : 'center'
+								},
+								border : false,
                                 items : [
-                                        GeoNetwork.util.SearchFormTools.getOehWhen()
-                                    ]
-                            }
+                                         // When panel
+			                            {
+			                                title : OpenLayers.i18n('When'),
+			                                id:'WhenPanel',
+			                                layout : 'form',
+			                                width: 260,
+											bodyStyle : 'padding: 5px; text-align: left;',
+											defaultType : 'datefield',
+			                                items : [
+			                                        GeoNetwork.util.SearchFormTools.getOehWhen()
+			                                    ]
+			                            },
+										 {
+											layout : 'vbox',
+											border : false,
+											height: 10
+										 },
+                                         // Tips panel
+                                         {
+                                             title : OpenLayers.i18n('Tips'),
+                                             id:'TipsPanel',
+                                             width: 260,
+                                             bodyStyle : 'padding: 5px; text-align: left;',
+                                             html: 'Use * to search on part of a word: <b>park*</b> searches for park, parks and parking.'
+                                         }
+                                    ]                            	
+                            },
                         ]
                     },
                     
