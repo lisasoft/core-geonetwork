@@ -178,6 +178,11 @@ height:200px;
 .x-tab-panel-body, .x-panel-bwrap, .x-column-inner, #ext--comp-1191{
 
 }
+
+.x-tab-panel-body{
+width:740px;
+height:540px;
+}
 .x-tab-strip-wrap
 {
     background-color:#ffffff;
@@ -371,6 +376,16 @@ ul.x-tab-strip {
     background-image: url("../../../scripts/ext/resources/images/default/tabs/tabs-sprite.gif");
     
 }
+
+.x-tab-panel-header{
+width:990px;
+}
+
+.x-tab-panel-header > div{
+width:990px;
+}
+
+
 .x-tab-panel-header-plain .x-tab-strip-spacer, .x-tab-panel-footer-plain .x-tab-strip-spacer
 {
     background-color: #ffffff;
@@ -444,7 +459,7 @@ text-decoration:underline;
 {
     border:1px solid #ffffff !important;
     width:450px !important;
-    position:relative !important;
+    /*position:relative !important; */
     left:100px !important;
     font-family:Arial,Verdana;
     font-size:12px;
@@ -502,15 +517,27 @@ border-bottom: dashed 1px #999999;
 width: 990px;
 height:200px;
 }
-
+#resultsPanel{
+width:740px
+}
 #results {
 width: 990px  !important;
 height:550;
-position:relative;
+/*position:relative;*/
 }
 
 div#MetadataResultsToolbar,  #metadataResultsView{
 width:740px !important;
+}
+#metadataResultsView{
+height: 480px  !important;
+}
+#ext-gen72 {
+height: 540px !important;
+}
+
+.x-panel-bbar {
+width:740px;
 }
 
 .x-panel-tbar-noborder
@@ -525,16 +552,19 @@ width:740px !important;
 .x-toolbar-ct
 {
     vertical-align:top !important; 
+    width:740px !important;
 }
 .x-toolbar-left
 {
     height:40px !important;
     vertical-align:top !important; 
+    width: 300px !important;
 }
 .x-toolbar-right
 {
     vertical-align:top !important; 
     height:40px !important;
+    width: 340px !important;
 }
 .x-toolbar-cell div
 {
