@@ -66,20 +66,23 @@ OEH.Popup.show = function(type, url, options) {
 		return "<a href='http://creativecommons.org/licenses/by/3.0/au/' target='_blank'>Creative Commons Attribution 3.0 Australia License</a>";
 	}
 	
-	// TODO - add image
 	// Returns the creative commons image link
 	function getCreativeCommonsImgLink() {
-		return '<a href="http://creativecommons.org/licenses/by/3.0/au/" target="_blank"><img src=""/>Copyright</a>';
+		return '<a href="http://creativecommons.org/licenses/by/3.0/au/" target="_blank"><img id="eoh-popup-cc" src="images/oeh/cc_icon.png"/></a>';
 	}
 	
 	// Returns the CC license footnote text
 	function getCcLicenseFootnote() {
-		return "<p>This data is provided under a Creative Commons Attribution 3.0 Australia Licence (CC BY 3.0 AU): http://creativecommons.org/licenses/by/3.0/au Attribute 'Office of Environment and Heritage NSW' in publications using this data.</p>";
+		return "This data is provided under a Creative Commons Attribution 3.0 Australia Licence (CC BY 3.0 AU): http://creativecommons.org/licenses/by/3.0/au." 
+			+ "<br/><br/>" 
+			+ "Attribute <b>Office of Environment and Heritage NSW</b> in publications using this data.";
 	}
 	
 	// Returns the OEH license footnote text
 	function getOehLicenseFootnote() {
-		return "<p>This data is provided under licence by the Office of Environment and Heritage. Read the licence conditions in the readme.txt file contained in the downloaded zip file before using the data. Unless otherwise stated in the readme.txt, attribute 'Office of Environment and Heritage NSW' in publications using this data.</p>";
+		return "This data is provided under licence by the Office of Environment and Heritage." + "<br/><br/>" +
+				"Read the licence conditions in the readme.txt file contained in the downloaded zip file before using the data." + "<br/><br/>" +
+				"Unless otherwise stated in the readme.txt, attribute <b>Office of Environment and Heritage NSW</b> in publications using this data.";
 	}
 	
 	// Returns a mandatory marker styled span
@@ -111,16 +114,16 @@ OEH.Popup.show = function(type, url, options) {
 	}
 	
 	// Returns the modal window
-	function createWindow(width, height, items) {
-		return new Ext.Window({
-			height : height,
-			width : width,
-			layout: 'vbox',
-			layoutConfig: {
-				align: 'stretch'
-			},
+	function createWindow(items) {
+		return new Ext.Window({ 
+			width : 470,
+			cls: 'oeh-popup',
 			modal: true,
 			closable: true,
+			draggable: false,
+			resizable: false,
+			header: false,
+        	border: false,
 			closeAction: 'destroy',
 			constrain : true,
 			items: items
@@ -152,86 +155,118 @@ OEH.Popup.show = function(type, url, options) {
 			footnote = getOehLicenseFootnote();
 		}
 		
+		var submitLabel = 'Acknowledge and Download';
+		if (OEH.Popup.SERVICE_KML == type
+				|| OEH.Popup.SERVICE_REST == type
+				|| OEH.Popup.SERVICE_WMS == type) {
+			submitLabel = 'Acknowledge and Connect';
+		}
+		
+		var leftButtonPanel = '';
+		if (OEH.Popup.DOWNLOAD_OEH != type) {
+			leftButtonPanel = getCreativeCommonsImgLink();
+		}
+		
+		var buttonPanel = {
+			id: 'buttonPanel',
+			name: 'buttonPanel',
+			border : false,
+			html:  '<table border="0" width="100%">' +
+						'<tr class="oeh-popup-wms-panel-header">' +
+							'<td>' +
+								leftButtonPanel +
+							'</td>' +
+							'<td style="text-align:right;">' +
+								'<button id="eoh-popup-submit" type="button" style="margin-right: 10px;">' + submitLabel + '</button>' +
+								'<a id="eoh-popup-reset" href="#">Reset</a>' +
+							'</td>' +
+						'</tr>' +
+					'</table>',
+			listeners: {
+				scope: this,
+				render: function(c){
+					c.getEl().on('click', 
+						function(event, item, options) {
+							if (item.id === "eoh-popup-submit") {
+								//TODO - Submit form and save log details
+								if (OEH.Popup.SERVICE_WMS == type) {
+									var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
+									if (!wmsUrlPanel.isVisible()) {
+										item.innerHTML = 'Close';
+										item.parentNode.children["eoh-popup-reset"].hidden = true;
+										wmsUrlPanel.show();
+									} else {
+										window.close();
+									}
+								} else {
+									openUrl(url);
+									window.close();
+								}							
+							} else if (item.id === "eoh-popup-reset") {
+								formPanel.getForm().reset();
+							} else if (item.id === "eoh-popup-cc") {
+								openUrl(item.parentNode.href);
+							}
+						}, 
+						this, {stopEvent: true});
+				}
+			}
+		};
+		
+		var formPanelItems = [
+						{
+							html: '<span class="oeh-popup-title-text">' + title + '</span>',
+							border : false,
+							cls: 'oeh-popup-title'
+						},
+						{
+							html: 'These details will help us improve our services to you.',
+							border : false,
+							cls: 'oeh-popup-subtitle'
+						},
+						getOrganisationField(),
+						{
+							name      : 'intendedUse',
+							xtype     : 'textarea',
+							fieldLabel: 'Intended Use',
+							anchor    : '100%',
+							boxMaxWidth : 280
+						},
+						{
+							html: 'To be notified of data updates, please provide your',
+							border : false
+						},
+						{
+							name      : 'email',
+							xtype     : 'textfield',
+							fieldLabel: 'email address',
+							anchor    : '100%',
+							boxMaxWidth : 280
+						},
+						{
+							name      : 'flag',
+							xtype     : 'checkbox',
+							fieldLabel: getPrivacyPolicyLink(),
+							labelSeparator: '',
+							boxLabel  : 'We may send you news and occasional user surveys',
+							anchor    : '100%'
+						},
+						{
+							html: footnote,
+							border : false,
+							cls: 'oeh-popup-footer'
+						},
+						buttonPanel
+					];
+		
+
+		
 		var formPanel = new Ext.form.FormPanel({
 			labelAlign: 'left',
 			labelWidth: 120,
+			border: false,
 			padding: 10,
-			items: [
-				{
-					html: title,
-					border : false
-				},
-				{
-					html: 'These details will help us improve our services to you.',
-					border : false
-				},
-				getOrganisationField(),
-				{
-					name      : 'intendedUse',
-					xtype     : 'textarea',
-					fieldLabel: 'Intended Use',
-					anchor    : '100%',
-					boxMaxWidth : 280
-				},
-				{
-					html: 'To be notified of data updates, please provide your',
-					border : false
-				},
-				{
-					name      : 'email',
-					xtype     : 'textfield',
-					fieldLabel: 'email address',
-					anchor    : '100%',
-					boxMaxWidth : 280
-				},
-				{
-					name      : 'flag',
-					xtype     : 'checkbox',
-					fieldLabel: getPrivacyPolicyLink(),
-					labelSeparator: '',
-					boxLabel  : 'We may send you news and occasional user surveys',
-					anchor    : '100%'
-				},
-				{
-					html: footnote,
-					border : false
-				},
-				{
-					layout : {
-						type : 'hbox',
-						pack : 'start'
-                    },
-					border : false,
-					items : [
-						{
-							html: getCreativeCommonsImgLink(),
-							border : false
-						},
-						createLink('submitLink', '#', 'Submit', function() {
-							//TODO - Submit form and save log details
-							if (OEH.Popup.SERVICE_WMS == type) {
-								var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
-								if (!wmsUrlPanel.isVisible()) {
-									//TODO - Rename submit link
-									Ext.get('submitLink').update('Close');
-									//TODO - Hide reset link
-									Ext.getCmp('resetLink').getEl().hide();
-									//TODO - Show WMS url panel
-									wmsUrlPanel.show();
-								} else {
-									window.close();
-								}
-							} else {
-								openUrl(url);
-								window.close();
-							}							
-						}),
-						createLink('resetLink', '#', 'Reset', function() {
-							formPanel.getForm().reset();
-						})
-					]
-				}
-			]
+			items: formPanelItems
 		});
 		
 		var items = [formPanel];
@@ -244,16 +279,18 @@ OEH.Popup.show = function(type, url, options) {
 			var wmsPanel = {
 				id: 'wmsUrlPanel',
 				name: 'wmsUrlPanel',
+				cls: 'oeh-popup-wms-panel',
 				padding: 10,
+				border : true,
 				html:  '<table border="0" width="100%">' +
-							'<tr>' +
+							'<tr class="oeh-popup-wms-panel-header">' +
 								'<td colspan="3">' +
 									'Service URL - copy/paste link to connect in desktop GIS:' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td colspan="3">' +
-									'<input type="text" name="wmsUrl" value="' + wmsUrl + '" style="width:100%;" onClick="this.select();" readonly>' +
+									'<input type="text" name="wmsUrl" value="' + wmsUrl + '" onClick="this.select();" readonly>' +
 								'</td>' +
 							'</tr>' +
 							'<tr>' +
@@ -269,18 +306,17 @@ OEH.Popup.show = function(type, url, options) {
 					}
 				}
 			};		
-			items.push(wmsPanel);
+			
+			var outerPanel = {
+					border : false,
+					padding: 10,
+					items: [wmsPanel]
+				}
+			
+			items.push(outerPanel);
 		}
 		
-		var width = 470;
-		var height = 350;
-		if (OEH.Popup.DOWNLOAD_OEH == type) {
-			height = 390;
-		} else if (OEH.Popup.SERVICE_WMS == type) {
-			height = 400;
-		}
-		var window = createWindow(width, height, items);
-		
+		var window = createWindow(items);
 		return window;
 		
 	}
@@ -297,22 +333,25 @@ OEH.Popup.show = function(type, url, options) {
 		
 		var items = [
 			{
-				html: title,
-				border : false
+				html: '<span class="oeh-popup-title-text">' + title + '</span>',
+				border : false,
+				cls: 'oeh-popup-title'
 			}
 		];
 		if (OEH.Popup.DOWNLOAD_LF == type) {
 			items.push(
 				{
 					html: 'This data is available on request from the Office of Environment and Heritage.',
-					border : false
+					border : false,
+					cls: 'oeh-popup-subtitle'
 				}
 			);
 		}
 		items.push(
 			{
 				html: 'Please provide your details and we will respond within two business days.',
-				border : false
+				border : false,
+				cls: 'oeh-popup-subtitle'
 			},
 			{
 				name      : 'name',
@@ -373,43 +412,58 @@ OEH.Popup.show = function(type, url, options) {
 			{
 				html: getMandatoryMarker() + "mandatory fields",
 				border : false
-			},
-			{
-				layout : {
-					type : 'hbox',
-					pack : 'start'
-				},
-				items : [
-					{
-						html: getPrivacyPolicyLink(),
-						border : false
-					},
-					createLink('submitLink', '#', 'Submit', function() {
-						//TODO - Send request
-						//TODO - Save log details
-						window.close();
-					}),
-					createLink('resetLink', '#', 'Reset', function() {
-						formPanel.getForm().reset();
-					})
-				]
 			}
 		);
+		
+		var submitLabel = 'Request Data';
+		if (OEH.Popup.ENQUIRY == type) {
+			submitLabel = 'Send';
+		}
+
+		var buttonPanel = {
+				id: 'buttonPanel',
+				name: 'buttonPanel',
+				border : false,
+				html:  '<table border="0" width="100%">' +
+							'<tr class="oeh-popup-wms-panel-header">' +
+								'<td>' +
+									getPrivacyPolicyLink() +
+								'</td>' +
+								'<td style="text-align:right;">' +
+									'<button id="eoh-popup-submit" type="button" style="margin-right: 10px;">' + submitLabel + '</button>' +
+									'<a id="eoh-popup-reset" href="#">Reset</a>' +
+								'</td>' +
+							'</tr>' +
+						'</table>',
+				listeners: {
+					scope: this,
+					render: function(c){
+						c.getEl().on('click', 
+							function(event, item, options) {
+								if (item.id === "eoh-popup-submit") {
+									if (formPanel.getForm().isValid()) {
+										//TODO - Submit request and save log details
+										window.close();	
+									}
+								} else if (item.id === "eoh-popup-reset") {
+									formPanel.getForm().reset();
+								}
+							}, 
+							this, {stopEvent: true});
+					}
+				}
+			};
+		items.push(buttonPanel);
 		
 		var formPanel = new Ext.form.FormPanel({
 			labelAlign: 'left',
 			labelWidth: 120,
+			border : false,
 			padding: 10,
 			items: items
 		});
 		
-		var width = 470;
-		var height = 440;
-		if (OEH.Popup.ENQUIRY == type) {
-			height = 420;
-		}
-		
-		var window = createWindow(width, height, [formPanel]);
+		var window = createWindow([formPanel]);
 		return window;
 		
 	}
@@ -422,6 +476,7 @@ OEH.Popup.show = function(type, url, options) {
 	} else if (OEH.Popup.DOWNLOAD_LF == type || OEH.Popup.ENQUIRY == type) {
 		popup = createRequestPopup(type, url, options);
 	}
+	
 	popup.show();
 	
 }
