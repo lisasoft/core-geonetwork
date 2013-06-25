@@ -884,10 +884,17 @@ GeoNetwork.util.SearchFormTools = {
     	function resetForm(ck, checked) {
 			if (checked) {
 				ck.ownerCt.items.each(function(item, index, length){
-					if (item.getXType() === 'datefield') {
-						item.setValue('');
-						item.disable();
+					if (item.getXType() === 'panel') {
+						var panelItems = item.items.items;
+						for ( var i = 0; i < panelItems.length; i++) {
+							var panelItem = panelItems[i];
+							if (panelItem.getXType() === 'datefield') {
+								panelItem.setValue('');
+								panelItem.disable();
+							}								
+						}
 					}
+					
 					if (item.getXType() === 'radio') {
 						if (item.name != ck.name) {
 							item.setValue(false);
