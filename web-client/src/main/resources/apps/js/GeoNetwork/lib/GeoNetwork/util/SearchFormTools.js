@@ -957,11 +957,11 @@ GeoNetwork.util.SearchFormTools = {
 			boxLabel: 'Metadata Changed:',
             handler: function(ck, checked){
             	resetForm(ck, checked);
-				enableDates('dateTo', 'dateFrom', checked);
+				enableDates('revisionDateTo', 'revisionDateFrom', checked);
             }
         });
 	
-		var metadataChangeDates = GeoNetwork.util.SearchFormTools.getMetadataDateField(anyTime);
+		var metadataChangeDates = GeoNetwork.util.SearchFormTools.getModificationDateField(anyTime);
 		setDateRangeLayout(metadataChangeDates);
 		
 	var items = [
