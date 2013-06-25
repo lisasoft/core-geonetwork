@@ -272,9 +272,9 @@ OEH.Popup.show = function(type, url, options) {
 		var items = [formPanel];
 		if (OEH.Popup.SERVICE_WMS == type) {
 			
-			var wmsUrl = url;
-			var wmsSampleMap = url + '?VERSION=1.1.1&REQUEST=GetMap&SRS=EPSG:102100&FORMAT=image/png&TRANSPARENT=TRUE&EXCEPTIONS=INIMAGE&BBOX=15625344.26,-4574548.91,17179065.4,-3204873.971&WIDTH=500&HEIGHT=440&LAYERS=0&STYLES=';
-			var wmsCapabilities = url + '?request=GetCapabilities&service=WMS';
+			var wmsUrl = url.substring(0, url.indexOf('?'));
+			var wmsSampleMap = url; // Parameter is the getMap url 
+			var wmsCapabilities = wmsUrl + '?request=GetCapabilities&service=WMS';
 			
 			var wmsPanel = {
 				id: 'wmsUrlPanel',
