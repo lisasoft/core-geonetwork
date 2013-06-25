@@ -348,11 +348,14 @@ GeoNetwork.app = function () {
             xtype: 'fieldset',
             title: 'Radio Groups',
             height:50,
+            maxWidth: 400,
             cls:'FormatRadio',
             items: [{
                 xtype: 'radiogroup',
                 id:'radiogroup',
                 columns:3,
+                width:400,
+                maxWidth: 400,
                 vertical:false,
                 items: [ 
                     {
@@ -547,41 +550,18 @@ GeoNetwork.app = function () {
                                                 false)
                                 ]
                             },
+                            // When panel
                             {
-								layoutConfig : {
-									type : 'vbox',
-									align : 'stretch',
-									pack : 'center'
-								},
-								border : false,
+                                title : OpenLayers.i18n('When'),
+                                id:'WhenPanel',
+                                layout : 'form',
+                                width: 260,
+								bodyStyle : 'padding: 5px; text-align: left;',
+								defaultType : 'datefield',
                                 items : [
-                                         // When panel
-			                            {
-			                                title : OpenLayers.i18n('When'),
-			                                id:'WhenPanel',
-			                                layout : 'form',
-			                                width: 260,
-											bodyStyle : 'padding: 5px; text-align: left;',
-											defaultType : 'datefield',
-			                                items : [
-			                                        GeoNetwork.util.SearchFormTools.getOehWhen()
-			                                    ]
-			                            },
-										 {
-											layout : 'vbox',
-											border : false,
-											height: 10
-										 },
-                                         // Tips panel
-                                         {
-                                             title : OpenLayers.i18n('Tips'),
-                                             id:'TipsPanel',
-                                             width: 260,
-                                             bodyStyle : 'padding: 5px; text-align: left;',
-                                             html: 'Use * to search on part of a word: <b>park*</b> searches for park, parks and parking.'
-                                         }
-                                    ]                            	
-                            },
+                                        GeoNetwork.util.SearchFormTools.getOehWhen()
+                                    ]
+                            }
                         ]
                     },
                     
@@ -735,6 +715,8 @@ GeoNetwork.app = function () {
             hidden : true,
             bodyCssClass : 'md-view',
             autoScroll : true,
+            width: 400,
+            maxWidth: 400,
             header: null,
             tbar : tBar,
             layout : 'fit',
@@ -1057,7 +1039,7 @@ GeoNetwork.app = function () {
                             id : 'GNtabs',
                             maxWidth : 990,
                             width:990,
-                            height:200,
+                            //height:200,
                             renderTo: 'GeoNetworkContent',
                             deferredRender : false,
                             plain : true,
@@ -1123,20 +1105,20 @@ GeoNetwork.app = function () {
                                     id : 'results',
                                     title : OpenLayers.i18n('List'),
                                     autoScroll : false,
-                                    layout : 'hbox',
+                                    layout : 'border',
                                     width:990,
                                     maxWidth:990,
-                                    height: 540,
+                                    //height: 200,
                                     autoSize: true,
                                     items : [ {// sidebar searchform
                                         region : 'west',
                                         id : 'west',
                                         border : true,
                                         width : 250,
-                                        height: 540,
                                         items : [ resultsMap, facetsPanel  ]
                                     }, {
                                         layout : 'fit',
+                                        region : 'center',
                                         border : false,
                                         maxWidth : 640,
                                         autoScroll : true,
