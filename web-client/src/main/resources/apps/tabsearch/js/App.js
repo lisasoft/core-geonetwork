@@ -342,7 +342,7 @@ GeoNetwork.app = function () {
             /// Trigger the onsearch event which update search form state
             Ext.getCmp('searchForm').fireEvent('onsearch');
         };
-                // Radio button list under search text box - May 2013, Kalpesh
+        // Radio button list under search text box - May 2013, Kalpesh
         var radioGroup = {
             id:'radiogroupID',
             xtype: 'fieldset',
@@ -359,20 +359,25 @@ GeoNetwork.app = function () {
                 vertical:false,
                 items: [ 
                     {
-                        boxLabel: 'All results', 
-                        name: 'rb-auto', 
-                        inputValue: 1, 
-                        id:'rd1', 
+                    	id:'rd1',
+                        name: 'E_oehactiontype',
+                        boxLabel: 'All results',
+                        inputValue: '',  // Blank -- do not filter by this field   
                         checked: true 
                     },
-                    {boxLabel: 'Downloads', 
-                    name: 'rb-auto', 
-                    id: 'rd2',
-                    inputValue: 2 },
-                    {boxLabel: 'Web services', 
-                    name: 'rb-auto', 
-                    inputValue: 3, 
-                    id: 'rd3' }
+                    {
+                    	id: 'rd2', 
+	                    name: 'E_oehactiontype', 
+	                    boxLabel: 'Downloads',
+	                    inputValue: 'downloads' // Value expected by the index
+	                },
+                    {
+	                	id: 'rd3',
+	                    name: 'E_oehactiontype',
+	                    boxLabel: 'Web services',
+	                    inputValue: 'services' // Value expected by the index 
+	                     
+	                }
                 ]
             }]
         };
@@ -597,7 +602,8 @@ GeoNetwork.app = function () {
                                                   		border: false,
                                                   		defaultType : 'datefield',
                                                   		items: whenAdvItems[4]
-                                                  	}
+                                                  	},
+                                                  	GeoNetwork.util.SearchFormTools.getTextField('E_oehactiontype', 'E_oehactiontype')
                                                   ]
                                      },
                                      {
