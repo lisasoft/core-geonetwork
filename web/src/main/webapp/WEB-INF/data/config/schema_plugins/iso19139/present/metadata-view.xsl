@@ -527,6 +527,7 @@
         </tr>
         <xsl:for-each-group select="descendant::gmd:onLine[gmd:CI_OnlineResource/gmd:linkage/gmd:URL!='']" group-by="gmd:CI_OnlineResource/gmd:protocol">
         <xsl:variable name="protocol" select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
+        <xsl:variable name="functionCode" select="gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode"/>
         <tr>
           <td class="main">
             <!-- Usually, protocole format is OGC:WMS-version-blahblah, remove ':' and get
@@ -546,6 +547,19 @@
                    <xsl:when test="$protocol='GLG:KML-2.0-http-get-map'">
                    		KML Service for Google Earth
                    </xsl:when>
+		          	<!-- If Download -->
+                    <xsl:when test="$protocol='WWW:DOWNLOAD-1.0-http--download'">
+			          	<xsl:choose>
+							<!-- If Large File download -->
+		                   <xsl:when test="$functionCode='order'">
+				          		Data transfer request
+		                   </xsl:when>
+							<!-- Else -->
+		                   <xsl:otherwise>
+					          	<xsl:value-of select="/root/gui/schemas/iso19139/labels/element[@name = 'gmd:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>   
+		                   </xsl:otherwise>
+		          		</xsl:choose> 
+                    </xsl:when>
                    <!-- Else use default -->
                    <xsl:otherwise>
                    		<xsl:value-of select="/root/gui/schemas/iso19139/labels/element[@name = 'gmd:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>               
@@ -582,7 +596,6 @@
 		                <xsl:choose>
 				          	<!-- If Download -->
 		                    <xsl:when test="$protocol='WWW:DOWNLOAD-1.0-http--download'">
-		                    	<xsl:variable name="functionCode" select="gmd:CI_OnlineResource/gmd:function/gmd:CI_OnLineFunctionCode"/>
 					          	<xsl:choose>
 									<!-- If Large File download -->
 				                   <xsl:when test="$functionCode='order'">
