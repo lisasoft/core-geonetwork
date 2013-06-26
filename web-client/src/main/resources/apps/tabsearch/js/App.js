@@ -963,6 +963,7 @@ GeoNetwork.app = function () {
             id : 'E_hitsperpage',
             name : 'E_hitsperpage',
             mode : 'local',
+            width: 140,
             triggerAction : 'all',
             fieldLabel : OpenLayers.i18n('hitsPerPage'),
             value : hitsPerPage[1], // Set arbitrarily the second value of the
