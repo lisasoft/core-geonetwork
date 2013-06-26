@@ -639,17 +639,25 @@ GeoNetwork.Lang.en = {
     'to-iso19139-keyword': 'Text mode',
     'to-iso19139-keyword-as-xlink': 'Linked mode',
     'to-iso19139-keyword-with-anchor': 'Anchor mode',
-    'linklabel-application/vnd.ogc.wms_xml': 'Add to map',
+    // WMS Link 
+    'linklabel-application/vnd.ogc.wms_xml': 'View in GIS',
+    'linklabel-OGC:WMS': 'View in GIS',
+    // Google Earth Link
+    'linklabel-application/vnd.google-earth.kml+xml': 'View in Google Earth',
+    'linklabel-GLG:KML-2.0-http-get-map': 'View in Google Earth',
+    // REST Link
+    'linklabel-REST': 'Connect to REST Service',
+    // Download Link
+    'linklabel-application/zip': 'Download Data (${size})',
+    'linklabel-WWW:DOWNLOAD-1.0-http--download': 'Download Data (${size})',
+    'linklabel-application/x-compressed': 'Download Data (${size})',
+    'linklabel-application/octet-stream': 'Download Data (${size})',
+    // Request Data Link
+    'linklabel-oeh-request-data': 'Request Data',
     'linklabel-application/vnd.ogc.wmc': 'Interactive map',
     'linklabel-OGC:WMC-1.1.0-http-get-capabilities': 'Download Web Map Context',
     'linklabel-application/pdf': 'PDF',
-    'linklabel-OGC:WMS': 'Add to map',
     'linklabel-OGC:WFS': 'WFS link',
-    'linklabel-application/vnd.google-earth.kml+xml': 'View in Google Earth',
-    'linklabel-application/zip': 'Download',
-    'linklabel-WWW:DOWNLOAD-1.0-http--download': 'Download',
-    'linklabel-application/x-compressed': 'Download',
-    'linklabel-application/octet-stream': 'Download',
     'linklabel-text/html': 'Web link',
     'linklabel-text/plain': 'Web link',
     'linklabel-image/png': 'Image link',

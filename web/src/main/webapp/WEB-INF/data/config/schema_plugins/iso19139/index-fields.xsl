@@ -448,6 +448,20 @@
                 <!-- If the linkage points to WMS service and no protocol specified, manage as protocol OGC:WMS -->
                 <xsl:variable name="wmsLinkNoProtocol" select="contains(lower-case($linkage), 'service=wms') and not(string($protocol))" />
 
+                <!-- OEH Protocol Filtering -->
+                <xsl:if test="contains($protocol, 'WWW:DOWNLOAD') or contains($protocol, 'application/zip') or contains($protocol, 'application/x-compressed')">
+			    	<Field name="oehactiontype" string="downloads" store="false" index="true"/>
+			  	</xsl:if>
+                <xsl:if test="contains($protocol, 'OGC:WMS') or contains($protocol, 'application/vnd.ogc.wms_xml')">
+                    <Field name="oehactiontype" string="services" store="false" index="true"/>
+                </xsl:if>
+                <xsl:if test="contains($protocol, 'application/vnd.google-earth.kml+xml') or contains($protocol, 'GLG:KML-2.0-http-get-map')">
+                    <Field name="oehactiontype" string="services" store="false" index="true"/>
+                </xsl:if>
+                <xsl:if test="contains($protocol, 'REST')">
+                    <Field name="oehactiontype" string="services" store="false" index="true"/>
+                </xsl:if>
+
                 <!-- ignore empty downloads -->
                 <xsl:if test="string($linkage)!='' and not(contains($linkage,$download_check))">
                     <Field name="protocol" string="{string($protocol)}" store="true" index="true"/>

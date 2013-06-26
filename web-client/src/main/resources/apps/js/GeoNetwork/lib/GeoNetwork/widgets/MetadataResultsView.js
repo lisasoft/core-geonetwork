@@ -642,7 +642,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 			|| currentType == "application/zip"
                                 	    		|| currentType == 'application/x-compressed'
                                 	    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
-                                		label = 'Download Data (XX MB)'; //TODO Get actual size from metadata
+                                		label = label.replace("${size}", "XX MB"); //TODO Get actual size from metadata
                                     	linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
@@ -714,24 +714,19 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
     	if (currentType == "application/vnd.google-earth.kml+xml"
     		|| currentType === 'GLG:KML-2.0-http-get-map') {
     		linkIconCls = 'oeh-gearth';
-    		linkLabel = 'View in Google Earth';
     	} else if (currentType == "application/vnd.ogc.wms_xml"
     		|| currentType == 'application/vnd.ogc.wmc'
     			|| currentType == 'OGC:WMS') {
     		linkIconCls = 'oeh-wms';
-    		linkLabel = 'View in GIS';
-    	} else if (currentType == "REST") { //TODO - Fix this with correct values
+    	} else if (currentType == "REST") {
     		linkIconCls = 'oeh-rest';
-    		linkLabel = 'Connect to REST Service';
     	} else if (currentType == "application/zip"
     		|| currentType == 'application/x-compressed'
     			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
     		if (isLargeFile) {
     			linkIconCls = 'oeh-request';
-    			linkLabel = 'Request Data';
     		} else {
-    			linkIconCls = 'oeh-download';
-    			// Label is set in calling function 
+    			linkIconCls = 'oeh-download'; 
     		}
     	}
     	
