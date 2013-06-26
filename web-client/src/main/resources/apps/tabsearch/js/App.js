@@ -379,6 +379,10 @@ GeoNetwork.app = function () {
             }]
         };
         
+        // Init when panel in advanced search
+        var whenAdvItems = GeoNetwork.util.SearchFormTools.getOehWhen();
+        whenAdvItems[0].colspan = 2;
+        
         return new GeoNetwork.SearchFormPanel({
             id : 'searchForm',
             stateId: 's',
@@ -554,18 +558,74 @@ GeoNetwork.app = function () {
                                                 false)
                                 ]
                             },
-                            // When panel
                             {
-                                title : OpenLayers.i18n('When'),
-                                id:'WhenPanel',
-                                layout : 'form',
-                                width: 260,
-								bodyStyle : 'padding: 5px; text-align: left;',
-								defaultType : 'datefield',
+                            	layout: 'table',
+                                layoutConfig: {
+									tableAttrs: { 
+										style: { 
+											width: '100%',
+											margin: 0,
+											padding: 0
+										}
+									},
+									columns: 1
+								},
+								border: false,
                                 items : [
-                                        GeoNetwork.util.SearchFormTools.getOehWhen()
-                                    ]
+                                         // When panel
+                                         {
+                                             title : OpenLayers.i18n('When'),
+                                             id:'WhenPanel',
+                                             layout: 'table',
+                                             layoutConfig: {
+             									tableAttrs: { 
+             										style: { 
+             											width: '100%',
+             											margin: 0
+             										}
+             									},
+             									columns: 2
+             								},
+                                            width: 305,
+             								bodyStyle : 'padding: 5px; text-align: left;',
+                                            items : [
+                                                      	whenAdvItems[0],
+                                                      	whenAdvItems[1],
+                                                      	{
+                                                      		layout: 'form',
+                                                      		labelWidth: 30,
+                                                      		width: 160,
+                                                      		border: false,
+                                                      		defaultType : 'datefield',
+                                                      		items: whenAdvItems[2]
+                                                      	},
+                                                      	whenAdvItems[3],
+                                                      	{
+                                                      		layout: 'form',
+                                                      		labelWidth: 30,
+                                                      		width: 160,
+                                                      		border: false,
+                                                      		defaultType : 'datefield',
+                                                      		items: whenAdvItems[4]
+                                                      	}
+                                                      ]
+                                         },
+                                         {
+     										layout : 'vbox',
+     										border : false,
+     										height: 10
+     									 },
+                                          // Tips panel
+                                          {
+                                              title : OpenLayers.i18n('Tips'),
+                                              id:'TipsPanel',
+                                              width: 305,
+                                              bodyStyle : 'padding: 5px; text-align: left;',
+                                              html: 'Use * to search on part of a word: <b>park*</b> searches for park, parks and parking.'
+                                          }
+                                    ]                            	
                             }
+
                         ]
                     },
                     
