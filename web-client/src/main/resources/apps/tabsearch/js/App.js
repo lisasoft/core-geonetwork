@@ -446,8 +446,9 @@ GeoNetwork.app = function () {
                                             Ext.getCmp('searchForm').getForm().reset();
                                         }
                                     }
-                                }),
-                                
+                                })
+                                /* OEH - Removed help link
+                                ,
                                 new Ext.Button({
                                     text : 'help',
                                     // iconCls: 'md-mn-reset',
@@ -460,6 +461,7 @@ GeoNetwork.app = function () {
                                         }
                                     }
                                 })
+                                */
                             ]
                     },
                     // Panel with Advanced search, Help and About Links
