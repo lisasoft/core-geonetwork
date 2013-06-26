@@ -602,8 +602,7 @@ GeoNetwork.app = function () {
                                                   		border: false,
                                                   		defaultType : 'datefield',
                                                   		items: whenAdvItems[4]
-                                                  	},
-                                                  	GeoNetwork.util.SearchFormTools.getTextField('E_oehactiontype', 'E_oehactiontype')
+                                                  	}
                                                   ]
                                      },
                                      {
