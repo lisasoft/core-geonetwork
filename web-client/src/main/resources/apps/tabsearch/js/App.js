@@ -458,34 +458,6 @@ GeoNetwork.app = function () {
                             ]
                     },
                     // Panel with Advanced search, Help and About Links
-                   /* {
-                        layout : {
-                            type : 'hbox',
-                            pack : 'center',
-                            align : 'center'
-                        },
-                        id : 'advSearch',
-                        autoScroll : true,
-                        border : false,
-                        //HERE: height : 60,
-                        defaults : {
-                            bodyStyle : {},
-                            margins : '0 10 0 10',
-                            border : false
-                        },
-                        items : [{
-                            html : '<a href=javascript:void(Ext.get("advSearchTabs").toggle())>' + 
-                                OpenLayers.i18n('Advanced') + '</a>'
-                        },
-                        {
-                            html : '<a href="javascript:void(app.getHelpWindow().show());">' + 
-                                OpenLayers.i18n('Help') + '</a>'
-                        },
-                        {
-                            html : '<a href="javascript:void(app.getAboutWindow().show());">' + 
-                                OpenLayers.i18n('About') + '</a><br/><br/>'
-                        }]
-                    },*/
                                 // Radio button list under search text box - May 2013, Kalpesh
                     radioGroup,
                     
@@ -1062,7 +1034,6 @@ GeoNetwork.app = function () {
                                         Ext.get("GNtabs").scale(980,580); 
                                     } else {
                                         homeContent.show();
-                                        //HERE
                                         Ext.get("advSearchTabs").hide();
                                         Ext.get("GNtabs").scale(980,200); 
                                     }
