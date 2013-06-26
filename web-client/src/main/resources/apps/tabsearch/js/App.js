@@ -604,11 +604,12 @@ GeoNetwork.app = function () {
                                  
                                  Ext.get("GNtabs").scale(980,200); 
                                  Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown'); 
-           
+                                 
                              }
                              else
                              {                             
-                               //Ext.get("advSearchTabs").hide(); 
+                               
+                            	 Ext.get("advSearchTabs").show();
                                Ext.get("advSearchTabs").slideIn('t', {
                                     easing: 'easeOut',
                                     duration: .5
@@ -1061,6 +1062,8 @@ GeoNetwork.app = function () {
                                         Ext.get("GNtabs").scale(980,580); 
                                     } else {
                                         homeContent.show();
+                                        //HERE
+                                        Ext.get("advSearchTabs").hide();
                                         Ext.get("GNtabs").scale(980,200); 
                                     }
                                     if (tabs[0]) {
