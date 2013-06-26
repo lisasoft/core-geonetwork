@@ -28,9 +28,9 @@ OEH.Popup.show = function(type, url, options) {
 			name: 'organisation_type',
 			fieldLabel: 'Organisation Type',
 			width : 280,
-			editable: true,
-			forceSelection: true,
 			mode: 'local',
+			triggerAction : 'all',
+			editable: false,
 			store: new Ext.data.ArrayStore({
 				id: 0,
 				fields: [
