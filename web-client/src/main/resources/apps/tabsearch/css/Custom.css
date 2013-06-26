@@ -289,10 +289,6 @@ height:540px;
 {
     width:100px !important;
 }
-#E_hitsperpage[style]
-{
-    width:100px !important;
-}
 #extTo[style]
 {
     width:100px !important;
@@ -306,6 +302,14 @@ height:540px;
     width:100px !important;
 }
 #dateFrom[style]
+{
+    width:100px !important;
+}
+#revisionDateTo[style]
+{
+    width:100px !important;
+}
+#revisionDateFrom[style]
 {
     width:100px !important;
 }
