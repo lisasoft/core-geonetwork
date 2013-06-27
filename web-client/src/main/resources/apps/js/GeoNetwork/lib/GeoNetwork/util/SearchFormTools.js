@@ -360,7 +360,7 @@ GeoNetwork.util.SearchFormTools = {
     getSortByCombo: function(defaultValue){
         var store = GeoNetwork.util.SearchFormTools.getSortByStore();
         var combo = new Ext.form.ComboBox({
-        	width: 140,
+        	width: 130,
             mode: 'local',
             fieldLabel: OpenLayers.i18n('sortBy'),
             triggerAction: 'all',

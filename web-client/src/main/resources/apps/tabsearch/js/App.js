@@ -347,7 +347,8 @@ GeoNetwork.app = function () {
             id:'radiogroupID',
             xtype: 'fieldset',
             title: 'Radio Groups',
-            height:50,
+            height:20,
+            width:640,
             cls:'FormatRadio',
             items: [{
                 xtype: 'radiogroup',
@@ -444,21 +445,6 @@ GeoNetwork.app = function () {
                                         }
                                     }
                                 })
-                                /* OEH - Removed help link
-                                ,
-                                new Ext.Button({
-                                    text : 'help',
-                                    // iconCls: 'md-mn-reset',
-                                    id : 'helpBt',
-                                    margins : '3 5 3 5',
-                                    listeners : {
-                                        click : function () {
-                                            //Ext.getCmp('searchForm').getForm().reset();
-                                            app.getHelpWindow().show();
-                                        }
-                                    }
-                                })
-                                */
                             ]
                     },
                     // Panel with Advanced search, Help and About Links
@@ -619,7 +605,7 @@ GeoNetwork.app = function () {
                         items: [{         
                          id: 'AdvanceImg',
                          xtype: 'button',
-                         cls: 'AdvanceImg',
+                         cls: 'AdvanceImgdown',
                          text:'Show advanced options',
                          width: 150,
                          handler: function()
@@ -636,7 +622,7 @@ GeoNetwork.app = function () {
                                  
                                  Ext.get("GNtabs").scale(980,200); 
                                  Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown'); 
-                                 
+                                 this.setText("Show advanced options");
                              }
                              else
                              {                             
@@ -648,6 +634,7 @@ GeoNetwork.app = function () {
                                 }); 
                                Ext.get("GNtabs").scale(980,450); 
                                Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');
+                               this.setText("Hide advanced options");
                              }
                          }
                           
@@ -935,7 +922,7 @@ GeoNetwork.app = function () {
             id : 'E_hitsperpage',
             name : 'E_hitsperpage',
             mode : 'local',
-            width: 140,
+            width: 130,
             triggerAction : 'all',
             fieldLabel : OpenLayers.i18n('hitsPerPage'),
             value : hitsPerPage[1], // Set arbitrarily the second value of the
@@ -1092,11 +1079,11 @@ GeoNetwork.app = function () {
                                     homeContent = Ext.get(FeatureMainContainer);
                                     if (id !='HomePanel') {
                                         homeContent.hide();
-                                        Ext.get("GNtabs").scale(980,580); 
+                                        Ext.get("GNtabs").scale(980,580);
                                     } else {
                                         homeContent.show();
                                         Ext.get("advSearchTabs").hide();
-                                        Ext.get("GNtabs").scale(980,200); 
+                                        Ext.get("GNtabs").scale(980,200);
                                     }
                                     if (tabs[0]) {
                                         tabPanel.setActiveTab(tabs[0]);
