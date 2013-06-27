@@ -439,9 +439,15 @@ ul.x-tab-strip-top {
     top:-4px !important;
 
 }
-#resetBt[style] button,#helpBt[style] button, #radiogroup label
+#resetBt[style] button,#helpBt[style] button
 {
+
 text-decoration:underline;
+}
+#radiogroup label{
+	color:black;
+border-bottom: 1px dashed #808080;
+top:0px;
 }
 /* Search and reset button styles*/
 #searchBt[style] button
