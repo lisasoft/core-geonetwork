@@ -462,8 +462,6 @@ text-decoration:underline;
 .FormatRadio 
 {
     border:1px solid #ffffff !important;
-    width:450px !important;
-    /*position:relative !important; */
     left:100px !important;
     font-family:Arial,Verdana;
     font-size:12px;
