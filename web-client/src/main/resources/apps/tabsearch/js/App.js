@@ -348,7 +348,9 @@ GeoNetwork.app = function () {
             xtype: 'fieldset',
             title: 'Radio Groups',
             height:20,
-            width:640,
+            width:310,
+            layout:'fit',
+            style : 'margin-left:325px',
             cls:'FormatRadio',
             items: [{
                 xtype: 'radiogroup',
@@ -358,6 +360,7 @@ GeoNetwork.app = function () {
                 items: [ 
                     {
                     	id:'rd1',
+                    	width:92,
                         name: 'E_oehactiontype',
                         boxLabel: 'All results',
                         inputValue: '',  // Blank -- do not filter by this field   
@@ -365,12 +368,15 @@ GeoNetwork.app = function () {
                     },
                     {
                     	id: 'rd2', 
+                    	width:92,
 	                    name: 'E_oehactiontype', 
 	                    boxLabel: 'Downloads',
 	                    inputValue: 'downloads' // Value expected by the index
 	                },
                     {
 	                	id: 'rd3',
+	                	width:92,
+	                	border:1,
 	                    name: 'E_oehactiontype',
 	                    boxLabel: 'Web services',
 	                    inputValue: 'services' // Value expected by the index 
@@ -381,7 +387,7 @@ GeoNetwork.app = function () {
         };
         
         // Init when panel in advanced search
-        var whenAdvItems = GeoNetwork.util.SearchFormTools.getOehWhen();
+        var whenAdvItems = GeoNetwork.util.OEH.SearchFormTools.getOehWhen();
         whenAdvItems[0].colspan = 2;
         
         return new GeoNetwork.SearchFormPanel({
@@ -418,7 +424,7 @@ GeoNetwork.app = function () {
                                     width : 285,
                                     height : 40,
                                     minChars : 2,
-                                    loadingText : '...',
+                                    loadingText : 'Enter search terms (optional)',
                                     hideTrigger : true,
                                     url : catalogue.services.opensearchSuggest
                                 }),
@@ -426,6 +432,7 @@ GeoNetwork.app = function () {
                                     text : OpenLayers.i18n('search'),
                                     id : 'searchBt',
                                     margins : '3 5 3 5',
+                                    xtype: 'toolbar',
                                     listeners : {
                                         click : searchCb
                                     }
@@ -916,7 +923,7 @@ GeoNetwork.app = function () {
     function createOptionsForm() {
         var hitsPerPage = [ [ '10' ], [ '20' ], [ '50' ], [ '100' ] ], items = [];
 
-        items.push(GeoNetwork.util.SearchFormTools.getSortByCombo());
+        items.push(GeoNetwork.util.OEH.SearchFormTools.getSortByCombo());
 
         items.push(new Ext.form.ComboBox({
             id : 'E_hitsperpage',
@@ -941,7 +948,11 @@ GeoNetwork.app = function () {
 
     function createHeader() {
         var info = catalogue.getInfo();
-        Ext.getDom('title').innerHTML = '<img class="catLogo" src="images/banner_logo.png" title="' + info.name + '"/>';
+        var crumbText ='<span id="crumblabel">You are here: </span> ' +
+        	'<a href="">Home</a> &gt; <a href="">Knowledge centre</a> &gt; ' +
+        	'<a href="">Maps and data</a>';
+        Ext.getDom('breadcrumbs').innerHTML = crumbText;
+        Ext.getDom('title').innerHTML = 'Maps and Data';
         document.title = info.name;
     }
 
@@ -1001,7 +1012,7 @@ GeoNetwork.app = function () {
                 metadataEditFn : edit
             });
 
-            //createHeader();
+            createHeader();
 
             // Options Panel
             optionsForm = createOptionsForm();
@@ -1031,6 +1042,7 @@ GeoNetwork.app = function () {
             var breadcrumb = new Ext.Panel({
                 layout:'column',
                 cls: 'breadcrumb',
+                renderTo:'breadcrumbs',
                 defaultType: 'button',
                 border: false,
                 split: false
@@ -1049,13 +1061,7 @@ GeoNetwork.app = function () {
                 layout : 'border',
                 id : 'vp',
                 items : [ // todo: should add header here?
-                        /*{
-                            id : 'header',
-                            height : 80,
-                            width: 990,
-                            region : 'north',
-                            border : false
-                        },*/
+                          breadcrumb,
                         new Ext.TabPanel(
                         {
                             region : 'center',

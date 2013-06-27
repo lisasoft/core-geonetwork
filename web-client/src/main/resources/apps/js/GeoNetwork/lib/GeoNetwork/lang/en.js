@@ -613,7 +613,7 @@ GeoNetwork.Lang.en = {
     'Map': "Map",
     'Poweredby': "Powered by",
     'About': "About",
-    'Searchforspatialdataon': "Search for spatial data on",
+    'Searchforspatialdataon': "Search our catalogue for spatial data",
     'Advanced': "Advanced",
     'facetMore': '+ Show more',
     'facetLess': '- Show less',
