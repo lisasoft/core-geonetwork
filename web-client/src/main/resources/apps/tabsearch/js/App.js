@@ -327,7 +327,10 @@ GeoNetwork.app = function () {
 
         var hideInspirePanel = catalogue.getInspireInfo().enable === "false";
         var searchCb = function () {
-            var any = Ext.get('E_any');
+        	var any = Ext.getCmp('searchSuggestion');
+        	if (any.getValue() === 'Enter search terms (optional)'){
+        		any.setValue('');
+        	}
             if (any) {
                 if (any.getValue() === OpenLayers.i18n('fullTextSearch')) {
                     any.setValue('');
@@ -337,7 +340,11 @@ GeoNetwork.app = function () {
             // start
             // record
             search();
+            
             setTab('results');
+            if (any.getValue() === ''){
+        		any.setValue('Enter search terms (optional)');
+            }
             
             /// Trigger the onsearch event which update search form state
             Ext.getCmp('searchForm').fireEvent('onsearch');
@@ -422,6 +429,7 @@ GeoNetwork.app = function () {
                                 new GeoNetwork.form.OpenSearchSuggestionTextField({
                                     // hideLabel: true,
                                     width : 285,
+                                    id: 'searchSuggestion',
                                     height : 40,
                                     minChars : 2,
                                     value : 'Enter search terms (optional)',
@@ -429,9 +437,17 @@ GeoNetwork.app = function () {
                                     url : catalogue.services.opensearchSuggest,
                                     listeners: {
                                         'Render': function (c) {
-                                          c.getEl (). on ('keyup', function () {
-                                            alert ('you changed the text of this input field');
+                                          c.getEl (). on ('focus', function () {
+                                        	  if (c.getValue()==='Enter search terms (optional)') {
+                                        			  c.setValue('');
+                                        	  }
                                           }, c);
+                                          c.getEl (). on ('blur', function () {
+                                        	  if (c.getValue()==='') {
+                                        			  c.setValue('Enter search terms (optional)');
+                                        	  }
+                                          }, c);
+                                          
                                         }
                                       }/*listeners: {
                                     	'Render': function (c) {
@@ -965,9 +981,9 @@ GeoNetwork.app = function () {
         var info = catalogue.getInfo();
         var crumbText ='<span id="crumblabel">You are here: </span> ' +
         	'<a href="">Home</a> &gt; <a href="">Knowledge centre</a> &gt; ' +
-        	'<a href="">Maps and data</a>';
+        	'<a href=""> Maps and data</a>';
         Ext.getDom('breadcrumbs').innerHTML = crumbText;
-        Ext.getDom('title').innerHTML = 'Maps and Data';
+        Ext.getDom('title').innerHTML = '<img id="title-arrow" src="../../images/title-arrow.png" />Maps and Data';
         document.title = info.name;
     }
 

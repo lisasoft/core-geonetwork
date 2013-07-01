@@ -39,7 +39,7 @@
 #title {
 	padding-left: 20px;
 	font-size:16px;
-	color: #000099;
+	color: #033F88;
 }
 
 #crumblabel {
@@ -88,6 +88,10 @@ div.GIS-feature h2
     position: relative; 
     margin: 0px; 
 }
+#title-arrow {
+	margin-right:5px;
+	vertical-align:baseline;
+}
 div.GIS-feature h2 a, div.GIS-feature h2 a:visited 
 { 
     display: block; 
@@ -95,7 +99,7 @@ div.GIS-feature h2 a, div.GIS-feature h2 a:visited
     background: url(../images/bgFeatureH2.png) left 4px no-repeat; 
     padding-left: 10px; 
     text-decoration: none; 
-    font-size: 1.1em; 
+    font-size: 1.2em; 
     font-weight: normal; 
     position: absolute; 
     bottom: 3px; 
@@ -133,7 +137,7 @@ margin-left:10px;
 
 div.GIS-feature a:link, a:visited, a:active
 { 
-color:#336699;
+
 
 }
 div.GIS-feature a:hover
@@ -360,6 +364,9 @@ height:540px;
     width:290px !important;  
     height: 277px !important; 
      
+}
+#browse-header {
+   margin: 20px 0 0 10px;
 }
 #geometryMap[style] .olMap
 {
