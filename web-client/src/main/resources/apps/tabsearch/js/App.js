@@ -424,9 +424,24 @@ GeoNetwork.app = function () {
                                     width : 285,
                                     height : 40,
                                     minChars : 2,
-                                    loadingText : 'Enter search terms (optional)',
+                                    value : 'Enter search terms (optional)',
                                     hideTrigger : true,
-                                    url : catalogue.services.opensearchSuggest
+                                    url : catalogue.services.opensearchSuggest,
+                                    listeners: {
+                                        'Render': function (c) {
+                                          c.getEl (). on ('keyup', function () {
+                                            alert ('you changed the text of this input field');
+                                          }, c);
+                                        }
+                                      }/*listeners: {
+                                    	'Render': function (c) {
+                                            c.getEl (). on ('focus', function () {
+                                            	if(this.value == 'Enter search terms (optional)') {
+    	                                    		this.value = ''; 
+    	                                    	}
+                                            }, c);
+                                          }
+                                    }*/
                                 }),
                                 new Ext.Button({
                                     text : OpenLayers.i18n('search'),
@@ -467,10 +482,11 @@ GeoNetwork.app = function () {
                             align : 'left'
                         },
                         maxWidth: 910,
+                        height: 305,
                         plain : true,
-                        autoHeight : true,
+                        autoHeight : false,
                         border : false,
-                        autoScroll : true,
+                        autoScroll : false,
                         visibility:Ext.Element.NONE,
                         items : [
                             {
@@ -639,7 +655,7 @@ GeoNetwork.app = function () {
                                     easing: 'easeOut',
                                     duration: .5
                                 }); 
-                               Ext.get("GNtabs").scale(980,450); 
+                               Ext.get("GNtabs").scale(980,520); 
                                Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');
                                this.setText("Hide advanced options");
                              }
@@ -900,7 +916,6 @@ GeoNetwork.app = function () {
                 layout : 'fit',
                 modal : false,
                 items : this.editorPanel,
-                closeAction : 'hide',
                 collapsible : true,
                 collapsed : false,
                 maximizable : true,
@@ -1066,13 +1081,14 @@ GeoNetwork.app = function () {
                         {
                             region : 'center',
                             id : 'GNtabs',
-                            maxWidth : 990,
+                            boxMaxWidth : 990,
                             width:990,
                             height:200,
                             renderTo: 'GeoNetworkContent',
                             deferredRender : false,
                             plain : true,
                             autoScroll : true,
+                            autoSize: false,
                             defaults : {
                                 autoScroll : true
                             },
@@ -1138,14 +1154,14 @@ GeoNetwork.app = function () {
                                     layout : 'hbox',
                                     width:990,
                                     maxWidth:990,
-                                    height: 540,
+                                    height: 580,
                                     autoSize: true,
                                     items : [ {// sidebar searchform
                                         region : 'west',
                                         id : 'west',
                                         border : true,
                                         width : 250,
-                                        height: 540,
+                                        height: 580,
                                         items : [ resultsMap, facetsPanel  ]
                                     }, {
                                         layout : 'fit',
@@ -1388,7 +1404,7 @@ Ext.onReady(function () {
                 layout : 'absolute',
                 width:990,
                 maxWidth:990,
-                height: 540,
+                height: 580,
                 layout : 'fit',
                 // autoHeight:true,
                 padding : '5px 0px 0px 25px',

@@ -273,7 +273,7 @@ height:540px;
 .AdvanceImgdown
 {
     width: 150px; 
-    background-image:url("../../tabsearch/images/ImgDown.jpg"); 
+    background-image:url("../../tabsearch/images/expanddown_icon.png"); 
     background-position:left; 
     background-repeat:no-repeat;
     padding-left:15px;
@@ -282,7 +282,7 @@ height:540px;
 .AdvanceImgup
 {
     width: 150px; 
-    background-image:url("../../tabsearch/images/ImgUp.jpg"); 
+    background-image:url("../../tabsearch/images/collapseup_icon.png"); 
     background-position:left; 
     background-repeat:no-repeat;
     padding-left:15px;
@@ -348,22 +348,37 @@ height:540px;
 {
     height: 220px!important;
 }
-#ext--gen291[style]
+/*#ext--gen291[style]
 {
     width:300px !important;
     height: 30px!important;
     background-color:#dbdbdb !important;
 }
+*/
 #geometryMap[style]
 {
-    width:300px !important;    
+    width:290px !important;  
+    height: 277px !important; 
+     
 }
+#geometryMap[style] .olMap
+{
+    width:290px !important;  
+height: 247px !important; 
+}
+
+.olMapViewport {
+	    width:290px !important;  
+}
+
+/*
 #ext--gen286[style]
 {
     width:300px !important;
     height: 30px !important;
     background-color:#dbdbdb !important;
 }
+*/
 #ext--gen287[style]
 {
      height: 220px !important;
@@ -578,7 +593,7 @@ width:740px;
 
 .x-panel-tbar-noborder
 {
-    height:40px !important; 
+    height:30px !important; 
 }
 .x-toolbar-layout-ct
 {
