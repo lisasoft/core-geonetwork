@@ -30,6 +30,8 @@ import jeeves.server.context.ServiceContext;
 import jeeves.utils.BinaryFile;
 import jeeves.utils.Xml;
 import jeeves.xlink.Processor;
+
+import org.apache.log4j.Logger;
 import org.fao.geonet.GeonetContext;
 import org.fao.geonet.constants.Edit;
 import org.fao.geonet.constants.Geonet;
@@ -39,6 +41,8 @@ import org.fao.geonet.kernel.DataManager;
 import org.fao.geonet.util.ISODate;
 import org.jdom.Document;
 import org.jdom.Element;
+
+import de.fzi.dbs.xml.transform.CachingTransformerFactory;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -64,6 +68,9 @@ import static org.fao.geonet.kernel.mef.MEFConstants.VERSION;
  * Utility class for MEF import and export.
  */
 public class MEFLib {
+	
+	  /** Factory logger. */
+	public static final Logger LOGGER = Logger.getLogger(MEFLib.class);
 
 	public enum Format {
 		/**
@@ -95,6 +102,8 @@ public class MEFLib {
 
 			throw new BadParameterEx("format", format);
 		}
+		
+
 
 		// ------------------------------------------------------------------------
 
@@ -102,6 +111,8 @@ public class MEFLib {
 			return super.toString().toLowerCase();
 		}
 	}
+	
+	
 
 	/**
 	 * MEF file version.
@@ -149,6 +160,8 @@ public class MEFLib {
 		 */
 		V2
 	}
+	
+
 	
 	public static List<String> doImportIndexGroup(Element params, ServiceContext context, File mefFile, String stylePath) throws Exception {
 		return Importer.doImport(params, context, mefFile, stylePath, true);
@@ -246,7 +259,39 @@ public class MEFLib {
 
         return record;
 	}
+	
+	/**
+	 * Get metadata record.
+	 * 
+	 * @param dbms
+	 * @param uuid
+	 * @return
+	 */
+	static Element retrieveMetadata_PUBLIC(ServiceContext context, Dbms dbms, String uuid, boolean resolveXlink, boolean removeXlinkAttribute)
+			throws Exception {
+		List list = dbms.select("SELECT * FROM Metadata_PUBLIC WHERE uuid=?", uuid).getChildren();
+		
+		LOGGER.warn( "inside retrieveMetadata_PUBLIC***********************************");
+		if (list.size() == 0)
+			throw new MetadataNotFoundEx("uuid=" + uuid);
 
+		GeonetContext gc = (GeonetContext) context.getHandlerContext(Geonet.CONTEXT_NAME);
+        DataManager dm = gc.getDataManager();
+
+		Element record = (Element) list.get(0);
+		String id = record.getChildText("id");
+        record.removeChildren("data");
+        boolean forEditing = false;
+        boolean withEditorValidationErrors = false;
+        Element metadata = dm.getMetadata(context, id, forEditing, withEditorValidationErrors, !removeXlinkAttribute);
+        metadata.removeChild("info", Edit.NAMESPACE);
+        Element mdEl = new Element("data").setText(Xml.getString(metadata));
+        record.addContent(mdEl);
+
+        return record;
+	}
+
+	
 	/**
 	 * Add an entry to ZIP file
 	 * 

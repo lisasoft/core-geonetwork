@@ -113,8 +113,14 @@ class MEF2Exporter {
 
 		MEFLib.createDir(zos, uuid + FS);
 
-		Element record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);
+		//Element record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);
 
+		//edited by SR 4/10/2012 to separate Metadata from Metadata_PUBLIC
+		Element record=null;
+		if (context.getUserSession().getUserId()==null){
+		record = MEFLib.retrieveMetadata_PUBLIC(context, dbms, uuid, resolveXlink, removeXlinkAttribute);}
+		else{record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);}
+				
 		String id = record.getChildText("id");
 		String isTemp = record.getChildText("istemplate");
 		String schema = record.getChildText("schemaid");

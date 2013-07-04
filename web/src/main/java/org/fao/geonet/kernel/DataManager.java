@@ -442,7 +442,7 @@ public class DataManager {
             int id$ = Integer.valueOf(id);
 
             // get metadata, extracting and indexing any xlinks
-            Element md   = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, true);
+            Element md   = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata_PUBLIC", id, true);
             if (xmlSerializer.resolveXLinks()) {
                 List<Attribute> xlinks = Processor.getXLinks(md);
                 if (xlinks.size() > 0) {
@@ -1597,6 +1597,7 @@ public class DataManager {
      */
     public Element getMetadata(Dbms dbms, String id) throws Exception {
         boolean doXLinks = xmlSerializer.resolveXLinks();
+        String table="";
         Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, false);
         if (md == null) return null;
         md.detach();
@@ -1618,7 +1619,9 @@ public class DataManager {
     public Element getMetadata(ServiceContext srvContext, String id, boolean forEditing, boolean withEditorValidationErrors, boolean keepXlinkAttributes) throws Exception {
         Dbms dbms = (Dbms) srvContext.getResourceManager().open(Geonet.Res.MAIN_DB);
         boolean doXLinks = xmlSerializer.resolveXLinks();
-        Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, false);
+        String table="";
+		if (srvContext.getUserSession().getUserId()==null){table="Metadata_PUBLIC";} else {table="Metadata";}
+		Element md = xmlSerializer.selectNoXLinkResolver(dbms, table, id, false);
         if (md == null) return null;
 
         String version = null;

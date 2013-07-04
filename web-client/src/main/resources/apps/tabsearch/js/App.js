@@ -402,6 +402,7 @@ GeoNetwork.app = function () {
             stateId: 's',
             bodyStyle : 'text-align: center;',
             width: 890,
+            height:480,
             border : false,
             searchBt: null,
             searchCb: searchCb,
@@ -498,7 +499,7 @@ GeoNetwork.app = function () {
                             align : 'left'
                         },
                         maxWidth: 910,
-                        height: 305,
+                        height: 320,
                         plain : true,
                         autoHeight : false,
                         border : false,
@@ -1143,23 +1144,17 @@ GeoNetwork.app = function () {
                                     items : [ {
                                         id : 'alignCenter',
                                         border : false,
-                                        layout : 'column',
+                                        height: 580,
+                                        layout : 'hbox',
                                         layoutConfig : {
                                             pack : 'center',
                                             align : 'center'
                                         },
-                                        items : [{
-                                            columnWidth : 0.05,
-                                            border : false,
-                                            html : '&nbsp;'
-                                        }, {
+                                        items : [ {
+                                        	id:'searchForm',
                                             columnWidth : 0.90,
                                             border : false,
                                             items : [ searchForm ]
-                                        }, {
-                                            border : false,
-                                            columnWidth : 0.05,
-                                            items : [ tagCloudViewPanel ]
                                         } ]
                                     } ]
                                 }, 
