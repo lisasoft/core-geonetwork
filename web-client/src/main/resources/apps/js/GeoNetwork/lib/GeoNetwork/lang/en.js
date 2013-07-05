@@ -639,6 +639,7 @@ GeoNetwork.Lang.en = {
     'to-iso19139-keyword': 'Text mode',
     'to-iso19139-keyword-as-xlink': 'Linked mode',
     'to-iso19139-keyword-with-anchor': 'Anchor mode',
+ // TODO: LISAsoft this is where the labels are stored for the results list buttons for download
     // WMS Link 
     'linklabel-application/vnd.ogc.wms_xml': 'View in GIS',
     'linklabel-OGC:WMS': 'View in GIS',

@@ -539,7 +539,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
      */
     dislayLinks: function (records) {
         var view = this;
-        Ext.each(records, function (r) {
+        Ext.each(records, function (r) {// records each metadata
             var links = r.get('links'),
                 id = r.get('id'),
                 uuid = r.get('uuid');
@@ -569,7 +569,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                          allowDynamic = r.get('dynamic'), allowDownload = r.get('download'),
                          hasDownloadAction = false;
                     
-                    store.each(function (record) {
+                    store.each(function (record) {//this variable is internal to ArrayStore and is a map that represent the links in the metadata.
                         
                         // Avoid empty URL
                         if (record.get('href') !== '') {
@@ -642,11 +642,13 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 			|| currentType == "application/zip"
                                 	    		|| currentType == 'application/x-compressed'
                                 	    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
+                                		// TODO: LISAsoft this is where we need to add the call to get the file size for displaying on result list page.
+                                		//This is expected to be an external call as teh metadata does not have the filesize. 
                                 		label = label.replace("${size}", "XX MB"); //TODO Get actual size from metadata
                                     	linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
-                                            	var isLargeFile = false;
+                                            	var isLargeFile = false; //This variable will be set using the information and call described above.
                                             	if (isLargeFile) {
                                                 	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
                                             	} else {

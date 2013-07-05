@@ -515,6 +515,7 @@
 
   <!-- List of related resources defined in the online resource section of the metadata record.
 -->
+  <!--TODO: LISAsoft this is the equivelant to links found in results list -->
   <xsl:template mode="relatedResources"
     match="gmd:distributionInfo">
 
@@ -535,6 +536,7 @@
             <!--span class="{translate(substring-before(current-grouping-key(), '-'), ':', '')} icon"-->
             <span>
                <xsl:choose>
+               <!--TODO: LISAsoft this is where the table header is added in the view for the download links hard coded. may be moved to external label.xml? -->
 	          		<!-- If REST Service -->
                    <xsl:when test="$protocol='REST'">
                    		REST Service
@@ -580,6 +582,7 @@
                 <xsl:variable name="url" select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
                 <xsl:choose>
 		          	<!-- If WMS -->
+		          	<!--TODO: LISAsoft this is the where the actual links are created -->
                     <xsl:when test="contains($protocol, 'OGC:WMS')">
                     	<a href="#" onclick="OEH.Popup.show(OEH.Popup.SERVICE_WMS, '{$url}');" class="oeh-wms oeh-icon-link">
 			          		Connect to Web Map Service (view in GIS)
@@ -604,6 +607,7 @@
 							          	</a>
 				                   </xsl:when>
 									<!-- Else -->
+									<!--TODO: LISAsoft this is can use the filesize node that is added by OEH -->
 				                   <xsl:otherwise>
 							          	<xsl:choose>
 						                   <xsl:when test="contains($useLimitation, 'CC BY 3.0 AU')">

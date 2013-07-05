@@ -188,7 +188,8 @@ OEH.Popup.show = function(type, url, options) {
 					c.getEl().on('click', 
 						function(event, item, options) {
 							if (item.id === "eoh-popup-submit") {
-								//TODO - Submit form and save log details
+								//TODO: LISAsoft - Submit form and save log details.
+								//THis is where we need to integrate into db for saving authentication.
 								if (OEH.Popup.SERVICE_WMS == type) {
 									var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
 									if (!wmsUrlPanel.isVisible()) {
@@ -442,7 +443,8 @@ OEH.Popup.show = function(type, url, options) {
 							function(event, item, options) {
 								if (item.id === "eoh-popup-submit") {
 									if (formPanel.getForm().isValid()) {
-										//TODO - Submit request and save log details
+										//TODO: LISAsoft - Submit request and save log details -logging
+										//this is where we need to save to logging db table. We also need to make the request. 
 										window.close();	
 									}
 								} else if (item.id === "eoh-popup-reset") {

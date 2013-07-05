@@ -673,7 +673,7 @@ width:740px;
 {
     padding-left:50px !important;
 }
-
+/* TODO: LISAsoft this is where the download link images are set */
 /* Custom icons for OEH customisation */
 .oeh-gearth {
   background-image : url(../images/oeh/gearth_icon.png);
@@ -690,6 +690,7 @@ width:740px;
 .oeh-rest {
   background-image : url(../images/oeh/webservices_icon.jpg);
 }
+/* TODO: LISAsoft this is where the download link images are set in view page along with above image styles for icons */
 .oeh-icon-link {
   background-position: 0 center;
   background-repeat: no-repeat;
