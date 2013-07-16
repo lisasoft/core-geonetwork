@@ -1160,7 +1160,7 @@ GeoNetwork.app = function () {
                                 }, 
                                 {// search results panel
                                     id : 'results',
-                                    title : OpenLayers.i18n('List'),
+                                    title : OpenLayers.i18n('Results'),
                                     autoScroll : false,
                                     layout : 'hbox',
                                     width:990,
