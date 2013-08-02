@@ -144,11 +144,10 @@ div.GIS-feature a:hover {
 
 div.GIS-feature p.feature-link {
 	background: none;
-	font-size: .7em;
 	padding: 0;
-	width: 196px;
-	height: 13px;
-	text-align: right;
+	width: 195px;
+	height: 8px;
+	margin: 0 0 0 2px;
 	background: url(../images/bgFeaturePA.png) no-repeat left top;
 }
 /*
