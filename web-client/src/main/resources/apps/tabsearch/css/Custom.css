@@ -1,702 +1,617 @@
- body,p,td,li,th {font-family:arial;}
+body, p, td, li, th {
+	font-family: arial;
+}
 
-        #actions li {
-            margin:.3em;
-        }
-        #actions li a {
-            color:#666688;
-            text-decoration:none;
-        }
-        .sb {
-            width:140px;height:24px;font-size:18px;color:#999999;
-        }
-        .cntLrg, .cntLrg td{
-            text-align:center;font-size:18px;
-        }
-        h1
-        {
-        	color: #d67001;
-            background-image:none;
-            font-size:	16px;
-			font-weight: 700;
-			font-family: Arial, Helvetica, sans-serif;
-        }
+#actions li {
+	margin: .3em;
+}
+#actions li a {
+	color: #666688;
+	text-decoration: none;
+}
+.sb {
+	width: 140px;
+	height: 24px;
+	font-size: 18px;
+	color: #999999;
+}
+.cntLrg, .cntLrg td {
+	text-align: center;
+	font-size: 18px;
+}
+h1 {
+	color: #d67001;
+	background-image: none;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: Arial, Helvetica, sans-serif;
+}
 
-        #GNtabs .x-tab-right {padding-left:12px !important}
-        #GNtabs .x-tab-left{padding-right:12px !important}
-        #GNtabs .x-tab-strip-text{font-family:Arial, Verdana; font-size:11px  !important; padding:6px 0 !important; color:#008899 !important; font-weight:bold !important;}
-        
+#GNtabs .x-tab-right {
+	padding-left: 12px !important
+}
+#GNtabs .x-tab-left {
+	padding-right: 12px !important
+}
+#GNtabs .x-tab-strip-text {
+	font-family: Arial, Verdana;
+	font-size: 11px !important;
+	padding: 6px 0 !important;
+	color: #008899 !important;
+	font-weight: bold !important;
+}
 
 #breadcrumbs {
 	padding-top: 10px;
 	padding-left: 20px;
-	width:990px;
-	height:25px;
+	width: 990px;
+	height: 25px;
 	border-bottom: 1px dashed #333333;
-	font-size:10px;
-	
+	font-size: 10px;
 }
 #title {
 	padding-left: 20px;
-	font-size:16px;
+	font-size: 16px;
 	color: #033F88;
 }
 
 #crumblabel {
-	font-weight:bold;
+	font-weight: bold;
 }
 
 #header div {
-    display: block;
-    float: none;
-    width: 990px;
+	display: block;
+	float: none;
+	width: 990px;
 }
-#cim_page-wrapper
-{
-    padding-left:15px;
+#cim_page-wrapper {
+	padding-left: 15px;
 }
-#FeatureMainContainer
-{
-   background-color:#ffffff;
-   width:990px; 
+#FeatureMainContainer {
+	background-color: #ffffff;
+	width: 990px;
 }
-#GIS-feature-container
-{
-    padding: 0px 0px 0px 4px; 
-    overflow: hidden;
-    position:relative;
-    width:100%;
-    background-color:#ffffff;
-    margin-left:55px;
+#GIS-feature-container {
+	padding: 0px 0px 0px 4px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	background-color: #ffffff;
+	margin-left: 55px;
 }
-.divtestcls
-{
-    display:none;
+.divtestcls {
+	display: none;
 }
 
-div.GIS-feature 
-{ float: left; 
-  width: 195px; 
-  margin: 0px 11px 13px 12px; 
+div.GIS-feature {
+	float: left;
+	width: 195px;
+	margin: 0px 11px 13px 12px;
 }
-div.GIS-feature h2 
-{ 
-    width: 195px; 
-    padding: 0px 0px 6px 0px; 
-    font-size: 12px; 
-    height: 32px; 
-    position: relative; 
-    margin: 0px; 
+div.GIS-feature h2 {
+	height: initial;
+	width: 195px;
+	padding: 0 0 0 10px;
+	font-size: 1.05em;
+	color: #D66B03;
+	margin: 20px 0 3px;
+	background: url(../images/bgFeatureH2.png) left 4px no-repeat;
 }
 #title-arrow {
-	margin-right:5px;
-	vertical-align:baseline;
+	margin-right: 5px;
+	vertical-align: baseline;
 }
-div.GIS-feature h2 a, div.GIS-feature h2 a:visited 
-{ 
-    display: block; 
-    color: #d66b03; 
-    background: url(../images/bgFeatureH2.png) left 4px no-repeat; 
-    padding-left: 10px; 
-    text-decoration: none; 
-    font-size: 1.2em; 
-    font-weight: normal; 
-    position: absolute; 
-    bottom: 3px; 
+div.GIS-feature h2 a, div.GIS-feature h2 a:visited {
+	display: block;
+	color: #d66b03;
+	background: url(../images/bgFeatureH2.png) left 4px no-repeat;
+	padding-left: 10px;
+	text-decoration: none;
+	font-size: 1.2em;
+	font-weight: normal;
+	position: absolute;
+	bottom: 3px;
 }
-div.GIS-feature p 
-{ 
-    padding: 4px 9px; 
-    margin: 0px; 
-    width: 177px; 
-    background: #d0ddeb; 
-    color: #333; 
- }
- div.GIS-feature .FeatureTxt
-{     
-    padding: 4px 9px; 
-    margin:-1px 0px 0px 0px;
-    width: 177px; 
-    min-height: 115px; 
-    background: #d0ddeb; 
-    color: #333; 
-    font-size:12px;
-   
- }
- 
- div.GIS-feature ul
- {
-     margin-top:-5px;
- }
-div.GIS-feature li
-{ 
-list-style-image:url("images/gis_feature_bullet.png");
-margin-left:10px;
-
+div.GIS-feature p {
+	padding: 4px 9px;
+	margin: 0px;
+	width: 177px;
+	background: #d0ddeb;
+	color: #333;
+}
+div.GIS-feature .FeatureTxt {
+	padding: 4px 9px;
+	margin: -1px 0px 0px 0px;
+	width: 177px;
+	min-height: 115px;
+	background: #d0ddeb;
+	color: #333;
+	font-size: 12px;
 }
 
-div.GIS-feature a:link, a:visited, a:active
-{ 
-
-
+div.GIS-feature ul {
+	margin-top: -5px;
 }
-div.GIS-feature a:hover
-{ 
-color:#d66b03;
-
+div.GIS-feature li {
+	list-style-image: url("images/gis_feature_bullet.png");
+	margin-left: 10px;
 }
 
-div.GIS-feature p.feature-link 
-{ 
-    background: none; 
-    font-size: .7em; 
-    padding: 0; 
-    width: 196px; 
-    height: 13px; 
-    text-align: right; 
-    background: url(../images/bgFeaturePA.png) no-repeat left top; 
+div.GIS-feature a:link, a:visited, a:active {
+
+}
+div.GIS-feature a:hover {
+	color: #d66b03;
+}
+
+div.GIS-feature p.feature-link {
+	background: none;
+	font-size: .7em;
+	padding: 0;
+	width: 196px;
+	height: 13px;
+	text-align: right;
+	background: url(../images/bgFeaturePA.png) no-repeat left top;
 }
 /*
-div.GIS-feature p.feature-link a 
-{ 
-    color: #093775; 
-    display: inline-block; 
-    background: url(images/but_findoutmore.gif) 0px 6px no-repeat; 
-    font-weight: normal; 
-    line-height: 29px; 
-    padding: 0px 10px 0px 22px; 
-    text-decoration: none; 
-}
-*/
+ div.GIS-feature p.feature-link a
+ {
+ color: #093775;
+ display: inline-block;
+ background: url(images/but_findoutmore.gif) 0px 6px no-repeat;
+ font-weight: normal;
+ line-height: 29px;
+ padding: 0px 10px 0px 22px;
+ text-decoration: none;
+ }
+ */
 
-.x-viewport body  {
-overflow:scroll
+.x-viewport body {
+	overflow: scroll
 }
-#ext--gen3
-{
-    overflow-y: scroll;
-    overflow-h:hidden;
+#ext--gen3 {
+	overflow-y: scroll;
+	overflow-h: hidden;
 }
-div.GIS-feature .ImgBg
-{
-    background-color:#d0ddeb;    
+div.GIS-feature .ImgBg {
+	background-color: #d0ddeb;
 }
 #GeoNetworkContent {
-width:990px;
-position:relative;
+	width: 990px;
+	position: relative;
 }
-div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-feature p a:hover 
-{ 
-    text-decoration: underline; 
+div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-feature p a:hover {
+	text-decoration: underline;
 }
-.tip1
-{
-    position:fixed;
+.tip1 {
+	position: fixed;
 }
 /* Main Container */
 
-#GNtabs[style]
-{
-    width:990px !important;
-    border-bottom: dashed 1px #999999;
-    height:200px;
+#GNtabs[style] {
+	width: 990px !important;
+	border-bottom: dashed 1px #999999;
+	height: 200px;
 }
 
-#GNtabs1 > div > div[style]{
-width: 990px;
-height:200px;
+#GNtabs1 > div > div[style] {
+	width: 990px;
+	height: 200px;
 }
-.x-tab-panel-body, .x-panel-bwrap, .x-column-inner, #ext--comp-1191{
+.x-tab-panel-body, .x-panel-bwrap, .x-column-inner, #ext--comp-1191 {
 
 }
 
-.x-tab-panel-body{
-width:740px;
-height:540px;
+.x-tab-panel-body {
+	width: 740px;
+	height: 540px;
 }
-.x-tab-strip-wrap
-{
-    background-color:#ffffff;
+.x-tab-strip-wrap {
+	background-color: #ffffff;
 }
 
 /* Form styles */
-#ext--gen17[style]
-{
-    border:1px solid #8fb3e3;
-    margin-left:10px !important;
-    margin-top:20px !important;
+#ext--gen17[style] {
+	border: 1px solid #8fb3e3;
+	margin-left: 10px !important;
+	margin-top: 20px !important;
 }
-.x-panel-body x-panel-body-noheader x-panel-body-noborder x-form
-{
-    margin-left:20px !important;
+.x-panel-body x-panel-body-noheader x-panel-body-noborder x-form {
+	margin-left: 20px !important;
+}
+#ext--comp-1022 h1 {
+	color: #d66b03;
+	padding-right: 25px;
+}
+#ext--gen110[style] {
+	padding-top: 20px !important;
+}
+#ext--gen118[style] {
 
+	height: 30px !important;
+	margin-top: -10px !important;
+	overflow: hidden !important;
 }
-#ext--comp-1022 h1
-{
-    color:#d66b03;
-    padding-right:25px;
-}
-#ext--gen110[style]
-{
-    padding-top:20px !important;
-}
-#ext--gen118[style]
-{
-
-    height:30px !important;
-    margin-top:-10px !important;
-    overflow:hidden !important;
-}
-
-
 
 /* Search div and text box styles */
-#ext--gen115[style], #search
-{
+#ext--gen115[style], #search {
 
 }
 
-#ext--gen125 h1
-{
-    color:#d66b03;
-    font-size:16px;
-    font-weight:bold;
+#ext--gen125 h1 {
+	color: #d66b03;
+	font-size: 16px;
+	font-weight: bold;
 }
 
-.search-item h3
-{
-    font-family:Arial, Verdana!important;
-    font-size:12px!important;
-    color:#333333 !important;
-    font-weight: normal !important;
-    
+.search-item h3 {
+	font-family: Arial, Verdana !important;
+	font-size: 12px !important;
+	color: #333333 !important;
+	font-weight: normal !important;
 }
 
 /* Advance tabs styles */
 
-.AdvanceImgdown
-{
-    width: 150px; 
-    background-image:url("../../tabsearch/images/expanddown_icon.png"); 
-    background-position:left; 
-    background-repeat:no-repeat;
-    padding-left:15px;
-    color:#333333;
+.AdvanceImgdown {
+	width: 150px;
+	background-image: url("../../tabsearch/images/expanddown_icon.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	color: #333333;
 }
-.AdvanceImgup
-{
-    width: 150px; 
-    background-image:url("../../tabsearch/images/collapseup_icon.png"); 
-    background-position:left; 
-    background-repeat:no-repeat;
-    padding-left:15px;
-    color:#333333;
-
+.AdvanceImgup {
+	width: 150px;
+	background-image: url("../../tabsearch/images/collapseup_icon.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	color: #333333;
 }
-#advSearchTabs[style]
-{
-    width:890px !important;
-
-} 
+#advSearchTabs[style] {
+	width: 890px !important;
+}
 .x-panel-body_ {
-	 width:890px !important;
+	width: 890px !important;
 }
-#ext--comp-1025-nu
-{
-    width:300px !important;
-    left:30px !important;
-    
+#ext--comp-1025-nu {
+	width: 300px !important;
+	left: 30px !important;
 }
-#ext--comp-1026
-{
-    width:300px !important;
-    left:340px !important;
-    
+#ext--comp-1026 {
+	width: 300px !important;
+	left: 340px !important;
 }
-#ext--comp-1037
-{
-    width:300px !important;
-    left:650px !important;
-    
+#ext--comp-1037 {
+	width: 300px !important;
+	left: 650px !important;
 }
-#ext--comp-1002[style]
-{
-    width:100px !important;
+#ext--comp-1002[style] {
+	width: 100px !important;
 }
-#extTo[style]
-{
-    width:100px !important;
+#extTo[style] {
+	width: 100px !important;
 }
-#extFrom[style]
-{
-    width:100px !important;
+#extFrom[style] {
+	width: 100px !important;
 }
-#dateTo[style]
-{
-    width:100px !important;
+#dateTo[style] {
+	width: 100px !important;
 }
-#dateFrom[style]
-{
-    width:100px !important;
+#dateFrom[style] {
+	width: 100px !important;
 }
-#revisionDateTo[style]
-{
-    width:100px !important;
+#revisionDateTo[style] {
+	width: 100px !important;
 }
-#revisionDateFrom[style]
-{
-    width:100px !important;
+#revisionDateFrom[style] {
+	width: 100px !important;
 }
-#ext--comp-1029[style]
-{
-    width:500px !important;
+#ext--comp-1029[style] {
+	width: 500px !important;
 }
-#ext--gen292[style]
-{
-    height: 220px!important;
+#ext--gen292[style] {
+	height: 220px !important;
 }
 /*#ext--gen291[style]
-{
-    width:300px !important;
-    height: 30px!important;
-    background-color:#dbdbdb !important;
-}
-*/
-#geometryMap[style]
-{
-    width:290px !important;  
-    height: 277px !important; 
-     
+ {
+ width:300px !important;
+ height: 30px!important;
+ background-color:#dbdbdb !important;
+ }
+ */
+#geometryMap[style] {
+	width: 290px !important;
+	height: 277px !important;
 }
 #browse-header {
-   margin: 20px 0 0 10px;
+	margin: 20px 0 0 10px;
 }
-#geometryMap[style] .olMap
-{
-    width:290px !important;  
-height: 247px !important; 
+#geometryMap[style] .olMap {
+	width: 290px !important;
+	height: 247px !important;
 }
 
 .olMapViewport {
-	    width:290px !important;  
+	width: 290px !important;
 }
 
 /*
-#ext--gen286[style]
-{
-    width:300px !important;
-    height: 30px !important;
-    background-color:#dbdbdb !important;
-}
-*/
-#ext--gen287[style]
-{
-     height: 220px !important;
+ #ext--gen286[style]
+ {
+ width:300px !important;
+ height: 30px !important;
+ background-color:#dbdbdb !important;
+ }
+ */
+#ext--gen287[style] {
+	height: 220px !important;
 }
 /* Setup top alignment of map toolbar in Advance Option for Chrome, no need for Firefox or IE*/
-.x-toolbar .x-toolbar-cell
-{
-    vertical-align:top !important;
+.x-toolbar .x-toolbar-cell {
+	vertical-align: top !important;
 }
 
-#ext--gen292[style]
-{
-    background-image: url("../../../images/map/icon_zoomin.png") !important;
-    height: 20px !important;
-    width: 20px !important;
+#ext--gen292[style] {
+	background-image: url("../../../images/map/icon_zoomin.png") !important;
+	height: 20px !important;
+	width: 20px !important;
 }
-
 
 /* Tabpanel styles */
-#ext--gen80[style]
-{
-     width:990px !important;
+#ext--gen80[style] {
+	width: 990px !important;
 }
-#ext---gen83[style]
-{
-     width:990px !important;
+#ext---gen83[style] {
+	width: 990px !important;
 }
-#ext---gen85 
-{
-     width:990px !important;
+#ext---gen85 {
+	width: 990px !important;
 }
-#ext---gen85 li
-{
-     margin-left:10px !important;
+#ext---gen85 li {
+	margin-left: 10px !important;
 }
 ul.x-tab-strip {
-    display: block !important;
-    width: 980px !important;
+	display: block !important;
+	width: 980px !important;
 }
 .x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left, .x-tab-strip-top .x-tab-strip-inner {
-    background-image: url("../../../scripts/ext/resources/images/default/tabs/tabs-sprite.gif");
-    
+	background-image: url("../../../scripts/ext/resources/images/default/tabs/tabs-sprite.gif");
 }
 
-.x-tab-panel-header{
-width:990px;
+.x-tab-panel-header {
+	width: 990px;
 }
 
-.x-tab-panel-header > div{
-width:990px;
+.x-tab-panel-header > div {
+	width: 990px;
 }
 
-
-.x-tab-panel-header-plain .x-tab-strip-spacer, .x-tab-panel-footer-plain .x-tab-strip-spacer
-{
-    background-color: #ffffff;
-    border-color: transparent;
-    border-width: 0px;
-    height: 1px;
+.x-tab-panel-header-plain .x-tab-strip-spacer, .x-tab-panel-footer-plain .x-tab-strip-spacer {
+	background-color: #ffffff;
+	border-color: transparent;
+	border-width: 0px;
+	height: 1px;
 }
 ul.x-tab-strip-top {
-    background-color: #ffffff;
-    background-image: url("../../../scripts/ext/resources/images/default/tabs/tab-strip-bg.gif");
-    border-bottom-color: #8fb3e3;
+	background-color: #ffffff;
+	background-image: url("../../../scripts/ext/resources/images/default/tabs/tab-strip-bg.gif");
+	border-bottom-color: #8fb3e3;
 }
-
 
 /* Search and reset button styles*/
-#searchBt[style],#resetBt[style],#helpBt[style]
-{
-    background-color: transparent !important;
-    background-image: none !important;
-    top:-4px !important;
-
+#searchBt[style], #resetBt[style], #helpBt[style] {
+	background-color: transparent !important;
+	background-image: none !important;
+	top: -4px !important;
 }
-#resetBt[style] button,#helpBt[style] button
-{
+#resetBt[style] button, #helpBt[style] button {
 
-text-decoration:underline;
+	text-decoration: underline;
 }
-#radiogroup label{
-	color:black;
-border-bottom: 1px dashed #808080;
-top:0px;
+#radiogroup label {
+	color: black;
+	border-bottom: 1px dashed #808080;
+	top: 0px;
 }
 /* Search and reset button styles*/
-#searchBt[style] button
-{
+#searchBt[style] button {
 
-    background-color: #eeeeee;
-    border: 1px solid black;
-    height:18px;
-    width:50px;
-        -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border: solid 1px #20538D;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px
-
-   
+	background-color: #eeeeee;
+	border: 1px solid black;
+	height: 18px;
+	width: 50px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: solid 1px #20538D;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px
 }
 
 .x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
-    background-image: url(none) !important;
-    height:0px !important;
-    
+	background-image: url(none) !important;
+	height: 0px !important;
 }
-.x-btn-mc1 button
-{
-    font-size:12px !important;
-    color:#3f5059 !important;
-    text-decoration:underline !important;
-    height:23px !important;
+.x-btn-mc1 button {
+	font-size: 12px !important;
+	color: #3f5059 !important;
+	text-decoration: underline !important;
+	height: 23px !important;
 }
-.hitme
-{
-    background-color:#ff0000;
-    height:100px;
-    width:100px;
+.hitme {
+	background-color: #ff0000;
+	height: 100px;
+	width: 100px;
 }
 /* Radio button styles */
-#radiogroupID[style], #x-form-el-radiogroup
-{ 
-    width:500px;
-    padding: 0px;
+#radiogroupID[style], #x-form-el-radiogroup {
+	width: 500px;
+	padding: 0px;
 }
-.FormatRadio 
-{
-    border:1px solid #ffffff !important;
-    left:100px !important;
-    font-family:Arial,Verdana;
-    font-size:12px;
-    color:#787469;
+.FormatRadio {
+	border: 1px solid #ffffff !important;
+	left: 100px !important;
+	font-family: Arial, Verdana;
+	font-size: 12px;
+	color: #787469;
 }
 /*
 
-
-
-#SpaDownload
-{
+ #SpaDownload
+ {
  padding-top:-3px;
  color:#787469;
  vertical-align:top;
  padding-left:30px;
 
-}
+ }
 
-#x-form-el-rd2
-{         
-        background-image:url(../../tabsearch/images/download_img.jpg);
-        background-repeat:no-repeat;
-        background-position: 40px 3px; 
-        height:35px;        
-} 
-#SpaWebService
-{
+ #x-form-el-rd2
+ {
+ background-image:url(../../tabsearch/images/download_img.jpg);
+ background-repeat:no-repeat;
+ background-position: 40px 3px;
+ height:35px;
+ }
+ #SpaWebService
+ {
  padding-top:-3px;
  color:#787469;
  vertical-align:top;
  padding-left:30px;
 
-}
+ }
 
-#x-form-el-rd3
-{         
-        background-image:url(../../tabsearch/images/WebServices_img.jpg);
-        background-repeat:no-repeat;
-        background-position: 30px 3px; 
-        height:35px;        
-} 
-*/
-.rdDottedline
-{
-    border-bottom:1px dashed #787469;
+ #x-form-el-rd3
+ {
+ background-image:url(../../tabsearch/images/WebServices_img.jpg);
+ background-repeat:no-repeat;
+ background-position: 30px 3px;
+ height:35px;
+ }
+ */
+.rdDottedline {
+	border-bottom: 1px dashed #787469;
 }
 
 /* Result details */
 #HomePanel {
-width: 990px;
-height:200px;
-border-bottom: dashed 1px #999999;
+	width: 990px;
+	height: 200px;
+	border-bottom: dashed 1px #999999;
 }
-#HomePanel > div > div{
-width: 990px;
-height:200px;
+#HomePanel > div > div {
+	width: 990px;
+	height: 200px;
 }
-#resultsPanel{
-width:740px
+#resultsPanel {
+	width: 740px
 }
 #results {
-width: 990px  !important;
-height:550;
-/*position:relative;*/
+	width: 990px !important;
+	height: 550;
+	/*position:relative;*/
 }
 
-div#MetadataResultsToolbar,  #metadataResultsView{
-width:740px !important;
+div#MetadataResultsToolbar, #metadataResultsView {
+	width: 740px !important;
 }
-#metadataResultsView{
-height: 480px  !important;
+#metadataResultsView {
+	height: 480px !important;
 }
 #ext-gen72 {
-height: 540px !important;
+	height: 540px !important;
 }
 
 .x-panel-bbar {
-width:740px;
+	width: 740px;
 }
 
-.x-panel-tbar-noborder
-{
-    height:30px !important; 
+.x-panel-tbar-noborder {
+	height: 30px !important;
 }
-.x-toolbar-layout-ct
-{
-    vertical-align:top !important; 
-    margin-top:-10px !important; 
+.x-toolbar-layout-ct {
+	vertical-align: top !important;
+	margin-top: -10px !important;
 }
-.x-toolbar-ct
-{
-    vertical-align:top !important; 
-    width:740px !important;
+.x-toolbar-ct {
+	vertical-align: top !important;
+	width: 740px !important;
 }
-.x-toolbar-left
-{
-    height:40px !important;
-    vertical-align:top !important; 
-    width: 300px !important;
+.x-toolbar-left {
+	height: 40px !important;
+	vertical-align: top !important;
+	width: 300px !important;
 }
-.x-toolbar-right
-{
-    vertical-align:top !important; 
-    height:40px !important;
-    width: 340px !important;
+.x-toolbar-right {
+	vertical-align: top !important;
+	height: 40px !important;
+	width: 340px !important;
 }
-.x-toolbar-cell div
-{
-    padding-top:-10px !important; 
-    margin-top:5px !important; 
+.x-toolbar-cell div {
+	padding-top: -10px !important;
+	margin-top: 5px !important;
 }
-.x-toolbar-right-row
-{
-    vertical-align:top !important; 
+.x-toolbar-right-row {
+	vertical-align: top !important;
 }
-.toolbaralign
-{
-    vertical-align:top !important; 
-    
+.toolbaralign {
+	vertical-align: top !important;
 }
-.md-view ul li * h1
-{
-    font-weight:bold !important; 
+.md-view ul li * h1 {
+	font-weight: bold !important;
 }
-.md-view ul li.md-over
-{
-    background-color:#f5f5f5 !important;
-    border-top:1px solid #d4d4d4;
-    border-bottom:1px solid #d4d4d4;
+.md-view ul li.md-over {
+	background-color: #f5f5f5 !important;
+	border-top: 1px solid #d4d4d4;
+	border-bottom: 1px solid #d4d4d4;
 }
 
-.metadata.view-simple{
+.metadata.view-simple {
 
-    margin-right: 20px;
+	margin-right: 20px;
 }
-
-
 
 /* footer */
-#footer
-{
-    height:100% !important;
+#footer {
+	height: 100% !important;
 }
 
 .connect {
-    background-image: none !important;
+	background-image: none !important;
 }
 
-.connect ul
-{
-    padding-left:50px !important;
+.connect ul {
+	padding-left: 50px !important;
 }
 /* TODO: LISAsoft this is where the download link images are set */
 /* Custom icons for OEH customisation */
 .oeh-gearth {
-  background-image : url(../images/oeh/gearth_icon.png);
+	background-image: url(../images/oeh/gearth_icon.png);
 }
 .oeh-wms {
-  background-image : url(../images/oeh/gis_icon.png);
+	background-image: url(../images/oeh/gis_icon.png);
 }
 .oeh-request {
-  background-image : url(../images/oeh/mail_icon.png);
+	background-image: url(../images/oeh/mail_icon.png);
 }
 .oeh-download {
-  background-image : url(../images/oeh/download_icon.png);
+	background-image: url(../images/oeh/download_icon.png);
 }
 .oeh-rest {
-  background-image : url(../images/oeh/webservices_icon.jpg);
+	background-image: url(../images/oeh/webservices_icon.jpg);
 }
 /* TODO: LISAsoft this is where the download link images are set in view page along with above image styles for icons */
 .oeh-icon-link {
-  background-position: 0 center;
-  background-repeat: no-repeat;
-  height: 16px;
-  padding-left: 18px;
+	background-position: 0 center;
+	background-repeat: no-repeat;
+	height: 16px;
+	padding-left: 18px;
 }
 .x-btn button {
-    font: 12px arial,tahoma,verdana,helvetica;
+	font: 12px arial, tahoma, verdana, helvetica;
 }
