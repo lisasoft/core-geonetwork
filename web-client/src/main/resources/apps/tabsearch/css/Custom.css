@@ -89,7 +89,6 @@ div.GIS-feature {
 	margin: 0px 11px 13px 12px;
 }
 div.GIS-feature h2 {
-<<<<<<< HEAD
 	height: initial;
 	width: 195px;
 	padding: 0 0 0 10px;
@@ -97,14 +96,6 @@ div.GIS-feature h2 {
 	color: #D66B03;
 	margin: 20px 0 3px;
 	background: url(../images/bgFeatureH2.png) left 4px no-repeat;
-=======
-	width: 195px;
-	padding: 0px 0px 6px 0px;
-	font-size: 12px;
-	height: 32px;
-	position: relative;
-	margin: 0px;
->>>>>>> Formatted for easy reading. Using Aptana Studio 3 IDE, did a Source > Format.
 }
 #title-arrow {
 	margin-right: 5px;
