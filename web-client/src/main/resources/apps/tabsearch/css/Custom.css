@@ -123,22 +123,20 @@ div.GIS-feature .FeatureTxt {
 	padding: 4px 9px;
 	margin: -3px 0 0 2px;
 	width: 178px;
-	min-height: 110px;
+	min-height: 106px;
 	background: #d0ddeb;
 	color: #333;
 	font-size: 12px;
 }
 
-div.GIS-feature ul {
-	margin-top: -5px;
-}
 div.GIS-feature li {
-	list-style-image: url("images/gis_feature_bullet.png");
-	margin-left: 10px;
+	list-style-image: url("../images/gis_feature_bullet.png");
+	margin-left: 18px;
+	padding: 2px 0 2px 0px;
 }
 
 div.GIS-feature a:link, a:visited, a:active {
-
+	color: #093775;
 }
 div.GIS-feature a:hover {
 	color: #d66b03;
