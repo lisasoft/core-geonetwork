@@ -1415,7 +1415,7 @@ Ext.onReady(function () {
                 layout : 'absolute',
                 width:990,
                 maxWidth:990,
-                height: 580,
+                height: 550, // Was 580. Reduced to fix truncation of content in metadata tab. - JD
                 layout : 'fit',
                 // autoHeight:true,
                 padding : '5px 0px 0px 25px',
