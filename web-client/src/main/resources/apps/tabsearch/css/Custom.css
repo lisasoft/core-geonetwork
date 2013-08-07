@@ -68,6 +68,9 @@ h1 {
 #cim_page-wrapper {
 	padding-left: 15px;
 }
+#topContainerMin {
+	margin-left: 1px; /* Fix 1px offset on whole content */
+}
 #FeatureMainContainer {
 	background-color: #ffffff;
 	width: 990px;
