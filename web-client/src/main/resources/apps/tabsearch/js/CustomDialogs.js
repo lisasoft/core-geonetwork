@@ -51,7 +51,7 @@ OEH.Popup.show = function(type, url, options) {
 			valueField: 'myId',
 			displayField: 'displayText'
 		});
-		
+		combo.value = "--- Please select ---";
 		return combo;
 		
 	}
