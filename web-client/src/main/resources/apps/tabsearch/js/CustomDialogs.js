@@ -190,6 +190,7 @@ OEH.Popup.show = function(type, url, options) {
 							if (item.id === "eoh-popup-submit") {
 								//TODO: LISAsoft - Submit form and save log details.
 								//THis is where we need to integrate into db for saving authentication.
+								url=this.catalogue.services.fileDownload_OEH
 								if (OEH.Popup.SERVICE_WMS == type) {
 									var wmsUrlPanel = Ext.getCmp('wmsUrlPanel').getEl();
 									if (!wmsUrlPanel.isVisible()) {

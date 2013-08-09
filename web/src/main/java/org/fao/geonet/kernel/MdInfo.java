@@ -39,7 +39,8 @@ public class MdInfo
 	public String   root;
 	public String   owner;
 	public String   groupOwner;
-        public String displayOrder;
+    public String displayOrder;
+    public String fileSize;
 
 	//--------------------------------------------------------------------------
 

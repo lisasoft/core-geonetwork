@@ -543,7 +543,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
             var links = r.get('links'),
                 id = r.get('id'),
                 uuid = r.get('uuid');
-            
+            	_fSz=r.json.fileSize;
+            	            
             if (links.length > 0) {
                 var div = Ext.query('#md-links-' + id, view.el.dom.body),
                     el = Ext.get(div[0]);
@@ -644,12 +645,14 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                 	    			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
                                 		// TODO: LISAsoft this is where we need to add the call to get the file size for displaying on result list page.
                                 		//This is expected to be an external call as teh metadata does not have the filesize. 
-                                		label = label.replace("${size}", "XX MB"); //TODO Get actual size from metadata
-                                    	linkButton.push({
+                                		//label = label.replace("${size}", "XX MB"); //TODO Get actual size from metadata
+                                		label = label.replace("${size}", _fSz[0].value);
+                                		linkButton.push({
                                             text: record.get('title') || record.get('name'),
                                             handler: function (b, e) {
                                             	var isLargeFile = false; //This variable will be set using the information and call described above.
-                                            	if (isLargeFile) {
+                                            	if (record.get('href')=="mailto:data.broker@environment.nsw.gov.au") {
+                                            		isLargeFile=true;
                                                 	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
                                             	} else {
 													var downloadUrl = record.get('href');
@@ -725,7 +728,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
     	} else if (currentType == "application/zip"
     		|| currentType == 'application/x-compressed'
     			|| currentType == 'WWW:DOWNLOAD-1.0-http--download') {
-    		if (isLargeFile) {
+    		if (label=="Download Data (Request)") {
     			linkIconCls = 'oeh-request';
     		} else {
     			linkIconCls = 'oeh-download'; 

@@ -44,11 +44,11 @@ Proj4js.defs["EPSG:2154"] = "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 
 //new OpenLayers.Projection("EPSG:900913")
 
 // Config for WGS84 based maps
-GeoNetwork.map.PROJECTION = "EPSG:4326";
-GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-180,-90,180,90);
+GeoNetwork.map.PROJECTION = "EPSG:3857";
+GeoNetwork.map.EXTENT = new OpenLayers.Bounds(15621626,-4554549,17182783,-3224874);
 
 GeoNetwork.map.BACKGROUND_LAYERS = [
-    new OpenLayers.Layer.WMS("Background layer", "/geoserver/wms", {layers: 'gn:world,gn:gboundaries', format: 'image/jpeg'}, {isBaseLayer: true})
+    new OpenLayers.Layer.WMS("Background layer", "http://oeh25703:6080/arcgis/services/Basemap/Basemap_Geonetwork/MapServer/WMSServer", {layers: '0,1,2,3,4,5,6,7', format: 'image/png'}, {isBaseLayer: true})
     ];
 
 GeoNetwork.map.MAP_OPTIONS = {

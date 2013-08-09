@@ -612,12 +612,12 @@
 							          	<xsl:choose>
 						                   <xsl:when test="contains($useLimitation, 'CC BY 3.0 AU')">
 						                   		<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_CC, '{$url}');" class="oeh-download oeh-icon-link">
-							          				Download Data (XX MB)
+							          				Download Data (<xsl:value-of select="//geonet:info/fileSize"/>)
 							          			</a>  
 						                   </xsl:when>
 						                   <xsl:otherwise>
 												<a href="#" onclick="OEH.Popup.show(OEH.Popup.DOWNLOAD_OEH, '{$url}');" class="oeh-download oeh-icon-link">
-							          				Download Data (XX MB)
+							          				Download Data (<xsl:value-of select="//geonet:info/fileSize"/>)
 							          			</a>
 						                   </xsl:otherwise>
 						          		</xsl:choose>

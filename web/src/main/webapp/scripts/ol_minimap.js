@@ -39,10 +39,10 @@ GeoNetwork.miniapp = function() {
      */
     var createMap = function(mapOptions) {
         var options = mapOptions || {
-            projection: "EPSG:4326",
+            projection: "EPSG:3857",
             units: "m",
-            maxExtent: new OpenLayers.Bounds(-180,-90,180,90),
-            restrictedExtent: new OpenLayers.Bounds(-180,-90,180,90),
+            maxExtent: new OpenLayers.Bounds(15621626,-4554549,17182783,-3224874),
+            restrictedExtent: new OpenLayers.Bounds(15621626,-4554549,17182783,-3224874),
             controls: []
         };
         

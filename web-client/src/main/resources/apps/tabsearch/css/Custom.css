@@ -35,10 +35,14 @@ h1 {
 }
 #GNtabs .x-tab-strip-text {
 	font-family: Arial, Verdana;
-	font-size: 11px !important;
+  	font-size: 11px !important;
 	padding: 6px 0 !important;
-	color: #008899 !important;
-	font-weight: bold !important;
+/*	color: #008899 !important; */
+/*	font-weight: bold !important; */
+}
+
+.x-tab-strip-active span.x-tab-strip-text {
+    font-weight: normal;
 }
 
 #breadcrumbs {

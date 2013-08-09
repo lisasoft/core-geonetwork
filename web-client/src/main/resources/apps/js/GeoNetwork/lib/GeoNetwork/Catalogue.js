@@ -309,6 +309,7 @@ GeoNetwork.Catalogue = Ext.extend(Ext.util.Observable, {
             prepareDownload: serviceUrl + 'prepare.file.download',
             fileDisclaimer: serviceUrl + 'file.disclaimer',
             fileDownload: serviceUrl + 'file.download',
+            fileDownload_OEH: serviceUrl + 'file.download_OEH',
             geopublisher: serviceUrl + 'geoserver.publisher',
             login: this.URL + '/j_spring_security_check',
             logout: this.URL + '/j_spring_security_logout',
