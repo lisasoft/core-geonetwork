@@ -50,8 +50,8 @@ h1 {
 	padding-left: 20px;
 	width: 990px;
 	height: 25px;
-	border-bottom: 1px dashed #7F7F7F;
-	font-size: 95%;
+	border-bottom: 1px dashed #333333;
+	font-size: 10px;
 }
 #title {
 	padding-left: 20px;
@@ -195,7 +195,7 @@ div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-fe
 
 #GNtabs[style] {
 	width: 990px !important;
-	border-bottom: dashed 1px #7F7F7F;
+	border-bottom: dashed 1px #999999;
 	height: 200px;
 }
 
@@ -424,7 +424,7 @@ ul.x-tab-strip-top {
 }
 #radiogroup label {
 	color: black;
-	border-bottom: 1px dashed #7F7F7F;
+	border-bottom: 1px dashed #808080;
 	top: 0px;
 }
 /* Search and reset button styles*/
@@ -507,14 +507,14 @@ ul.x-tab-strip-top {
  }
  */
 .rdDottedline {
-	border-bottom: 1px dashed #7F7F7F;
+	border-bottom: 1px dashed #787469;
 }
 
 /* Result details */
 #HomePanel {
 	width: 990px;
 	height: 200px;
-	border-bottom: dashed 1px #7F7F7F;
+	border-bottom: dashed 1px #999999;
 }
 #HomePanel > div > div {
 	width: 990px;

@@ -981,7 +981,7 @@ GeoNetwork.app = function () {
     function createHeader() {
         var info = catalogue.getInfo();
         var crumbText ='<span id="crumblabel">You are here: </span> ' +
-        	'<a href="http://environment.nsw.gov.au/">Home</a> &gt; <a href="http://www.environment.nsw.gov.au/knowledgecentre.htm">Knowledge centre</a> &gt; ' +
+        	'<a href="">Home</a> &gt; <a href="">Knowledge centre</a> &gt; ' +
         	'<a href=""> Maps and data</a>';
         Ext.getDom('breadcrumbs').innerHTML = crumbText;
         Ext.getDom('title').innerHTML = '<img id="title-arrow" src="../../images/title-arrow.png" />Maps and Data';
