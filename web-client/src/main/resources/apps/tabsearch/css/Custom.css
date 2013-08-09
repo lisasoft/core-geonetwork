@@ -19,16 +19,12 @@ body, p, td, li, th {
 	text-align: center;
 	font-size: 18px;
 }
-
 h1 {
-	padding: 0 0 0px 23px;
-	font-size: 21px;
-	margin-top: 12px;
-}
-#mainContainer03 h2 {
 	color: #d67001;
+	background-image: none;
 	font-size: 16px;
-	margin-top: 0px;
+	font-weight: 700;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 #GNtabs .x-tab-right {
@@ -100,16 +96,29 @@ div.GIS-feature {
 	width: 195px;
 	margin: 0px 11px 13px 12px;
 }
-div.GIS-feature h3 {
+div.GIS-feature h2 {
+	height: initial;
 	width: 195px;
 	padding: 0 0 0 10px;
 	font-size: 1.05em;
+	color: #D66B03;
 	margin: 20px 0 3px;
-	background: url(../images/oeh/bgFeatureH3.png) left 4px no-repeat;
+	background: url(../images/bgFeatureH2.png) left 4px no-repeat;
 }
 #title-arrow {
 	margin-right: 5px;
 	vertical-align: baseline;
+}
+div.GIS-feature h2 a, div.GIS-feature h2 a:visited {
+	display: block;
+	color: #d66b03;
+	background: url(../images/bgFeatureH2.png) left 4px no-repeat;
+	padding-left: 10px;
+	text-decoration: none;
+	font-size: 1.2em;
+	font-weight: normal;
+	position: absolute;
+	bottom: 3px;
 }
 div.GIS-feature p {
 	padding: 4px 9px;
@@ -176,7 +185,9 @@ div.GIS-feature .ImgBg {
 	width: 990px;
 	position: relative;
 }
-
+div.GIS-feature h2 a:hover, div.GIS-feature p.feature-link a:hover, div.other-feature p a:hover {
+	text-decoration: underline;
+}
 .tip1 {
 	position: fixed;
 }

@@ -422,8 +422,8 @@ GeoNetwork.app = function () {
                         width:730,
                         items :[
                                 {
-                                    html : '<h2>' + 
-                                        OpenLayers.i18n('Searchforspatialdataon') + '</h2>',
+                                    html : '<h1>' + 
+                                        OpenLayers.i18n('Searchforspatialdataon') + '</h1>',
                                     margins : '5 10 5 10',
                                     border : false
                                 },
@@ -984,7 +984,7 @@ GeoNetwork.app = function () {
         	'<a href="http://environment.nsw.gov.au/">Home</a> &gt; <a href="http://www.environment.nsw.gov.au/knowledgecentre.htm">Knowledge centre</a> &gt; ' +
         	'<a href=""> Maps and data</a>';
         Ext.getDom('breadcrumbs').innerHTML = crumbText;
-        Ext.getDom('title').innerHTML = '<h1>Maps and data</h1>';
+        Ext.getDom('title').innerHTML = '<img id="title-arrow" src="../../images/title-arrow.png" />Maps and Data';
         document.title = info.name;
     }
 
