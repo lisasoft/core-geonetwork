@@ -378,7 +378,14 @@ ul.x-tab-strip {
 	width: 980px !important;
 }
 .x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left, .x-tab-strip-top .x-tab-strip-inner {
-	background-image: url("../../../scripts/ext/resources/images/default/tabs/tabs-sprite.gif");
+	background-image: url("../../../scripts/ext/resources/images/oeh/tabs/tabs-sprite.gif");
+}
+
+.x-tab-strip .x-tab-strip-closable a.x-tab-strip-close {
+	background-image:url(../../../scripts/ext/resources/images/oeh/tabs/tab-close.gif);
+}
+.x-tab-strip .x-tab-strip-closable a.x-tab-strip-close:hover{
+	background-image:url(../../../scripts/ext/resources/images/oeh/tabs/tab-close.gif);
 }
 
 .x-tab-panel-header {
