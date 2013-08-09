@@ -411,7 +411,7 @@ GeoNetwork.app = function () {
                     // Simple search form and search buttons
                     {
                         bodyStyle : {
-                            'padding-top' : '50px'
+                            'padding-top' : '39px'
                         },
                         layout : {
                             type : 'hbox',
