@@ -357,7 +357,7 @@ GeoNetwork.app = function () {
             height:20,
             width:310,
             layout:'fit',
-            style : 'margin-left:288px',
+            style : 'margin-left:325px',
             cls:'FormatRadio',
             items: [{
                 xtype: 'radiogroup',
@@ -419,7 +419,7 @@ GeoNetwork.app = function () {
                             align : 'center'
                         },
                         border : false,
-                        width:730,
+                        width:800,
                         items :[
                                 {
                                     html : '<h1>' + 
