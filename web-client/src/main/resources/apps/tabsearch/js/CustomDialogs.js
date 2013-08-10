@@ -58,7 +58,7 @@ OEH.Popup.show = function(type, url, options) {
 
 	// Returns the privacy policy link
 	function getPrivacyPolicyLink() {
-		return "<a href='http://www.environment.nsw.gov.au/help/privacy.htm' target='_blank'>Privacy Policy</a>";
+		return "<a href='http://www.environment.nsw.gov.au/help/privacy.htm' target='_blank'>Privacy policy</a>";
 	}
 
 	// Returns the creative commons text link
@@ -255,7 +255,7 @@ OEH.Popup.show = function(type, url, options) {
 							xtype     : 'checkbox',
 							fieldLabel: getPrivacyPolicyLink(),
 							labelSeparator: '',
-							boxLabel  : 'We may send you news and occasional user surveys',
+							boxLabel  : 'We may send you occasional news and user surveys',
 							anchor    : '100%'
 						},
 						{
@@ -391,7 +391,7 @@ OEH.Popup.show = function(type, url, options) {
 				xtype     : 'checkbox',
 				fieldLabel: '&nbsp',
 				labelSeparator: '',
-				boxLabel  : 'Send me occasional news and user serveys',
+				boxLabel  : 'Send me occasional news and user surveys',
 				anchor    : '100%'
 			},
 			{
