@@ -366,10 +366,6 @@ div.GIS-feature .ImgBg {
 #ext---gen85 li {
 	margin-left: 10px !important;
 }
-ul.x-tab-strip {
-	display: block !important;
-	width: 980px !important;
-}
 .x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left, .x-tab-strip-top .x-tab-strip-inner {
 	background-image: url("../../../scripts/ext/resources/images/oeh/tabs/tabs-sprite.gif");
 }
