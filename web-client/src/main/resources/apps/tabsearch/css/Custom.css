@@ -596,7 +596,7 @@ div#MetadataResultsToolbar, #metadataResultsView {
 	background-image: url(../images/oeh/download_icon.png);
 }
 .oeh-rest {
-	background-image: url(../images/oeh/webservices_icon.jpg);
+	background-image: url(../images/oeh/webservices_icon.png);
 }
 /* TODO: LISAsoft this is where the download link images are set in view page along with above image styles for icons */
 .oeh-icon-link {
@@ -607,4 +607,9 @@ div#MetadataResultsToolbar, #metadataResultsView {
 }
 .x-btn button {
 	font: 12px arial, tahoma, verdana, helvetica;
+}
+.x-btn-text-icon .x-btn-icon-small-left .x-btn-text {
+    height: 24px;
+    padding-left: 28px;
+    text-decoration: underline;
 }
