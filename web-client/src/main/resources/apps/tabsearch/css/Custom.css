@@ -142,12 +142,9 @@ div.GIS-feature a:hover {
 }
 
 div.GIS-feature p.feature-link {
-	background: none;
-	padding: 0;
-	width: 195px;
-	height: 8px;
+	height: 8px !important;
 	margin: 0 0 0 2px;
-	background: url(../images/bgFeaturePA.png) no-repeat left top;
+	background: url(../images/bgFeaturePA.png) no-repeat left top !important;
 }
 /*
  div.GIS-feature p.feature-link a
