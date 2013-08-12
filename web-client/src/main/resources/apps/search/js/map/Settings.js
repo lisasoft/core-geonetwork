@@ -33,7 +33,7 @@ GeoNetwork.map.printCapabilities = "../../pdf";
 
 // Config for WGS84 based maps
 GeoNetwork.map.PROJECTION = "EPSG:4326";
-GeoNetwork.map.EXTENT = new OpenLayers.Bounds(140.9688,-37.5134,153.6909,-28.1134);
+GeoNetwork.map.EXTENT = new OpenLayers.Bounds(140.37,-38.75,154.27,-26.91);
 //GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-5.1,41,9.7,51);
 
 GeoNetwork.map.BACKGROUND_LAYERS = [
