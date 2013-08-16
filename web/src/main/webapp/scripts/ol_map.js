@@ -50,10 +50,9 @@ GeoNetwork.app = function() {    // private vars:
      */
     var createMap = function(mapOptions, scales) {
         var options = mapOptions || {
-            projection: "EPSG:3857",
             units: "degrees",
-            maxExtent: new OpenLayers.Bounds(15621626,-4554549,17182783,-3224874),
-            restrictedExtent: new OpenLayers.Bounds(15621626,-4554549,17182783,-3224874),
+            maxExtent: new OpenLayers.Bounds(-180,-90,180,90),
+            restrictedExtent: new OpenLayers.Bounds(140.37,-38.75,154.27,-26.91),
             controls: []
         };
         map = new OpenLayers.Map('ol_map', options);
