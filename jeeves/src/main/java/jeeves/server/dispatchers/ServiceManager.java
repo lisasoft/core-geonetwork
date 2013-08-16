@@ -93,6 +93,7 @@ public class ServiceManager
     private String  appPath;
     private String  baseUrl;
     private String  uploadDir;
+    private String fileServer;
     private int     maxUploadSize;
     private String  defaultLang;
     private String  defaultContType;
@@ -112,6 +113,7 @@ public class ServiceManager
 	public void setDefaultLang    (String  lang)  { defaultLang    = lang;  }
 	public void setDefaultContType(String  type)  { defaultContType= type;  }
 	public void setUploadDir      (String  dir)   { uploadDir      = dir;   }
+	public void setFileServer (String file_server){fileServer=file_server;}
     public void setMaxUploadSize  (int  size)     { maxUploadSize  = size;  }
 	public void setDefaultLocal   (boolean yesno) { defaultLocal   = yesno; }
 
@@ -351,6 +353,7 @@ public class ServiceManager
 		context.setIpAddress("?");
 		context.setAppPath(appPath);
 		context.setUploadDir(uploadDir);
+		context.setFileServer(fileServer);
         context.setMaxUploadSize(maxUploadSize);
 		context.setServlet(servlet);
 
@@ -376,6 +379,7 @@ public class ServiceManager
 		context.setIpAddress(req.getAddress());
 		context.setAppPath(appPath);
 		context.setUploadDir(uploadDir);
+		context.setFileServer(fileServer);
         context.setMaxUploadSize(maxUploadSize);
 		context.setInputMethod(req.getInputMethod());
 		context.setOutputMethod(req.getOutputMethod());

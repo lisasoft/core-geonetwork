@@ -69,6 +69,7 @@ public class ConfigFile
 			public static final String DEBUG      = "debug";
 			public static final String UPLOAD_DIR = "uploadDir";
 			public static final String MAX_UPLOAD_SIZE = "maxUploadSize";
+			public static final String FILE_SERVER="fileServer";
 		}
 	}
 

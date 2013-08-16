@@ -90,6 +90,7 @@ public class JeevesEngine
 	private String  defaultLang;
 	private String  defaultContType;
 	private String  uploadDir;
+	private String fileServer;
 	private int     maxUploadSize;
 	private String  appPath;
 	private boolean defaultLocal;
@@ -398,6 +399,7 @@ public class JeevesEngine
 
 		profilesFile = Util.getParam(general, ConfigFile.General.Child.PROFILES);
 		uploadDir    = Util.getParam(general, ConfigFile.General.Child.UPLOAD_DIR);
+		fileServer=Util.getParam(general, ConfigFile.General.Child.FILE_SERVER);
 		try {
 		    maxUploadSize = Integer.parseInt(Util.getParam(general, ConfigFile.General.Child.MAX_UPLOAD_SIZE));
 		} 
@@ -425,6 +427,7 @@ public class JeevesEngine
 		debugFlag = "true".equals(general.getChildText(ConfigFile.General.Child.DEBUG));
 
 		serviceMan.setUploadDir(uploadDir);
+		serviceMan.setFileServer(fileServer);
 		serviceMan.setMaxUploadSize(maxUploadSize);
 	}
 
@@ -778,6 +781,8 @@ public class JeevesEngine
 	//---------------------------------------------------------------------------
 
 	public String getUploadDir() { return uploadDir; }
+	
+	public String getFileServer() { return fileServer; }
 
 	//---------------------------------------------------------------------------
 
