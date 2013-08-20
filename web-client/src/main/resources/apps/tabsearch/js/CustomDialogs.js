@@ -25,6 +25,7 @@ OEH.Popup.show = function(type, url, options) {
 	function getOrganisationField() {
 
 		var combo = new Ext.form.ComboBox({
+			id:	'cmbOrg',
 			name: 'organisation_type',
 			fieldLabel: 'Organisation Type',
 			width : 280,
@@ -193,7 +194,9 @@ OEH.Popup.show = function(type, url, options) {
 
 								// Only fix download URL for downloads, not other popups - JD 2013-08-10
 								if (OEH.Popup.DOWNLOAD_CC == type || OEH.Popup.DOWNLOAD_OEH == type) {
-									url=this.catalogue.services.fileDownload_OEH;
+									url=this.catalogue.services.fileDownload_OEH+"?fname="+url
+									+"&orgType="+cmbOrg.value+"&email="+txtEmailsDownLoad.value+"&IntendedUsage="
+									+txtIntendedUseDownLoad.value+"&IsTargetedforNewsandSurveys="+chkIsTargetedforNewsandSurveysDownLoad.value;
 								}
 
 								if (OEH.Popup.SERVICE_WMS == type) {
@@ -233,6 +236,7 @@ OEH.Popup.show = function(type, url, options) {
 						},
 						getOrganisationField(),
 						{
+							id		  :'txtIntendedUseDownLoad',
 							name      : 'intendedUse',
 							xtype     : 'textarea',
 							fieldLabel: 'Intended Use',
@@ -244,6 +248,7 @@ OEH.Popup.show = function(type, url, options) {
 							border : false
 						},
 						{
+							id		  :	'txtEmailsDownLoad',
 							name      : 'email',
 							xtype     : 'textfield',
 							fieldLabel: 'email address',
@@ -251,6 +256,7 @@ OEH.Popup.show = function(type, url, options) {
 							boxMaxWidth : 280
 						},
 						{
+							id		  :	'chkIsTargetedforNewsandSurveysDownLoad',
 							name      : 'flag',
 							xtype     : 'checkbox',
 							fieldLabel: getPrivacyPolicyLink(),
@@ -361,6 +367,7 @@ OEH.Popup.show = function(type, url, options) {
 				cls: 'oeh-popup-subtitle'
 			},
 			{
+				id		  :	'txtNameRequest',
 				name      : 'name',
 				xtype     : 'textfield',
 				fieldLabel: 'Name',
@@ -370,6 +377,7 @@ OEH.Popup.show = function(type, url, options) {
 				allowBlank : false
 			},
 			{
+				id		  :	'txtEmailRequest',
 				name      : 'email',
 				xtype     : 'textfield',
 				fieldLabel: 'Email',
@@ -379,6 +387,7 @@ OEH.Popup.show = function(type, url, options) {
 				allowBlank : false
 			},
 			{
+				id		  :	'chkIsTargetedForUpdate',
 				name      : 'email_success',
 				xtype     : 'checkbox',
 				fieldLabel: '&nbsp',
@@ -387,6 +396,7 @@ OEH.Popup.show = function(type, url, options) {
 				anchor    : '100%'
 			},
 			{
+				id		  :	'chkIsTargetedForNewsandSurveysRequest',
 				name      : 'email_news',
 				xtype     : 'checkbox',
 				fieldLabel: '&nbsp',
@@ -395,6 +405,7 @@ OEH.Popup.show = function(type, url, options) {
 				anchor    : '100%'
 			},
 			{
+				id		  :	'txtOrg',
 				name      : 'organisation',
 				xtype     : 'textfield',
 				fieldLabel: 'Organisation',
@@ -403,6 +414,7 @@ OEH.Popup.show = function(type, url, options) {
 			},
 			getOrganisationField(),
 			{
+				id		  :	'txtRequirements',
 				name      : 'requirements',
 				xtype     : 'textarea',
 				fieldLabel: 'Required geographic extent of data, or other requirements',
@@ -410,6 +422,7 @@ OEH.Popup.show = function(type, url, options) {
 				boxMaxWidth : 280
 			},
 			{
+				id		  :	'txtIntendedUseRequest',
 				name      : 'intendedUse',
 				xtype     : 'textarea',
 				fieldLabel: 'Intended Use',
@@ -450,7 +463,12 @@ OEH.Popup.show = function(type, url, options) {
 								if (item.id === "eoh-popup-submit") {
 									if (formPanel.getForm().isValid()) {
 										//TODO: LISAsoft - Submit request and save log details -logging
-										//this is where we need to save to logging db table. We also need to make the request. 
+										//this is where we need to save to logging db table. We also need to make the request.
+										openUrl(this.catalogue.services.request_OEH+"?uuid=NULL&title=NULL&nameUser="+txtNameRequest.value
+										+"&org="+txtOrg.value+"&orgType="+cmbOrg.value+"&email="+txtEmailRequest.value+"&ReqGeoExtentofData="+txtRequirements.value+"&IntendedUsage="
+										+txtIntendedUseRequest.value+"&IsTargetedforNewsandSurveys="+chkIsTargetedForNewsandSurveysRequest.value
+										+"&IsTargetedforUpdate="+chkIsTargetedForUpdate.value);
+										
 										window.close();	
 									}
 								} else if (item.id === "eoh-popup-reset") {

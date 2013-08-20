@@ -81,10 +81,9 @@ import java.net.URLConnection;
 
 //=============================================================================
 
-/** OEH save download user details and download the god damn file SR 01092013
-  */
+/** OEH request user details */
 
-public class Insert_OEH implements Service
+public class request_OEH implements Service
 {
 	//--------------------------------------------------------------------------
 	//---
@@ -102,47 +101,56 @@ public class Insert_OEH implements Service
 
 	public Element exec(Element params, final ServiceContext context) throws Exception
 	{
-		//by SR 12 Aug 2013 - log the metadata user download info to the db
+		//by SR 12 Aug 2013 - log the metadata user request info to the db
 		
-		String _fname=Util.getParam(params, Params._FNAME);
+		String _nameUser=Util.getParam(params, Params._NAMEUSER);
+		String _org=Util.getParam(params, Params._ORG);
 		String _orgType=Util.getParam(params, Params._ORGTYPE);
 		String _email=Util.getParam(params, Params._EMAIL);
+		String _reqExtent=Util.getParam(params, Params._REQGEOEXTENT);
 		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE);
 		String _IsTargetNews= Util.getParam(params, Params._ISTARGETNEWS);
+		String _IsTargetUpdate=Util.getParam(params, Params._ISTARGETUPDATE);
 		Dbms dbms = (Dbms) context.getResourceManager().open(Geonet.Res.MAIN_DB);
-				
-		BufferedReader reader = null;
-        FileOutputStream fos = null;
-        InputStream in = null;
-        String _url=context.getFileServer()+Util.getParam(params, Params._FNAME);
-        
-        URL url = new URL(_url);
-        URLConnection conn = url.openConnection();
-               
-        in = conn.getInputStream();
-        reader = new BufferedReader(new InputStreamReader(in));
-        String filename=context.getUploadDir()+url.toString().substring(url.toString().lastIndexOf('/') + 1);          
-	        fos = new FileOutputStream(filename);
-	        byte[] buff = new byte[1024];
-	        int l = in.read(buff);
-	        while (l > 0) {
-	            fos.write(buff, 0, l);
-	            l = in.read(buff);
-	        }
-   
-            fos.flush();
-            fos.close();
-      
-            reader.close();
-            
-            String _query=	"INSERT INTO [metadataDownloadRequestDataInfo] ([fname],[nameUser],[org],[orgType],[email],[ReqGeoExtentofData],[intendedUsage],[isTargetedforNewsSurveys],[isTargetedforUpdate],[downloadDate],[requestDate])"+
-	             " VALUES (?,NULL,NULL,?,?,NULL,?,?,NULL,GETDATE(),NULL)";
-        
-        dbms.execute(_query,_fname,_orgType,_email,_intendedUsage,_IsTargetNews);
 		
-		return BinaryFile.encode(200, filename,true);
+		String _query="INSERT INTO [metadataDownloadRequestDataInfo] ([fname],[nameUser],[org],[orgType],[email],[ReqGeoExtentofData],[intendedUsage],[isTargetedforNewsSurveys],[isTargetedforUpdate],[downloadDate],[requestDate])"+
+             " VALUES (NULL,?,?,?,?,?,?,?,?,NULL,GETDATE())";
+		
+		dbms.execute(_query ,_nameUser,_org,_orgType,_email,_reqExtent,_intendedUsage,_IsTargetNews,_IsTargetUpdate);
 	
+		GeonetContext  gc = (GeonetContext) context.getHandlerContext(Geonet.CONTEXT_NAME);
+		SettingManager sm = gc.getSettingManager();
+
+		String uuid		= Util.getParam(params,Params.UUID);
+		String title=Util.getParam(params,Params.TITLE);
+		
+		String host = sm.getValue("system/feedback/mailServer/host");
+		String port = sm.getValue("system/feedback/mailServer/port");
+		String to   = sm.getValue("system/feedback/email");
+		
+		//get the current date in simple format
+		Calendar currentDate = Calendar.getInstance();
+		SimpleDateFormat formatter= 
+		new SimpleDateFormat("yyyy/MMM/dd HH:mm:ss");
+		String dateNow = formatter.format(currentDate.getTime());
+		
+		String emailContent="Request Date Time: "+ dateNow+"\n"
+				+ "Metadata uuid: "+uuid+"\n"
+				+ "Metadata title: "+title+"\n"
+				+ "Name: " +_nameUser+"\n"
+				+ "Download Email: "+_email+"\n"
+				+ "Required Extent: "+_reqExtent+"\n"
+				+ "Organisation: "+_org+"\n"
+				+ "Organisation Type: "+_orgType+"\n"
+				+ "Intended Usage: "+_intendedUsage;
+		
+		MailSender sender = new MailSender(context);
+		sender.send(host, Integer.parseInt(port), _email, _nameUser +" ("+_org+")", to, null, "New Data Request", emailContent);
+
+		return new Element("response").addContent(params.cloneContent());
+		
 	}
+
 }
 
 //=============================================================================

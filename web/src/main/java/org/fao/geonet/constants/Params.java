@@ -146,6 +146,18 @@ public final class Params {
 	public static final String FILTER_CATEGORY     = "_cat";
     public static final String FILTER_DENOMINATOR = "denominator";
 	
+     //added by SR 12082013 save user details for download or request
+    public static final String _TYPE = "type";
+    public static final String _FNAME  = "fname";
+    public static final String _NAMEUSER  = "nameUser";
+    public static final String _ORG  = "org";
+    public static final String _ORGTYPE  = "orgType";
+    public static final String _EMAIL  = "email";
+    public static final String _REQGEOEXTENT  = "ReqGeoExtentofData";
+    public static final String _INTENDEDUSAGE  = "IntendedUsage";
+    public static final String _ISTARGETNEWS = "IsTargetedforNewsandSurveys";
+    public static final String _ISTARGETUPDATE  = "IsTargetedforUpdate";
+    
 	
 	
 	

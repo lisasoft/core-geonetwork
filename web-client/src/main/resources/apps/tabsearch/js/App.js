@@ -328,6 +328,9 @@ GeoNetwork.app = function () {
         var hideInspirePanel = catalogue.getInspireInfo().enable === "false";
         var searchCb = function () {
         	var any = Ext.getCmp('searchSuggestion');
+        	if (any.getValue() === 'Enter search terms (optional)'){
+        		any.setValue('');
+        	}
             if (any) {
                 if (any.getValue() === OpenLayers.i18n('fullTextSearch')) {
                     any.setValue('');
@@ -339,6 +342,9 @@ GeoNetwork.app = function () {
             search();
             
             setTab('results');
+            if (any.getValue() === ''){
+        		any.setValue('Enter search terms (optional)');
+            }
             
             /// Trigger the onsearch event which update search form state
             Ext.getCmp('searchForm').fireEvent('onsearch');
@@ -682,16 +688,9 @@ GeoNetwork.app = function () {
     }
 
     function search() {
-    	var any = Ext.getCmp('searchSuggestion');
-    	if (any.getValue() === 'Enter search terms (optional)'){
-    		any.setValue('');
-    	}
         searching = true;
         catalogue.search('searchForm', app.loadResults, null,
                 catalogue.startRecord, true);
-        if (any.getValue() === ''){
-    		any.setValue('Enter search terms (optional)');
-    	}
     }
 
     function initPanels() {
@@ -723,7 +722,7 @@ GeoNetwork.app = function () {
 
         var nextAction = new Ext.Action({
             id : 'nextBt',
-            text : '&gt;&gt;&gt;',
+            text : '&gt;&gt;',
             handler : function () {
                 catalogue.startRecord += parseInt(Ext.getCmp('E_hitsperpage')
                         .getValue(), 10);
