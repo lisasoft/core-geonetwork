@@ -33,7 +33,7 @@ GeoNetwork.map.printCapabilities = "../../pdf";
 
 // Config for WGS84 based maps
 GeoNetwork.map.PROJECTION = "EPSG:4326";
-GeoNetwork.map.EXTENT = new OpenLayers.Bounds(140.9688,-37.5134,153.6909,-28.1134);
+GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-180,-90,180,90);
 //GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-5.1,41,9.7,51);
 
 GeoNetwork.map.BACKGROUND_LAYERS = [
@@ -73,7 +73,7 @@ GeoNetwork.map.CONTEXT_MAIN_MAP_OPTIONS = {
 GeoNetwork.map.MAP_OPTIONS = {
     projection: GeoNetwork.map.PROJECTION,
     maxExtent: GeoNetwork.map.EXTENT,
-    restrictedExtent: GeoNetwork.map.EXTENT,
+    restrictedExtent: new OpenLayers.Bounds(141,-37.51,153.64,-28.15),
     resolutions: GeoNetwork.map.RESOLUTIONS,
     controls: [],
     theme:null
@@ -82,7 +82,7 @@ GeoNetwork.map.MAP_OPTIONS = {
 GeoNetwork.map.MAIN_MAP_OPTIONS = {
     projection: GeoNetwork.map.PROJECTION,
     maxExtent: GeoNetwork.map.EXTENT,
-    restrictedExtent: GeoNetwork.map.EXTENT,
+    restrictedExtent: new OpenLayers.Bounds(141,-37.51,153.64,-28.15),
     resolutions: GeoNetwork.map.RESOLUTIONS,
     controls: [],
     theme:null

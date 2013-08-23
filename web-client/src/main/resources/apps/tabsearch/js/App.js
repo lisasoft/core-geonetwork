@@ -181,6 +181,9 @@ GeoNetwork.app = function () {
                 var text = request.responseText;
                 var format = new OpenLayers.Format.WMC();
                 map = format.read(text, {map: GeoNetwork.map.CONTEXT_MAP_OPTIONS});
+                
+                /* Hard-code map extent for Results map - JD 22/8/2013 */
+                map.restrictedExtent = new OpenLayers.Bounds(141,-37.51,153.64,-28.15);
             }
         }
         else if (GeoNetwork.map.OWS) {

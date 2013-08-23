@@ -5,17 +5,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<General>
 		<Window width="973" height="741"/>
-		<BoundingBox minx="-180" miny="-90" maxx="180" maxy="90" SRS="EPSG:4326"/>
+		<BoundingBox minx="140.37" miny="-38.75" maxx="154.27" maxy="-26.91" SRS="EPSG:4326"/>
 		<Title/>
 	</General>
 	<LayerList>
 		<Layer queryable="0" hidden="0">
 			<Server service="OGC:WMS" version="1.1.1">
 				<OnlineResource xlink:type="simple"
-					xlink:href="http://localhost:8080/geoserver/wms?SERVICE=WMS"/>
+					xlink:href="http://oeh25703:6080/arcgis/services/Basemap/Basemap_Geonetwork_v2/MapServer/WMSServer?SERVICE=WMS"/>
 			</Server>
-			<Name>gn:world</Name>
-			<Title>World</Title>
+			<Name>0,1,2,3,4,5,6,7</Name>
+			<Title>Australia</Title>
 			<FormatList>
 				<Format current="1">image/jpeg</Format>
 			</FormatList>
@@ -32,31 +32,6 @@
 				<ol:isBaseLayer>true</ol:isBaseLayer>
 				<ol:displayInLayerSwitcher>true</ol:displayInLayerSwitcher>
 				<ol:singleTile>false</ol:singleTile>
-			</Extension>
-		</Layer>
-		<Layer queryable="0" hidden="0">
-			<Server service="OGC:WMS" version="1.1.1">
-				<OnlineResource xlink:type="simple"
-					xlink:href="http://localhost:8080/geoserver/wms?SERVICE=WMS"/>
-			</Server>
-			<Name>gn:ne_50m_boundary_da,gn:ne_50m_boundary_lines_land,gn:ne_50m_coastline</Name>
-			<Title>Country boundaries</Title>
-			<FormatList>
-				<Format current="1">image/png</Format>
-			</FormatList>
-			<StyleList>
-				<Style>
-					<Name/>
-					<Title>Default</Title>
-				</Style>
-			</StyleList>
-			<Extension>
-				<ol:tileSize width="256" height="256"/>
-				<ol:transparent>true</ol:transparent>
-				<ol:numZoomLevels>15</ol:numZoomLevels>
-				<ol:isBaseLayer>false</ol:isBaseLayer>
-				<ol:displayInLayerSwitcher>true</ol:displayInLayerSwitcher>
-				<ol:singleTile>true</ol:singleTile>
 			</Extension>
 		</Layer>
 	</LayerList>
