@@ -244,21 +244,22 @@ div.GIS-feature .ImgBg {
 
 /* Advance tabs styles */
 
-.AdvanceImgdown {
+#AdvanceImg {
 	width: 150px;
-	background-image: url("../../tabsearch/images/expanddown_icon.png");
 	background-position: left;
 	background-repeat: no-repeat;
 	padding-left: 15px;
-	color: #333333;
+}
+
+#AdvanceImg button {
+	color: #D67001;
+	font-weight: bold;
+}
+.AdvanceImgdown {
+	background-image: url("../../tabsearch/images/expanddown_icon.png");
 }
 .AdvanceImgup {
-	width: 150px;
 	background-image: url("../../tabsearch/images/collapseup_icon.png");
-	background-position: left;
-	background-repeat: no-repeat;
-	padding-left: 15px;
-	color: #333333;
 }
 #advSearchTabs[style] {
 	width: 890px !important;
@@ -395,13 +396,18 @@ ul.x-tab-strip-top {
 }
 
 /* Search and reset button styles*/
-#searchBt[style], #resetBt[style], #helpBt[style] {
+/* #searchBt[style], #resetBt[style], #helpBt[style] {
 	background-color: transparent !important;
 	background-image: none !important;
 	top: -4px !important;
+} */
+#searchBt {
+  margin-left: 6px;
+}
+#resetBt td, #AdvanceImg td {
+	background-image: none;
 }
 #resetBt[style] button, #helpBt[style] button {
-
 	text-decoration: underline;
 }
 #radiogroup label {
@@ -410,7 +416,10 @@ ul.x-tab-strip-top {
 	top: 0px;
 }
 /* Search and reset button styles*/
-#searchBt[style] button {
+#searchBt, #resetBt {
+	margin-top: -3px;
+}
+/* #searchBt[style] button {
 
 	background-color: #eeeeee;
 	border: 1px solid black;
@@ -424,9 +433,9 @@ ul.x-tab-strip-top {
 	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px
-}
+} */
 
-.x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
+/*.x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
 	background-image: url(none) !important;
 	height: 0px !important;
 }
@@ -440,7 +449,7 @@ ul.x-tab-strip-top {
 	background-color: #ff0000;
 	height: 100px;
 	width: 100px;
-}
+} */
 /* Radio button styles */
 #radiogroupID[style], #x-form-el-radiogroup {
 	width: 500px;
@@ -493,6 +502,7 @@ ul.x-tab-strip-top {
 }
 
 /* Result details */
+
 #HomePanel {
 	width: 990px;
 	height: 200px;
