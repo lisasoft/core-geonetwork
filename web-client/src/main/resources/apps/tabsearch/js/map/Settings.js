@@ -58,7 +58,7 @@ GeoNetwork.map.BACKGROUND_LAYERS = [
 //GeoNetwork.map.OWS = "../../maps/demis.xml";
 //* Default GeoServer layers
 //GeoNetwork.map.OWS = "../../maps/geoserver_localhost.xml";
-//GeoNetwork.map.CONTEXT = "../../maps/geoserver_localhost.wmc";
+GeoNetwork.map.CONTEXT = "../../maps/geoserver_localhost.wmc";
 
 GeoNetwork.map.CONTEXT_MAP_OPTIONS = {
     controls: [],
