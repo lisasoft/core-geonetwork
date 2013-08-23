@@ -273,8 +273,8 @@ GeoNetwork.form.GeometryMapField = Ext.extend(GeoExt.MapPanel, {
      */
     defaultConfig : {
         id : 'geometryMap', // FIXME : This is hardcoded 
-        width: 290,
-        height: 180,
+        width: 320, // 290,
+        height: 281, // 180,
         stateful: false,
         border : false,
         activated : false,
