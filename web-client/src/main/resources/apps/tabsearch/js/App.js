@@ -207,8 +207,8 @@ GeoNetwork.app = function () {
         
         var mapPanel = new GeoExt.MapPanel({
             id : "resultsMap",
-           height: 220,
-            width : 250,
+           height: 250, // 220, allow 5% margin north and south of NSW JD 22/8/2013
+            width : 320, // 250, allow room for a NSW map JD 22/8/2013
             stateful: false,
             map : map
         });
@@ -581,7 +581,7 @@ GeoNetwork.app = function () {
              									},
              									columns: 2
              								},
-                                            width: 305,
+                                            width: 304, // 305, otherwise panel is clipped 1px on RHS - JD 22/8/2013
              								bodyStyle : 'padding: 5px; text-align: left;',
                                             items : [
                                                       	whenAdvItems[0],
@@ -614,7 +614,7 @@ GeoNetwork.app = function () {
                                           {
                                               title : OpenLayers.i18n('Tips'),
                                               id:'TipsPanel',
-                                              width: 305,
+                                              width: 304, // 305, otherwise panel is clipped 1px on RHS - JD 22/8/2013
                                               bodyStyle : 'padding: 5px; text-align: left;',
                                               html: 'Use * to search on part of a word: <b>park*</b> searches for park, parks and parking.'
                                           }
@@ -736,7 +736,7 @@ GeoNetwork.app = function () {
         });
 //reducing bottom toolbar height - May 2013, Kalpesh
         return new Ext.Toolbar({
-            height:45,           
+            height: 25, // 45, Cut height 20 px JD 22/8/2013   
             items : [ previousAction, '|', nextAction, '|', {
                 xtype : 'tbtext',
                 text : '',
@@ -766,8 +766,8 @@ GeoNetwork.app = function () {
 
         tBar = new GeoNetwork.MetadataResultsToolbar({
          id:'MetadataResultsToolbar',
-            width:740,
-            maxWidth:740,
+            width: 670, // 740, Thinner to allow room on LHS for a NSW map JD 22/8/2013
+            maxWidth: 670, // 740, Thinner to allow room on LHS for a NSW map JD 22/8/2013
             catalogue : catalogue,
             searchBtCmp : Ext.getCmp('searchBt'),
             sortByCmp : Ext.getCmp('E_sortBy'),
@@ -1032,8 +1032,8 @@ GeoNetwork.app = function () {
                 statusBarId : 'info',
                 lang : lang,
                 hostUrl : geonetworkUrl,
-                width: 740,
-                maxWidth: 740,
+                width: 670, // 740, Thinner to allow room on LHS for a NSW map JD 22/8/2013
+                maxWidth: 670, // 740, Thinner to allow room on LHS for a NSW map JD 22/8/2013
                 mdOverlayedCmpId : 'resultsPanel',
                 adminAppUrl : geonetworkUrl + '/srv/' + lang + '/admin',
                 // Declare default store to be used for records and
@@ -1169,14 +1169,14 @@ GeoNetwork.app = function () {
                                     layout : 'hbox',
                                     width:990,
                                     maxWidth:990,
-                                    height: 580,
+                                    height: 550, // 580, Was overlapping footer when selected in Firebug JD 22/8/2013
                                     autoSize: true,
                                     items : [ {// sidebar searchform
                                         region : 'west',
                                         id : 'west',
                                         border : true,
-                                        width : 250,
-                                        height: 580,
+          							    width : 320, // 250, allow room for a NSW map JD 22/8/2013
+                                    height: 550, // 580, Was overlapping footer when selected in Firebug JD 22/8/2013
                                         items : [ resultsMap, facetsPanel  ]
                                     }, {
                                         layout : 'fit',

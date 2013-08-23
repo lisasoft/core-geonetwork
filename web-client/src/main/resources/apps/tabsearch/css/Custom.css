@@ -313,21 +313,21 @@ div.GIS-feature .ImgBg {
  background-color:#dbdbdb !important;
  }
  */
-#geometryMap[style] {
+/* #geometryMap[style] {
 	width: 290px !important;
 	height: 277px !important;
-}
+} */
 #browse-header {
 	margin: 20px 0 0 10px;
 }
-#geometryMap[style] .olMap {
+/* #geometryMap[style] .olMap {
 	width: 290px !important;
 	height: 247px !important;
 }
 
 .olMapViewport {
 	width: 290px !important;
-}
+} */
 
 /*
  #ext--gen286[style]
@@ -513,29 +513,35 @@ ul.x-tab-strip-top {
 	height: 200px;
 }
 #resultsPanel {
-	width: 740px
+	width: 670px /* 740px */
 }
 #results {
 	width: 990px !important;
-	height: 550;
-	/*position:relative;*/
-}
+	height: 550; /* *? */
+	position:relative;
+ }
 
 div#MetadataResultsToolbar, #metadataResultsView {
-	width: 740px !important;
+	width: 670px !important; /* 740px */
 }
 #metadataResultsView {
-	height: 480px !important;
+	height: 498px !important;
 }
 #ext-gen72 {
 	height: 540px !important;
 }
 
 .x-panel-bbar {
-	width: 740px;
+	width: 670px; /* 740px; */
 }
 
-.x-panel-tbar-noborder {
+table.x-toolbar-ct, .x-toolbar-ct table {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* .x-panel-tbar-noborder {
 	height: 30px !important;
 }
 .x-toolbar-layout-ct {
@@ -561,7 +567,7 @@ div#MetadataResultsToolbar, #metadataResultsView {
 }
 .toolbaralign {
 	vertical-align: top !important;
-}
+} */
 .md-view ul li * h1 {
 	font-weight: bold !important;
     background: none;
