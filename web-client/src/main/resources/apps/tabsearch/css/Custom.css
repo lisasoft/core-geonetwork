@@ -106,6 +106,7 @@ div.GIS-feature h3 {
 	font-size: 1.05em;
 	margin: 20px 0 3px;
 	background: url(../images/oeh/bgFeatureH3.png) left 4px no-repeat;
+	color: #D67001; /* To overcome change to stylesheet ~3/9/2013 */
 }
 #title-arrow {
 	margin-right: 5px;
