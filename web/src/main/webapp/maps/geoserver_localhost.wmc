@@ -12,7 +12,7 @@
 		<Layer queryable="0" hidden="0">
 			<Server service="OGC:WMS" version="1.1.1">
 				<OnlineResource xlink:type="simple"
-					xlink:href="http://oeh25703:6080/arcgis/services/Basemap/Basemap_Geonetwork_v2/MapServer/WMSServer?SERVICE=WMS"/>
+					xlink:href="http://oeh25703:6080/arcgis/services/Basemap/Basemap_Geonetwork/MapServer/WMSServer?SERVICE=WMS"/>
 			</Server>
 			<Name>0,1,2,3,4,5,6,7</Name>
 			<Title>Australia</Title>
