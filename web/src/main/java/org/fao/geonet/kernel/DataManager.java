@@ -151,7 +151,7 @@ public class DataManager {
 
 
         // get all metadata from DB
-        Element result = dbms.select("SELECT id, changeDate FROM Metadata_PUBLIC ORDER BY id ASC");
+        Element result = dbms.select("SELECT id, changeDate FROM Metadata ORDER BY id ASC");
 
         if(Log.isDebugEnabled(Geonet.DATA_MANAGER))
             Log.debug(Geonet.DATA_MANAGER, "DB CONTENT:\n'"+ Xml.getString(result) +"'");
@@ -442,7 +442,7 @@ public class DataManager {
             int id$ = Integer.valueOf(id);
 
             // get metadata, extracting and indexing any xlinks
-            Element md   = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata_PUBLIC", id, true);
+            Element md   = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, true);
             if (xmlSerializer.resolveXLinks()) {
                 List<Attribute> xlinks = Processor.getXLinks(md);
                 if (xlinks.size() > 0) {
@@ -464,7 +464,7 @@ public class DataManager {
 
             // get metadata table fields
             String query = "SELECT schemaId, createDate, changeDate, source, isTemplate, root, " +
-                    "title, uuid, isHarvested, owner, groupOwner, popularity, rating, displayOrder,fileSize FROM Metadata_PUBLIC WHERE id = ?";
+                    "title, uuid, isHarvested, owner, groupOwner, popularity, rating, displayOrder,fileSize FROM Metadata WHERE id = ?";
 
             Element rec = dbms.select(query, id$).getChild("record");
 
@@ -756,7 +756,7 @@ public class DataManager {
      * @throws Exception
      */
     public String getMetadataSchema(Dbms dbms, String id) throws Exception {
-        List list = dbms.select("SELECT schemaId FROM Metadata_PUBLIC WHERE id = ?", Integer.valueOf(id)).getChildren();
+        List list = dbms.select("SELECT schemaId FROM Metadata WHERE id = ?", Integer.valueOf(id)).getChildren();
 
         if (list.size() == 0)
             throw new IllegalArgumentException("Metadata not found for id : " +id);
@@ -1092,7 +1092,7 @@ public class DataManager {
      */
     @SuppressWarnings("unchecked")
     public List<Element> getMetadataByHarvestingSource(Dbms dbms, String harvestingSource) throws Exception {
-        String query = "SELECT id FROM Metadata_PUBLIC WHERE harvestUuid=?";
+        String query = "SELECT id FROM Metadata WHERE harvestUuid=?";
         return dbms.select(query, harvestingSource).getChildren();
     }
 
@@ -1122,7 +1122,7 @@ public class DataManager {
      * @throws Exception
      */
     public String getMetadataId(Dbms dbms, String uuid) throws Exception {
-        String query = "SELECT id FROM Metadata_PUBLIC WHERE uuid=?";
+        String query = "SELECT id FROM Metadata WHERE uuid=?";
 
         List list = dbms.select(query, uuid).getChildren();
 
@@ -1142,7 +1142,7 @@ public class DataManager {
      * @throws Exception
      */
     public String getMetadataUuid(Dbms dbms, String id) throws Exception {
-        String query = "SELECT uuid FROM Metadata_PUBLIC WHERE id=?";
+        String query = "SELECT uuid FROM Metadata WHERE id=?";
 
         List list = dbms.select(query, Integer.valueOf(id)).getChildren();
 
@@ -1162,7 +1162,7 @@ public class DataManager {
      * @throws Exception
      */
     public String getMetadataTemplate(Dbms dbms, String id) throws Exception {
-        String query = "SELECT istemplate FROM Metadata_PUBLIC WHERE id=?";
+        String query = "SELECT istemplate FROM Metadata WHERE id=?";
 
         List list = dbms.select(query, Integer.valueOf(id)).getChildren();
 
@@ -1184,7 +1184,7 @@ public class DataManager {
     public MdInfo getMetadataInfo(Dbms dbms, String id) throws Exception {
         String query = "SELECT id, uuid, schemaId, isTemplate, isHarvested, createDate, "+
                 "       changeDate, source, title, root, owner, groupOwner, displayOrder, fileSize "+
-                "FROM   Metadata_PUBLIC "+
+                "FROM   Metadata "+
                 "WHERE id=?";
 
         List list = dbms.select(query, Integer.valueOf(id)).getChildren();
@@ -1469,7 +1469,7 @@ public class DataManager {
                                  SerialFactory sf, String source, int owner,
                                  String parentUuid, String isTemplate, boolean fullRightsForGroup) throws Exception {
         int iTemplateId = Integer.valueOf(templateId);
-        String query = "SELECT schemaId, data FROM Metadata_PUBLIC WHERE id=?";
+        String query = "SELECT schemaId, data FROM Metadata WHERE id=?";
         List listTempl = dbms.select(query, iTemplateId).getChildren();
 
         if (listTempl.size() == 0) {
@@ -1482,7 +1482,7 @@ public class DataManager {
         String uuid   = UUID.randomUUID().toString();
 
         //--- generate a new metadata id
-        int serial = sf.getSerial(dbms, "Metadata_PUBLIC");
+        int serial = sf.getSerial(dbms, "Metadata");
 
         // Update fixed info for metadata record only, not for subtemplates
         Element xml = Xml.loadString(data, false);
@@ -1602,7 +1602,7 @@ public class DataManager {
     public Element getMetadata(Dbms dbms, String id) throws Exception {
         boolean doXLinks = xmlSerializer.resolveXLinks();
         String table="";
-        Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata_PUBLIC", id, false);
+        Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, false);
         if (md == null) return null;
         md.detach();
         return md;
@@ -1623,7 +1623,7 @@ public class DataManager {
     public Element getMetadata(ServiceContext srvContext, String id, boolean forEditing, boolean withEditorValidationErrors, boolean keepXlinkAttributes) throws Exception {
         Dbms dbms = (Dbms) srvContext.getResourceManager().open(Geonet.Res.MAIN_DB);
         boolean doXLinks = xmlSerializer.resolveXLinks();
-       	Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata_PUBLIC", id, false);
+       	Element md = xmlSerializer.selectNoXLinkResolver(dbms, "Metadata", id, false);
         if (md == null) return null;
 
         String version = null;
@@ -1678,7 +1678,7 @@ public class DataManager {
      */
     public boolean existsMetadata(Dbms dbms, int id) throws Exception {
         //FIXME : should use lucene
-        List list = dbms.select("SELECT id FROM Metadata_PUBLIC WHERE id=?", Integer.valueOf(id)).getChildren();
+        List list = dbms.select("SELECT id FROM Metadata WHERE id=?", Integer.valueOf(id)).getChildren();
         return list.size() != 0;
     }
 
@@ -1692,7 +1692,7 @@ public class DataManager {
     public boolean existsMetadataUuid(Dbms dbms, String uuid) throws Exception {
         //FIXME : should use lucene
 
-        List list = dbms.select("SELECT uuid FROM Metadata_PUBLIC WHERE uuid=?",uuid).getChildren();
+        List list = dbms.select("SELECT uuid FROM Metadata WHERE uuid=?",uuid).getChildren();
         return list.size() != 0;
     }
 
@@ -2134,7 +2134,7 @@ public class DataManager {
      * @throws Exception
      */
     public Element getThumbnails(Dbms dbms, String id) throws Exception {
-        Element md = xmlSerializer.select(dbms, "Metadata_PUBLIC", id);
+        Element md = xmlSerializer.select(dbms, "Metadata", id);
 
         if (md == null)
             return null;
@@ -2323,7 +2323,7 @@ public class DataManager {
      */
     private void manageCommons(Dbms dbms, ServiceContext context, String id, Element env, String styleSheet) throws Exception {
         Lib.resource.checkEditPrivilege(context, id);
-        Element md = xmlSerializer.select(dbms, "Metadata_PUBLIC", id);
+        Element md = xmlSerializer.select(dbms, "Metadata", id);
 
         if (md == null) return;
 
@@ -2492,7 +2492,7 @@ public class DataManager {
     //--------------------------------------------------------------------------
 
     public boolean isUserMetadataOwner(Dbms dbms, int userId) throws Exception {
-        String query = "SELECT id FROM Metadata_PUBLIC WHERE owner=?";
+        String query = "SELECT id FROM Metadata WHERE owner=?";
         Element elRes = dbms.select(query, userId);
         return (elRes.getChildren().size() != 0);
     }
@@ -2771,7 +2771,7 @@ public class DataManager {
             Log.debug(Geonet.DATA_MANAGER, "getUnnotifiedMetadata start");
         Map<String,Element> unregisteredMetadata = new HashMap<String,Element>();
 
-        String query = "select m.id, m.uuid, m.data, mn.notifierId, mn.action from metadata_PUBLIC m left join metadatanotifications mn on m.id = mn.metadataId\n" +
+        String query = "select m.id, m.uuid, m.data, mn.notifierId, mn.action from metadata m left join metadatanotifications mn on m.id = mn.metadataId\n" +
                 "where (mn.notified is null or mn.notified = 'n') and (mn.action <> 'd') and (mn.notifierId is null or mn.notifierId = ?)";
         List<Element> results = dbms.select(query, Integer.valueOf(notifierId)).getChildren();
         if(Log.isDebugEnabled(Geonet.DATA_MANAGER))
@@ -2999,7 +2999,7 @@ public class DataManager {
         Dbms dbms = (Dbms) context.getResourceManager().open(Geonet.Res.MAIN_DB);
 
         String query ="SELECT schemaId, createDate, changeDate, source, isTemplate, title, "+
-                "uuid, isHarvested, harvestUuid, popularity, rating, owner, displayOrder,fileSize FROM Metadata_PUBLIC WHERE id = ?";
+                "uuid, isHarvested, harvestUuid, popularity, rating, owner, displayOrder,fileSize FROM Metadata WHERE id = ?";
 
         // add Metadata table infos: schemaId, createDate, changeDate, source,
         Element rec = dbms.select(query, Integer.valueOf(id)).getChild("record");

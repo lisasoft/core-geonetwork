@@ -111,6 +111,7 @@ public class request_OEH implements Service
 		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE);
 		String _IsTargetNews= Util.getParam(params, Params._ISTARGETNEWS);
 		String _IsTargetUpdate=Util.getParam(params, Params._ISTARGETUPDATE);
+		String _dataInfo=Util.getParam(params, Params._DATAINFO);
 		Dbms dbms = (Dbms) context.getResourceManager().open(Geonet.Res.MAIN_DB);
 		
 		String _query="INSERT INTO [metadataDownloadRequestDataInfo] ([fname],[nameUser],[org],[orgType],[email],[ReqGeoExtentofData],[intendedUsage],[isTargetedforNewsSurveys],[isTargetedforUpdate],[downloadDate],[requestDate])"+
@@ -121,8 +122,8 @@ public class request_OEH implements Service
 		GeonetContext  gc = (GeonetContext) context.getHandlerContext(Geonet.CONTEXT_NAME);
 		SettingManager sm = gc.getSettingManager();
 
-		String uuid		= Util.getParam(params,Params.UUID);
-		String title=Util.getParam(params,Params.TITLE);
+		//String uuid		= Util.getParam(params,Params.UUID);
+		//String title=Util.getParam(params,Params.TITLE);
 		
 		String host = sm.getValue("system/feedback/mailServer/host");
 		String port = sm.getValue("system/feedback/mailServer/port");
@@ -135,14 +136,15 @@ public class request_OEH implements Service
 		String dateNow = formatter.format(currentDate.getTime());
 		
 		String emailContent="Request Date Time: "+ dateNow+"\n"
-				+ "Metadata uuid: "+uuid+"\n"
-				+ "Metadata title: "+title+"\n"
+				+ "Metadata info: "+_dataInfo+"\n"
 				+ "Name: " +_nameUser+"\n"
 				+ "Download Email: "+_email+"\n"
 				+ "Required Extent: "+_reqExtent+"\n"
 				+ "Organisation: "+_org+"\n"
 				+ "Organisation Type: "+_orgType+"\n"
-				+ "Intended Usage: "+_intendedUsage;
+				+ "Intended Usage: "+_intendedUsage+"\n"
+				+ "Send News and Surveys: " +_IsTargetNews+"\n"
+				+ "Send Update Email: "+_IsTargetUpdate;
 		
 		MailSender sender = new MailSender(context);
 		sender.send(host, Integer.parseInt(port), _email, _nameUser +" ("+_org+")", to, null, "New Data Request", emailContent);

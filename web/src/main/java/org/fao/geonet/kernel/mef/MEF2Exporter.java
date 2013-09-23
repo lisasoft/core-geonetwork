@@ -115,10 +115,10 @@ class MEF2Exporter {
 
 		//Element record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);
 
-		//edited by SR 4/10/2012 to separate Metadata from Metadata_PUBLIC
+		
 		Element record=null;
 		if (context.getUserSession().getUserId()==null){
-		record = MEFLib.retrieveMetadata_PUBLIC(context, dbms, uuid, resolveXlink, removeXlinkAttribute);}
+		record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);}
 		else{record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);}
 				
 		String id = record.getChildText("id");
