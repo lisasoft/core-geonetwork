@@ -157,6 +157,8 @@ public final class Params {
     public static final String _INTENDEDUSAGE  = "IntendedUsage";
     public static final String _ISTARGETNEWS = "IsTargetedforNewsandSurveys";
     public static final String _ISTARGETUPDATE  = "IsTargetedforUpdate";
+    public static final String _DATAINFO  = "dataInfo";
+    
     
 	
 	

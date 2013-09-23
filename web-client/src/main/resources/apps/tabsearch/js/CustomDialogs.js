@@ -194,9 +194,14 @@ OEH.Popup.show = function(type, url, options) {
 
 								// Only fix download URL for downloads, not other popups - JD 2013-08-10
 								if (OEH.Popup.DOWNLOAD_CC == type || OEH.Popup.DOWNLOAD_OEH == type) {
+									var _strcmbOrg=formPanel.getForm().findField("cmbOrg").getValue();
+									var _strEmail=formPanel.getForm().findField("txtEmailsDownLoad").getValue();
+									var _strIntendedUsage=formPanel.getForm().findField("txtIntendedUseDownLoad").getValue();
+									var _strtarget=formPanel.getForm().findField("chkIsTargetedforNewsandSurveysDownLoad").getValue();
+									
 									url=this.catalogue.services.fileDownload_OEH+"?fname="+url
-									+"&orgType="+cmbOrg.value+"&email="+txtEmailsDownLoad.value+"&IntendedUsage="
-									+txtIntendedUseDownLoad.value+"&IsTargetedforNewsandSurveys="+chkIsTargetedforNewsandSurveysDownLoad.value;
+									+"&orgType="+_strcmbOrg+"&email="+_strEmail+"&IntendedUsage="
+									+_strIntendedUsage+"&IsTargetedforNewsandSurveys="+_strtarget;
 								}
 
 								if (OEH.Popup.SERVICE_WMS == type) {
@@ -464,10 +469,20 @@ OEH.Popup.show = function(type, url, options) {
 									if (formPanel.getForm().isValid()) {
 										//TODO: LISAsoft - Submit request and save log details -logging
 										//this is where we need to save to logging db table. We also need to make the request.
-										openUrl(this.catalogue.services.request_OEH+"?uuid=NULL&title=NULL&nameUser="+txtNameRequest.value
-										+"&org="+txtOrg.value+"&orgType="+cmbOrg.value+"&email="+txtEmailRequest.value+"&ReqGeoExtentofData="+txtRequirements.value+"&IntendedUsage="
-										+txtIntendedUseRequest.value+"&IsTargetedforNewsandSurveys="+chkIsTargetedForNewsandSurveysRequest.value
-										+"&IsTargetedforUpdate="+chkIsTargetedForUpdate.value);
+										
+										var _txtNameRequest=formPanel.getForm().findField("txtNameRequest").getValue();
+										var _txtOrg=formPanel.getForm().findField("txtOrg").getValue();
+										var _cmbOrg=formPanel.getForm().findField("cmbOrg").getValue();
+										var _txtEmailRequest=formPanel.getForm().findField("txtEmailRequest").getValue();
+										var _txtRequirements=formPanel.getForm().findField("txtRequirements").getValue();
+										var _txtIntendedUseRequest=formPanel.getForm().findField("txtIntendedUseRequest").getValue();
+										var _chkIsTargetedForNewsandSurveysRequest=formPanel.getForm().findField("chkIsTargetedForNewsandSurveysRequest").getValue();
+										var _chkIsTargetedForUpdate=formPanel.getForm().findField("chkIsTargetedForUpdate").getValue();
+										
+										openUrl(this.catalogue.services.request_OEH+"?dataInfo="+url+"&nameUser="+_txtNameRequest
+										+"&org="+_txtOrg+"&orgType="+_cmbOrg+"&email="+_txtEmailRequest+"&ReqGeoExtentofData="+_txtRequirements+"&IntendedUsage="
+										+_txtIntendedUseRequest+"&IsTargetedforNewsandSurveys="+_chkIsTargetedForNewsandSurveysRequest
+										+"&IsTargetedforUpdate="+_chkIsTargetedForUpdate);
 										
 										window.close();	
 									}

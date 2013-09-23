@@ -542,7 +542,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
         Ext.each(records, function (r) {// records each metadata
             var links = r.get('links'),
                 id = r.get('id'),
-                uuid = r.get('uuid');
+                uuid = r.get('uuid'),
+                _datainfo=r.get('title')+"-"+uuid,//for large file downloads
             	_fSz=r.json.fileSize;
             	            
             if (links.length > 0) {
@@ -653,7 +654,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                                             	var isLargeFile = false; //This variable will be set using the information and call described above.
                                             	if (record.get('href')=="mailto:data.broker@environment.nsw.gov.au") {
                                             		isLargeFile=true;
-                                                	OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);                                            		
+                                                	//OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, null);
+                                            		OEH.Popup.show(OEH.Popup.DOWNLOAD_LF, _datainfo);
                                             	} else {
 													var downloadUrl = record.get('href');
 													var license = r.data.constraints;
