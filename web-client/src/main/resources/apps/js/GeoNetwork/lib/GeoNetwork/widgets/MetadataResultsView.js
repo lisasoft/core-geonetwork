@@ -544,8 +544,8 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
                 id = r.get('id'),
                 uuid = r.get('uuid'),
                 _datainfo=r.get('title')+"-"+uuid,//for large file downloads
-            	_fSz=r.json.fileSize;
-            	            
+                _fSz=(r.json.fileSize != undefined)?r.json.fileSize:"N/A";
+                
             if (links.length > 0) {
                 var div = Ext.query('#md-links-' + id, view.el.dom.body),
                     el = Ext.get(div[0]);

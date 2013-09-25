@@ -29,6 +29,11 @@
 
   <!-- FIXME set common dependencies to the root pom.xml  -->
   <dependencies>
+  <dependency>
+  <groupId>com.microsoft.sqlserver</groupId>
+  <artifactId>sqljdbc4</artifactId>
+  <version>4.0</version>
+  </dependency> 
 	  <dependency>
       	<groupId>net.sf.ehcache</groupId>
       	<artifactId>ehcache-core</artifactId>
