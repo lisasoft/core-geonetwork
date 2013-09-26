@@ -123,10 +123,7 @@
                 <include>${project.build.directory}/classes/apps/js/ext-ux/MultiselectItemSelector-3.0/Multiselect.js</include>
                 <include>${project.build.directory}/classes/apps/js/ext-ux/LightBox/lightbox.js</include>
                 <include>${project.build.directory}/classes/apps/js/ext-ux/SuperBoxSelect/SuperBoxSelect.js</include>
-
                 <include>${project.build.directory}/classes/apps/js/proj4js-compressed.js</include>
-
-
                 <include>${project.build.directory}/classes/apps/js/OpenLayers/lib/OpenLayers/SingleFile.js</include>
                 <include>${project.build.directory}/classes/apps/js/OpenLayers/lib/OpenLayers.js</include>
                 <include>${project.build.directory}/classes/apps/js/OpenLayers/lib/OpenLayers/BaseTypes.js</include>
@@ -472,6 +469,9 @@
                 <include>${project.build.directory}/classes/apps/tabsearch/js/map/MapApp.js</include>
                 <include>${project.build.directory}/classes/apps/tabsearch/js/Shortcuts.js</include>
                 <include>${project.build.directory}/classes/apps/tabsearch/js/App.js</include>
+                <include>${project.build.directory}/classes/apps/tabsearch/js/CustomSearchFormTools.js</include>
+                <include>${project.build.directory}/classes/apps/tabsearch/js/Custom.js</include>
+                <include>${project.build.directory}/classes/apps/tabsearch/js/CustomDialogs.js</include>
               </includes>
             </aggregation>
 
