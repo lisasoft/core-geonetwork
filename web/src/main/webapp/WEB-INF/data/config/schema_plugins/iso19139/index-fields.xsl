@@ -87,6 +87,11 @@
             <xsl:apply-templates mode="index" select="*"/>
         </xsl:template>
             -->
+           
+        <xsl:template mode="//gmd:title/gco:CharacterString">
+        <Field name="title" string="{string(.)}" store="false" index="true"/>
+        <Field name="any" string="{string(.)}" store="false" index="true"/>
+    </xsl:template>
 	<xsl:template mode="index" match="*|@*">
 		<xsl:apply-templates mode="index" select="*|@*"/>
 	</xsl:template>
@@ -123,6 +128,7 @@
 	
 				<xsl:for-each select="gmd:title/gco:CharacterString">
 					<Field name="title" string="{string(.)}" store="true" index="true"/>
+					<Field name="any" string="{string(.)}" store="true" index="true"/>
                     <!-- not tokenized title for sorting -->
                     <Field name="_title" string="{string(.)}" store="false" index="true"/>
 				</xsl:for-each>
