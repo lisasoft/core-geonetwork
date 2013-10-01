@@ -104,10 +104,10 @@ public class Insert_OEH implements Service
 	{
 		//by SR 12 Aug 2013 - log the metadata user download info to the db
 		
-		String _fname=Util.getParam(params, Params._FNAME);
-		String _orgType=Util.getParam(params, Params._ORGTYPE);
-		String _email=Util.getParam(params, Params._EMAIL);
-		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE);
+		String _fname=Util.getParam(params, Params._FNAME,"");
+		String _orgType=Util.getParam(params, Params._ORGTYPE,"--- Please select ---");
+		String _email=Util.getParam(params, Params._EMAIL,"");
+		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE,"");
 		String _IsTargetNews= Util.getParam(params, Params._ISTARGETNEWS);
 		Dbms dbms = (Dbms) context.getResourceManager().open(Geonet.Res.MAIN_DB);
 				
