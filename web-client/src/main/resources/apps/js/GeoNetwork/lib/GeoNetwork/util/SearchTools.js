@@ -102,9 +102,13 @@ GeoNetwork.util.SearchTools = {
                     }
                     
                     if (cat && isCatalogueMdStore) {
-                        cat.updateStatus(currentRecords.from + '-' + currentRecords.to +
+                    	if (summary && summary.count > 0) {
+                    		cat.updateStatus(currentRecords.from + '-' + currentRecords.to +
                                             OpenLayers.i18n('resultBy') +
                                             summary.count);
+                    	} else {
+                    		cat.updateStatus('No records found.');
+                    	}
                     }
                 }
                 
