@@ -103,15 +103,15 @@ public class request_OEH implements Service
 	{
 		//by SR 12 Aug 2013 - log the metadata user request info to the db
 		
-		String _nameUser=Util.getParam(params, Params._NAMEUSER);
-		String _org=Util.getParam(params, Params._ORG);
-		String _orgType=Util.getParam(params, Params._ORGTYPE);
-		String _email=Util.getParam(params, Params._EMAIL);
-		String _reqExtent=Util.getParam(params, Params._REQGEOEXTENT);
-		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE);
+		String _nameUser=Util.getParam(params, Params._NAMEUSER,"");
+		String _org=Util.getParam(params, Params._ORG,"");
+		String _orgType=Util.getParam(params, Params._ORGTYPE,"--- Please select ---");
+		String _email=Util.getParam(params, Params._EMAIL,"");
+		String _reqExtent=Util.getParam(params, Params._REQGEOEXTENT,"");
+		String _intendedUsage=Util.getParam(params, Params._INTENDEDUSAGE,"");
 		String _IsTargetNews= Util.getParam(params, Params._ISTARGETNEWS);
 		String _IsTargetUpdate=Util.getParam(params, Params._ISTARGETUPDATE);
-		String _dataInfo=Util.getParam(params, Params._DATAINFO);
+		String _dataInfo=Util.getParam(params, Params._DATAINFO,"");
 		Dbms dbms = (Dbms) context.getResourceManager().open(Geonet.Res.MAIN_DB);
 		
 		String _query="INSERT INTO [metadataDownloadRequestDataInfo] ([fname],[nameUser],[org],[orgType],[email],[ReqGeoExtentofData],[intendedUsage],[isTargetedforNewsSurveys],[isTargetedforUpdate],[downloadDate],[requestDate])"+
