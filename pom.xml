@@ -883,6 +883,16 @@
   <!--     Maven repository is implicit and doesn't need to be specified. -->
   <!-- ================================================================== -->
   <repositories>
+      <repository>
+      <id>Apache</id>
+      <url>  http://repo.maven.apache.org/maven2/</url>
+    </repository>
+
+  		    <repository>
+      <id>org.mapfish</id>
+      <url>http://dev.mapfish.org/maven/repository</url>
+    </repository>
+ 
     <repository>
       <snapshots>
         <enabled>false</enabled>
