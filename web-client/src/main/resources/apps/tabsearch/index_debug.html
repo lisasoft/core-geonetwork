@@ -1,103 +1,892 @@
 <!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>GeoNetwork</title>
+	<head>
+		<title>Maps and data | NSW Environment &amp; Heritage</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="icon" type="image/gif" href="../../images/logos/favicon.gif" />
-    <link href="../../srv/en/rss.latest?georss=gml" rel="alternate" type="application/rss+xml"
-          title="GeoNetwork opensource GeoRSS | Recent Changes"/>
-    <link href="../../srv/en/portal.opensearch" rel="search"
-          type="application/opensearchdescription+xml" title="GeoNetwork"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+		<link rel="alternate stylesheet" type="text/css" href="http://goulbwb75/css/decc/font_large.css" title="A" />
+		<link rel="alternate stylesheet" type="text/css" href="http://goulbwb75/css/decc/font_original.css" title="A-" />
+		<link rel="alternate stylesheet" type="text/css" href="http://goulbwb75/css/decc/font_small.css" title="A--" />
+		<link rel="stylesheet" type="text/css" href="http://goulbwb75/css/decc/styles_header.css" />
+		<link rel="stylesheet" type="text/css" href="http://goulbwb75/css/decc/styles_v3.css" />
+		<link rel="stylesheet" type="text/css" href="http://goulbwb75/css/decc/styles_OEHfooter.css" />
 
-    <link rel="stylesheet" type="text/css" href="../js/ext/resources/css/ext-all.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/ext/resources/css/xtheme-gray.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/ext-ux/Rating/rating.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/ext-ux/SuperBoxSelect/superboxselect.css" />
-    <link rel="stylesheet" type="text/css" href="../js/ext-ux/LightBox/lightbox.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/ext-ux/FileUploadField/file-upload.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/ext-ux/MultiselectItemSelector-3.0/Multiselect.css"/>
-    <link rel="stylesheet" type="text/css" href="css/gndefault.css"/>
-    <link rel="stylesheet" type="text/css" href="css/gnmapdefault.css"/>
-    <link rel="stylesheet" type="text/css" href="../js/OpenLayers/theme/default/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/gnmetadatadefault.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/metadata-view.css"/>
+		<link rel="stylesheet" type="text/css" href="http://goulbwb75/css/decc/left_menu_v2.css" />
+		<link rel="stylesheet" href="http://goulbwb75/css/decc/jquery.lightbox-0.5-090504.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="http://goulbwb75/css/decc/global_menu_v2.css" />
 
-    <style>
+		<link rel="stylesheet" type="text/css" media="print" href="http://goulbwb75/css/decc/print_v2.css" />
 
-        body,p,td,li,th {font-family:arial;}
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery-1.7.2.min.js">
+			/* jQuery */
+		</script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery.treeview.pack-090504.js">
+			/* jQuery Menu Plugin */
+		</script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery.hoverIntent.pack-090504.js">
+			/* jQuery Menu Plugin */
+		</script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery.superfish.pack-090504.js">
+			/* jQuery Menu Plugin */
+		</script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery.lightbox-0.5.pack-090504.js">
+			/* jQuery Lightbox Plugin */
+		</script>
+		<!--[if IE 6]>
+		<script type="text/javascript" charset="utf-8" src="/js/decc/jquery/jquery.bgiframe.pack-090504.js">/* jQuery IE6 Fix */</script>
+		<![endif]-->
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/main-090504.js">
+			/* Main Script */
+		</script>
 
-        #actions li {
-            margin:.3em;
-        }
-        #actions li a {
-            color:#666688;
-            text-decoration:none;
-        }
-        .sb {
-            width:140px;height:24px;font-size:18px;color:#999999;
-        }
-        .cntLrg, .cntLrg td{
-            text-align:center;font-size:18px;
-        }
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/resize.js"></script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/jquery/jquery.jcarousel.js"></script>
+		<script type="text/javascript" charset="utf-8" src="http://goulbwb75/js/decc/general.js"></script>
+		<!--[if IE]>
+		<link rel="stylesheet" href="/css/decc/ie_v2.css" type="text/css" />
+		<![endif]-->
 
-        #GNtabs .x-tab-right {padding-left:12px !important}
-        #GNtabs .x-tab-left{padding-right:12px !important}
-        #GNtabs .x-tab-strip-text{font-size:14px  !important;padding:6px 0 !important}
-    </style>
-</head>
-<body>
-<div id="loading-mask"></div>
-<div id="loading">
-    <div class="loading-indicator">Loading ...</div>
-</div>
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" href="/css/decc/ie6.css" type="text/css" />
+		<![endif]-->
 
-<div id="header">
-    <div id="title" class="mn-main"> </div>
-</div>
-<div id="mn-top">
-    <div class="pipe"><a href="javascript:void(app.getHelpWindow().show());">Help</a></div>
-    <div class="pipe" id="lang-form"></div>
-    <div class="pipe" id="login-form"></div>
-        </div>
+		<!--[if gte IE 5.5]>
+		<link rel="stylesheet" href="/css/decc/ie5.css" type="text/css" />
+		<![endif]-->
 
-<div id="tag"></div>
+		<link rel="home" title="Home" href="http://www.environment.nsw.gov.au/" />
+		<link rel="copyright" title="Copyright" href="http://www.environment.nsw.gov.au/help/copyright.htm" />
+		<link rel="help" title="Help" href="http://www.environment.nsw.gov.au/help/index.htm" />
+		<link rel="search" title="Search" href="http://www.environment.nsw.gov.au/Search/QuickSearch.aspx" />
 
-<div id="shortcut" style="display:none;"></div>
+		<link rel="icon" type="image/gif" href="../../images/logos/favicon.gif" />
+		<link href="../../srv/en/rss.latest?georss=gml" rel="alternate" type="application/rss+xml"
+		title="GeoNetwork opensource GeoRSS | Recent Changes"/>
+		<link href="../../srv/en/portal.opensearch" rel="search"
+		type="application/opensearchdescription+xml" title="GeoNetwork"/>
 
-    <script type="text/javascript" src="../js/ext/adapter/ext/ext-base.js"></script>
-    <script type="text/javascript" src="../js/ext/ext-all.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/Rating/RatingItem.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/FileUploadField/FileUploadField.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/TwinTriggerComboBox/TwinTriggerComboBox.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/DateTime/DateTime.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/RowExpander/RowExpander.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/MultiselectItemSelector-3.0/DDView.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/MultiselectItemSelector-3.0/Multiselect.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/SuperBoxSelect/SuperBoxSelect.js"></script>
-    <script type="text/javascript" src="../js/ext-ux/LightBox/lightbox.js"></script>
+		<link rel="stylesheet" type="text/css" href="../js/ext/resources/css/ext-all.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/ext/resources/css/xtheme-gray.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/ext-ux/Rating/rating.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/ext-ux/SuperBoxSelect/superboxselect.css" />
+		<link rel="stylesheet" type="text/css" href="../js/ext-ux/LightBox/lightbox.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/ext-ux/FileUploadField/file-upload.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/ext-ux/MultiselectItemSelector-3.0/Multiselect.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gndefault.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gnmapdefault.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gnmetadatadefault.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/OpenLayers/theme/default/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/metadata-view.css"/>
+		<link rel="Stylesheet" type="text/css" href="css/Custom.css" />
+		<link rel="Stylesheet" type="text/css" href="css/CustomDialogs.css" />
 
+		<style>
+			body, p, td, li, th {
+				font-family: arial;
+			}
 
-    <script type="text/javascript" src="../js/proj4js-compressed.js"></script>
-    <script type="text/javascript" src="../js/OpenLayers/lib/OpenLayers.js"></script>
-    <script type="text/javascript" src="../js/GeoExt/lib/overrides/override-ext-ajax.js"></script>
-    <script type="text/javascript" src="../js/GeoExt/lib/GeoExt.js"></script>
-    <script type="text/javascript" src="../js/GeoExt-ux/LayerOpacitySliderPlugin/LayerOpacitySliderPlugin.js"></script>
-<!-- script type="text/javascript" src="../js/GeoExt-ux/GeoNamesSearchCombo/GeoNamesSearchCombo.js"></script -->
+			#actions li {
+				margin: .3em;
+			}
+			#actions li a {
+				color: #666688;
+				text-decoration: none;
+			}
+			.sb {
+				width: 140px;
+				height: 24px;
+				font-size: 18px;
+				color: #999999;
+			}
+			.cntLrg, .cntLrg td {
+				text-align: center;
+				font-size: 18px;
+			}
 
-    <script type="text/javascript" src="../js/GeoNetwork/lib/GeoNetwork.js"></script>
+			#GNtabs .x-tab-right {
+				padding-left: 12px !important
+			}
+			#GNtabs .x-tab-left {
+				padding-right: 12px !important
+			}
+			#GNtabs .x-tab-strip-text {
+				font-size: 12px !important;
+				padding: 6px 0 !important
+			}
+		</style>
+	</head>
+	<body>
 
-    <script type="text/javascript" src="js/Settings.js"></script>
-<script type="text/javascript" src="js/Shortcuts.js"></script>
-    <script type="text/javascript" src="js/map/Settings.js"></script>
-    <script type="text/javascript" src="js/map/MapApp.js"></script>
-<script type="text/javascript" src="js/App.js"></script>
-<script type="text/javascript" src="js/CustomDialogs.js"></script>
+		<div id="cim_page-wrapper">
+			<div id="topContainer">
+				<div id="topContainerMin">
+					<!-- start incDECCbanner_v2.inc-->
+					<div id="topHead">
+						<div id="department_logo">
+							<a href="http://www.nsw.gov.au"><img src="http://www.environment.nsw.gov.au/images/decc/government_logo.gif" width="82" height="62" alt="Link to NSW Government home page" /></a>
+							<a href="/"><img src="http://www.environment.nsw.gov.au/images/decc/depttitle.gif" width="162" height="62" alt="Link to Office of Environment and Heritage home page" /></a>
+						</div>
 
-<!--<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript">
-    google.load("language", "1");
-</script>-->
-</body>
+						<div id="links">
+							<a href="#content">Skip links</a>&nbsp;|&nbsp;<a href="/contact/">Contact us</a>&nbsp;|&nbsp;<a href="/help/">Help</a>&nbsp;|&nbsp;<a href="http://www.environment.nsw.gov.au/search/subjectindex.htm">A-Z index</a>
+							<br />
+							<form method="post" id="frmQuickSearchScreen" action="http://www.environment.nsw.gov.au/Search/QuickSearch.aspx">
+								<input name="quickKeyword" title="Keyword Search" type="text" placeholder="Keyword Search" id="quickKeyword" />
+								<input name="StartPage" value="1" type="hidden">
+								<input name="imgSearch" type="image" class="go" id="imgSearch" value="Submit" src="http://www.environment.nsw.gov.au/images/decc/keywordGo.gif" alt="Submit" />
+								<input type="hidden" name="as_fid" value="UKJl6zDTS1rhbTbZtNop">
+								<input type="hidden" name="as_fid" value="/FHhCDxeGxg7UrqAZ2CM" />
+							</form>
+						</div>
+						<div id="quick-links">
+							<select class="quick-link">
+								<option value="">Quicklinks</option>
+								<option value="/prpoeoapp/">Search the POEO public register</option>
+								<option value="/noise/neighbourhoodnoise.htm">Dealing with neighbourhood noise</option>
+								<option value="/noise/nglg.htm">Noise guide for local government</option>
+								<option value="/asmslightprofileapp/default.aspx">Online waste tracking</option>
+								<option value="/asmslightprofileapp/default.aspx">Online waste reporting</option>
+								<option value="/prclmapp/searchregister.aspx">Search contaminated land records</option>
+								<option value="/annualpass/dailyvehicleentryfees.htm">National park entry fees</option>
+								<option value="/parkmanagement/ParkManagementPlans.htm">Park management plans</option>
+								<option value="/households/cleanoutguide.htm">Household Chemical CleanOuts</option>
+								<option value="http://www.rbgsyd.nsw.gov.au/">Botanic gardens</option>
+								<option value="/4cmas/">Catchment management</option>
+								<option value="http://www.mpa.nsw.gov.au/">Marine parks</option>
+								<option value="/water/">Water</option>
+								<option value="/households/homepowersavings.htm">Home power savings program</option>
+							</select>
+							<input name="quick-link-submit" type="image" class="go" id="quick-link-submit" value="Submit" src="http://www.environment.nsw.gov.au/images/admin/quicklinksgo.png" alt="Go" />
+						</div>
+
+					</div>
+					<!-- end incDECCbanner_v2.inc-->
+					<div id="nav">
+						<ul id="topLevelNav" class="clearfix">
+							<li class="topLevelNavItem" id="home">
+								<a href="/"><b>Home</b>
+								<br>
+								</a>
+							</li>
+							<li class="topLevelNavItem" id="environmental_issues">
+								<a href="/environmentalissues.htm" class="active"><b>Environmental</b>
+								<br>
+								issues</a>
+								<ul>
+									<li class="">
+										<a href="/epa/index.htm">Environment Protection Authority</a>
+									</li>
+									<li class="">
+										<a href="/water/">Water</a>
+									</li>
+									<li class="">
+										<a href="/pollution/">Reporting pollution</a>
+									</li>
+									<li class="">
+										<a href="/air/">Air</a>
+									</li>
+									<li class="">
+										<a href="/noise/">Noise</a>
+									</li>
+									<li class="">
+										<a href="/clm/">Contaminated land</a>
+									</li>
+									<li class="">
+										<a href="/soildegradation/index.htm">Soil degradation</a>
+									</li>
+									<li class="">
+										<a href="/pesticides/">Chemicals and pesticides</a>
+									</li>
+									<li class="">
+										<a href="/hazmat/">Hazardous materials</a>
+									</li>
+									<li class="">
+										<a href="/licensing/">Environment protection licences</a>
+									</li>
+									<li class="">
+										<a href="/pestsweeds/">Pests and weeds</a>
+									</li>
+									<li class="">
+										<a href="/waste/">Waste and resource recovery</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="climate_change">
+								<a href="/climatechange.htm" class="active"><b>Climate</b>
+								<br>
+								change</a>
+								<ul>
+									<li class="">
+										<a href="/climateChange/climatesystem.htm">Our climate system</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/emissionsoverview.htm">NSW emissions</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/impacts.htm">Climate change impacts in NSW</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/government.htm">NSW government action</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/emissionsreduction.htm">Emissions reduction</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/adaptation.htm">Adapting to climate change</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/reports.htm">Reports and publications</a>
+									</li>
+									<li class="">
+										<a href="/climatechange/nationalaction.htm">Working with other governments</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="sustaining_our_environment">
+								<a href="/sustainingourenvironment.htm" class="active"><b>Sustaining our</b>
+								<br>
+								environment</a>
+								<ul>
+									<li class="">
+										<a href="/sustainability/index.htm">What is sustainability</a>
+									</li>
+									<li class="">
+										<a href="/households/">Sustainable households</a>
+									</li>
+									<li class="">
+										<a href="/sustainableschools/">Sustainable Schools NSW</a>
+									</li>
+									<li class="">
+										<a href="/sustainbus/">Sustainable business</a>
+									</li>
+									<li class="">
+										<a href="/community/">Sustainable communities</a>
+									</li>
+									<li class="">
+										<a href="/government/">Sustainable government</a>
+									</li>
+									<li class="">
+										<a href="/grants/">Sustainability funding</a>
+									</li>
+									<li class="">
+										<a href="/education/">Sustainability education</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="nature_conservation">
+								<a href="/natureconservation.htm" class="active"><b>Nature</b>
+								<br>
+								conservation</a>
+								<ul>
+									<li class="">
+										<a href="/biodiversity/index.htm">Conserving biodiversity</a>
+									</li>
+									<li class="">
+										<a href="/conservationprograms/">Conservation programs</a>
+									</li>
+									<li class="">
+										<a href="/biobanking/">BioBanking</a>
+									</li>
+									<li class="">
+										<a href="/animals/">Native animals</a>
+									</li>
+									<li class="">
+										<a href="/vegetation/">Native vegetation</a>
+									</li>
+									<li class="">
+										<a href="/wildlifeatlas/about.htm">Atlas of NSW Wildlife</a>
+									</li>
+									<li class="">
+										<a href="/geodiversity/">Geodiversity, karst and caves</a>
+									</li>
+									<li class="">
+										<a href="/soils/index.htm">Landscapes and soils</a>
+									</li>
+									<li class="">
+										<a href="/threatenedspecies/">Threatened species</a>
+									</li>
+									<li class="">
+										<a href="/wildlifelicences/">Wildlife licences</a>
+									</li>
+									<li class="">
+										<a href="/protectedareas/">Protected areas</a>
+									</li>
+									<li class="">
+										<a href="/fire/">Fire</a>
+									</li>
+									<li class="">
+										<a href="/youcanhelp/">How you can help</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="culture_and_heritage">
+								<a href="/cultureandheritage.htm" class="active"><b>Culture and</b>
+								<br>
+								heritage</a>
+								<ul>
+									<li class="">
+										<a href="/nswcultureheritage/">Cultures and heritage of NSW</a>
+									</li>
+									<li class="">
+										<a href="/achreform/index.htm">Aboriginal heritage law reform</a>
+									</li>
+									<li class="">
+										<a href="/heritage/">State heritage</a>
+									</li>
+									<li class="">
+										<a href="/chresearch/">Research</a>
+									</li>
+									<li class="">
+										<a href="/licences/achregulation.htm">Regulation</a>
+									</li>
+									<li class="">
+										<a href="/conservation/">Conservation</a>
+									</li>
+									<li class="">
+										<a href="/licences/">Heritage registers</a>
+									</li>
+									<li class="">
+										<a href="/chpublications/">Publications</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="visiting_a_park">
+								<a href="/nationalparks/default.aspx" class="active"><b>Visiting</b>
+								<br>
+								a park</a>
+								<ul>
+									<li class="">
+										<a href="/NationalParks/parksearchatoz.aspx">Find parks and attractions</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/Facilities.aspx">Find facilities and activities</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/searchCampgrounds.aspx">Find camping</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/searchAccommodation.aspx">Find accommodation</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/events.aspx">Upcoming events</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/Tours.aspx">Guided tours with us</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/touroperators.aspx">Commercial tours and activities</a>
+									</li>
+									<li class="">
+										<a href="/volunteers/VolunteerNationalPark.htm">Volunteer for NSW national parks</a>
+									</li>
+									<li class="">
+										<a href="/annualpass/">Annual passes and vehicle entry fees</a>
+									</li>
+									<li class="">
+										<a href="/venuehire/">Hire a venue</a>
+									</li>
+									<li class="">
+										<a href="/NationalParks/FireClosure.aspx">Fires, floods and park closures</a>
+									</li>
+									<li class="">
+										<a href="/parksafety/">Park safety and other essentials</a>
+									</li>
+									<li class="">
+										<a href="/lookingafterparks/">Looking after our parks</a>
+									</li>
+									<li class="">
+										<a href="/parks/tourism.htm">Sustainable tourism and visitation</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="knowledge_centre">
+								<a href="/knowledgecentre.htm" class="current"><b>Knowledge</b>
+								<br>
+								centre</a>
+								<ul>
+									<li class="">
+										<a href="/publications/reporting.htm">Statewide environmental reporting</a>
+									</li>
+									<li class="">
+										<a href="/research/">Research</a>
+									</li>
+									<li class="">
+										<a href="/publicregister/">Public registers</a>
+									</li>
+									<li class="">
+										<a href="/publications/">Publications</a>
+									</li>
+									<li class="">
+										<a href="/forbusiness.htm">For business</a>
+									</li>
+									<li class="">
+										<a href="/forgovernment.htm">For state and local government</a>
+									</li>
+									<li class="">
+										<a href="/forteachers.htm">For teachers, schools and community educators</a>
+									</li>
+									<li class="">
+										<a href="/4cmas/">For catchment management authorities</a>
+									</li>
+								</ul>
+							</li>
+							<li class="topLevelNavItem" id="about_us">
+								<a href="/aboutus.htm" class="active"><b>About us</b>
+								<br>
+								</a>
+								<ul>
+									<li class="">
+										<a href="/whoweare/">Who we are</a>
+									</li>
+									<li class="">
+										<a href="/contact/">Contact us</a>
+									</li>
+									<li class="">
+										<a href="/whoweare/information.htm">Obtaining information</a>
+									</li>
+									<li class="">
+										<a href="/performance/">Our environmental performance</a>
+									</li>
+									<li class="">
+										<a href="/jobs/">Careers with us</a>
+									</li>
+									<li class="">
+										<a href="/volunteers/">Volunteers</a>
+									</li>
+									<li class="">
+										<a href="/events/">Events and activities</a>
+									</li>
+									<li class="">
+										<a href="/commercial/">Doing business with us</a>
+									</li>
+									<li class="">
+										<a href="/consult/">Public consultation</a>
+									</li>
+									<li class="">
+										<a href="/grantsandfunding/">Grants and funding</a>
+									</li>
+									<li class="">
+										<a href="/legislation/">Legislation</a>
+									</li>
+									<li class="">
+										<a href="/media/formedia.htm">For media</a>
+									</li>
+									<li class="">
+										<a href="/whatsnewarchive/index.htm">What's new</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!--start include a-feature.htm-->
+					<div id="themeImage">
+						<img alt="Maps and data" title="Maps and data" src="images/oeh/mapdatabanner.jpg">
+
+					</div>
+					<!--end include a-feature.htm-->
+
+					<!--start mainContainer03-->
+					<div id="mainContainer03" class="rhsColnotRequired" >
+						<!--start contentArea-->
+						<!--<div id="contentArea">
+						<!-- start Main Column -->
+						<!-- GeoNetwork Application -->
+
+						<div id="loading-mask"></div>
+						<div id="loading">
+							<div class="loading-indicator">
+								Loading ...
+							</div>
+						</div>
+
+						<div id="header">
+							<div id="breadcrumbs"></div>
+							<div id="title" class="mn-main"></div>
+						</div>
+						<div id="tag"></div>
+						<div id="shortcut" style="display:none;"></div>
+						<div id="GeoNetworkContent"></div>
+
+						<div id="FeatureMainContainer">
+							<div id="GIS-feature-container">
+								<div id="browse-header">
+									<h2>Browse our website for maps and data</h2>
+								</div>
+								<!-- PASTE BELOW from NonBlank rows of [DataLists\BrowseTileContent.xls]Links!$J:$J -->
+
+								<!-- DO NOT EDIT: HTML code exported from BrowseTileContent.xls - see Instructions worksheet -->
+								<div class="GIS-feature">
+									<h3>What&rsquo;s new</h3><img alt="coloured pins stuck in a map" src="images/oeh/browsetiles/Whats_new-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												The new maps and data portal puts our key spatial information at your fingertips.
+											</li>
+											<li>
+												Suggestions? Comments? Questions? Please <a href="mailto:data.broker@environment.nsw.gov.au?Feedback:%20Maps%20and%20data">let us know</a> what you think.
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>All themes</h3><img alt="satellite image of the east coast of Australia" src="images/oeh/browsetiles/All_themes-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/index.htm">NSW State of the Environment report</a> with <a href="http://www.epa.nsw.gov.au/soe/soe2012/indtoc.htm">indicators</a>, <a href="http://www.epa.nsw.gov.au/soe/soe2012/tabletoc.htm">tables</a>, <a href="http://www.epa.nsw.gov.au/soe/soe2012/figuretoc.htm">figures</a> and <a href="http://www.epa.nsw.gov.au/soe/soe2012/maptoc.htm">maps</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/soc/stateofthecatchmentsreport.htm">State of the Catchment reports</a> and <a href="http://www.environment.nsw.gov.au/soc/datainventory.htm">data inventory</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Air</h3><img alt="thin, wispy clouds on a blue sky" src="images/oeh/browsetiles/Air-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												Air quality: <a href="http://www.environment.nsw.gov.au/aqms/aqi.htm">current index</a>, <a href="http://www.environment.nsw.gov.au/AQMS/hourlydata.htm">current data</a>, <a href="http://www.environment.nsw.gov.au/AQMS/search.htm">all data</a>, <a href="http://www.environment.nsw.gov.au/AQMS/sitesyd.htm">monitoring sites</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/climatechange/emissionsoverview.htm">Greenhouse gas emissions</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/dustwatch/">Dustwatch</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter2/">SoE report: Atmosphere</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Biodiversity and conservation</h3><img alt="spider web close up with water droplets" src="images/oeh/browsetiles/Biodiversity-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/bioregions/BioregionOverviews.htm">Bioregions</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/bimspr/">BioBanking public registers</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter5/">SoE report: Biodiversity</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Community</h3><img alt="children planting seeds" src="images/oeh/browsetiles/Community-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/community/Whocares2009.htm#data">Who Cares about the Environment?</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter1/index.htm">SoE report: People and the Environment</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Heritage</h3><img alt="hand prints on rock" src="images/oeh/browsetiles/Heritage-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												Aboriginal heritage: <a href="http://www.environment.nsw.gov.au/nswcultureheritage/MappingAttachment.htm">mapping</a>, <a href="http://www.environment.nsw.gov.au/licences/WhatInformationCanYouObtainFromAHIMS.htm">database</a>, <a href="http://www.environment.nsw.gov.au/licences/AboriginalSitesDecisionSupportTool.htm">predictive models</a>, <a href="http://www.environment.nsw.gov.au/AboriginalPlaces/">atlas of Aboriginal places</a>
+											</li>
+											<li>
+												State Heritage: <a href="http://www.environment.nsw.gov.au/Heritage/listings/stateheritageregister.htm">Register</a> and <a href="http://www.environment.nsw.gov.au/heritageapp/heritagesearch.aspx">Inventory</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Land and soil</h3><img alt="an expanse of orange soil to the horizon" src="images/oeh/browsetiles/Land_soil-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												Soil <a href="http://www.environment.nsw.gov.au/soils/data.htm">profiles</a>, <a href="http://www.environment.nsw.gov.au/soils/soilmaps.htm">maps</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/acidsulfatesoil/riskmaps.htm">Acid sulfate soil risk maps</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter3/">SoE report: Land</a>
+											</li>
+											<li>
+												Search for <a href="http://goulbwb75/geonetwork210PUBLIC/apps/tabsearch/?s_search=&amp;s_E_any=soil">soil data</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>National parks</h3><img alt="adults and children walking along a bush track" src="images/oeh/browsetiles/Parks-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/parks/AvenzaMapApp.htm">Interactive maps (Avenza)</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/NationalParks/searchwalking.aspx">Walking tracks</a>
+											</li>
+											<li>
+												<a href="http://www.nationalparks.nsw.gov.au/parks">Explore our parks</a>
+											</li>
+											<li>
+												Search for <a href="http://goulbwb75/geonetwork210PUBLIC/apps/tabsearch/?s_search=&amp;s_E_any=parks">parks data</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Vegetation</h3><img alt="open bushland with grass and trees" src="images/oeh/browsetiles/Vegetation-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												Vegetation: <a href="http://www.environment.nsw.gov.au/research/AncillaryVegetationProductsDataInventory.htm">data inventory</a>, <a href="http://www.environment.nsw.gov.au/research/VISmap.htm">maps</a>, <a href="http://www.environment.nsw.gov.au/atlaspublicapp/UI_Modules/YETI_/FloraSearch.aspx">survey plots</a>, <a href="http://www.environment.nsw.gov.au/vegetation/publicregister.htm">public registers</a>, <a href="http://www.environment.nsw.gov.au/vegetation/reports.htm">annual reports</a>, <a href="http://www.environment.nsw.gov.au/NSWVCA20PRapp/LoginPR.aspx">types and benchmarks</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter5/chp_5.2.htm">SoE report: Native vegetation</a>
+											</li>
+											<li>
+												Search for <a href="http://goulbwb75/geonetwork210PUBLIC/apps/tabsearch/?s_search=&amp;s_E_any=vegetation">vegetation data</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Waste and pollution</h3><img alt="hazy city skyline" src="images/oeh/browsetiles/Waste_pollution-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/prpoeo/index.htm">POEO public register</a> (pollution and noise control)
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/warr/datareport.htm">Local government waste and resource recovery data</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/clm/listUPSSexemptionmaps.htm">Underground petroleum storage maps</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Water and coast</h3><img alt="aerial view of a beach, bay and estuary" src="images/oeh/browsetiles/Water_coast-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												Beachwatch: <a href="http://www.environment.nsw.gov.au/beachapp/report_enterococci.aspx">data</a>, <a href="http://www.environment.nsw.gov.au/beach/maps.htm">sampling locations</a>, <a href="http://www.environment.nsw.gov.au/beach/Reportann.htm">annual reports</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/estuaries/list.htm">Estuaries</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/research/SeabedHabMap.htm">Seabed habitat mapping</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter4/">SoE report: Water</a>
+											</li>
+											<li>
+												Search for <a href="http://goulbwb75/geonetwork210PUBLIC/apps/tabsearch/?s_search=&amp;s_E_any=water">water data</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+								<div class="GIS-feature">
+									<h3>Wildlife</h3><img alt="spotted quoll from behind, head in profile" src="images/oeh/browsetiles/Wildlife-tile.gif"/>
+									<div class="FeatureTxt">
+										<ul>
+											<li>
+												<a href="http://www.bionet.nsw.gov.au/">Wildlife Atlas</a>
+											</li>
+											<li>
+												<a href="http://www.environment.nsw.gov.au/threatenedspecies/">Threatened species</a>
+											</li>
+											<li>
+												<a href="http://www.epa.nsw.gov.au/soe/soe2012/chapter5/chp_5.1.htm">SoE report: Native fauna and threatened species</a>
+											</li>
+										</ul>
+									</div><p class="feature-link"></p>
+								</div>
+
+								<!-- PASTE ABOVE from NonBlank rows of [DataLists\BrowseTileContent.xls]Links!$J:$J -->
+
+							</div>
+						</div>
+                        <script type="text/javascript" src="../js/ext/adapter/ext/ext-base.js"></script>
+                        <script type="text/javascript" src="../js/ext/ext-all.js"></script>
+                        
+                        <!--<script type="text/javascript" src="js/App-mini.js"></script>-->
+                        <!-- START UNMINIFIED Comment out to the next comment to remove compressed -->
+                        <script type="text/javascript" src="../js/OpenLayers/lib/OpenLayers.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/Rating/RatingItem.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/FileUploadField/FileUploadField.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/TwinTriggerComboBox/TwinTriggerComboBox.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/DateTime/DateTime.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/RowExpander/RowExpander.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/MultiselectItemSelector-3.0/DDView.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/MultiselectItemSelector-3.0/Multiselect.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/SuperBoxSelect/SuperBoxSelect.js"></script>
+						<script type="text/javascript" src="../js/ext-ux/LightBox/lightbox.js"></script>
+						<script type="text/javascript" src="../js/proj4js-compressed.js"></script>
+						<script type="text/javascript" src="../js/GeoExt/lib/overrides/override-ext-ajax.js"></script>
+						<script type="text/javascript" src="../js/GeoExt/lib/GeoExt.js"></script>
+						<script type="text/javascript" src="../js/GeoExt-ux/LayerOpacitySliderPlugin/LayerOpacitySliderPlugin.js"></script>
+						<script type="text/javascript" src="../js/GeoNetwork/lib/GeoNetwork.js"></script>
+						<script type="text/javascript" src="js/Settings.js"></script>
+						<script type="text/javascript" src="js/Shortcuts.js"></script>
+						<script type="text/javascript" src="js/map/Settings.js"></script>
+						<script type="text/javascript" src="js/map/MapApp.js"></script>
+						<script type="text/javascript" src="js/App.js"></script>
+						<script type="text/javascript" src="js/CustomSearchFormTools.js"></script>
+						<script type="text/javascript" src="js/Custom.js"></script>
+						<script type="text/javascript" src="js/CustomDialogs.js"></script>
+						<!-- END UNMINIFIED -->
+						<!--<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+						<script type="text/javascript">
+						google.load("language", "1");
+						</script>-->
+
+						<!--Start footer-->
+						<DIV id=footerContainer>
+							<DIV id=footer>
+								<DIV class="footerlist connect">
+									<SPAN>Connect</SPAN>
+									<UL>
+										<LI>
+											<A class="f-twitter f-icon" title=Twitter
+											href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
+										<LI>
+											<A class="f-facebook f-icon" title=Facebook
+											href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
+										<LI>
+											<A class="f-youtube f-icon" title=YouTube
+											href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
+										<LI>
+											<A class="f-flickr f-icon" title=Flickr
+											href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
+										<LI>
+											<A class="f-rss f-icon" title=RSS
+											href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></A>
+										</LI>
+									</UL><A
+									href="http://www.environment.nsw.gov.au/contact/SocialMedia.htm">Social Media
+									Centre</A>
+									<UL>
+										<LI>
+											<DIV class=icon-text>
+												<A class="f-enews f-icon" title=E-news
+												href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm"></A>
+												<BR>
+												<A
+												href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm">E-news</A>
+											</DIV>
+										<LI>
+											<DIV class="icon-text mob-div">
+												<A class="f-mobile f-icon"
+												href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile"></A>
+												<BR>
+												<A
+												href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile">Mobile</A>
+											</DIV>
+										<LI>
+											<DIV class="icon-text share-div">
+												<!-- AddThis Button BEGIN --><A
+												class="show addthis_button f-share f-icon"
+												href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4e7192194bc39d38"><IMG
+												alt=Share
+												src="http://www.environment.nsw.gov.au/images/footericons/share-inactive.png"> </A>
+												<SCRIPT type=text/javascript
+												src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e7192194bc39d38"></SCRIPT>
+
+												<SCRIPT type=text/javascript>
+													var addthis_config = {
+														data_ga_property : 'UA-1477612-1',
+
+														data_ga_social : true
+													};
+												</SCRIPT>
+												<!-- AddThis Button END -->
+												<BR>
+												<A
+												href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4e7192194bc39d38">Share</A>
+											</DIV>
+										</LI>
+									</UL>
+								</DIV>
+								<DIV class="footerlist items">
+									<SPAN>Feedback</SPAN>
+									<UL>
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/feedback/ratethissite.htm">Website
+											survey</A>
+										<LI>
+											<A href="http://www.environment.nsw.gov.au/feedback/">Web support</A>
+										<LI>
+											<A href="http://www.environment.nsw.gov.au/consult/">Public
+											consultation</A>
+										</LI>
+									</UL>
+								</DIV>
+								<DIV class="footerlist items">
+									<SPAN>Contact</SPAN>
+									<UL>
+										<LI>
+											<A href="http://www.environment.nsw.gov.au/contact">Contact us</A><!--<li><a href="/askenvironmentapp">Ask Environment Line</a></li>-->
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/contact/onlineservices.htm">Online
+											services</A>
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/contact/locations.htm">Offices</A>
+										<LI>
+											<A href="http://www.environment.nsw.gov.au/pollution">Report pollution</A>
+										</LI>
+									</UL>
+								</DIV>
+								<DIV class="footerlist items">
+									<SPAN>Government</SPAN>
+									<UL>
+										<LI>
+											<A href="http://www.nsw.gov.au/">NSW Government</A>
+										<LI>
+											<A href="http://www.jobs.nsw.gov.au/">jobs.nsw</A>
+										</LI>
+									</UL>
+								</DIV>
+								<DIV class="footerlist items">
+									<SPAN>About</SPAN>
+									<UL>
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/help/index.htm">Accessibility</A>
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/help/disclaimer.htm">Disclaimer</A>
+										<LI>
+											<A href="http://www.environment.nsw.gov.au/help/privacy.htm">Privacy</A>
+										<LI>
+											<A
+											href="http://www.environment.nsw.gov.au/help/copyright.htm">Copyright</A>
+										</LI>
+									</UL>
+								</DIV>
+							</DIV>
+						</DIV>
+						<SCRIPT type=text/javascript
+						src="http://www.environment.nsw.gov.au/js/decc/web-tracker.js"></SCRIPT>
+
+						<!--End footer-->
+						</div>
+						</div>
+						</div>
+						</div>
+						
+	</body>
 </html>
