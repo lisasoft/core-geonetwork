@@ -3,6 +3,36 @@ Ext.namespace('GeoNetwork');
 var catalogue;
 var app;
 var cookie;
+var rd1 = {
+                    	id:'rd1',
+                    	width:92,
+                        name: 'E_oehactiontype',
+                        boxLabel: 'All results',
+                        inputValue: '',  // Blank -- do not filter by this field   
+                        checked: true 
+                    };
+					
+var rd2 ={
+                    	id: 'rd2', 
+                    	width:92,
+	                    name: 'E_oehactiontype', 
+	                    boxLabel: 'Downloads',
+	                    inputValue: 'downloads' // Value expected by the index
+	                };
+                    
+
+
+var rd3 = {
+	                	id: 'rd3',
+	                	width:92,
+	                	border:1,
+	                    name: 'E_oehactiontype',
+	                    boxLabel: 'Web services',
+	                    inputValue: 'services' // Value expected by the index 
+	                     
+	                };
+
+
 
 GeoNetwork.app = function () {
     // private vars:
@@ -362,30 +392,9 @@ GeoNetwork.app = function () {
                 columns:3,
                 vertical:false,
                 items: [ 
-                    {
-                    	id:'rd1',
-                    	width:92,
-                        name: 'E_oehactiontype',
-                        boxLabel: 'All results',
-                        inputValue: '',  // Blank -- do not filter by this field   
-                        checked: true 
-                    },
-                    {
-                    	id: 'rd2', 
-                    	width:92,
-	                    name: 'E_oehactiontype', 
-	                    boxLabel: 'Downloads',
-	                    inputValue: 'downloads' // Value expected by the index
-	                },
-                    {
-	                	id: 'rd3',
-	                	width:92,
-	                	border:1,
-	                    name: 'E_oehactiontype',
-	                    boxLabel: 'Web services',
-	                    inputValue: 'services' // Value expected by the index 
-	                     
-	                }
+                    rd1,
+                    rd2,
+                    rd3
                 ]
             }]
         };
@@ -942,9 +951,7 @@ GeoNetwork.app = function () {
                 maximizable : true,
                 maximized : true,
                 resizable : true,
-                // constrain: true,
-                width : 980,
-                //height : 800
+                width : 980
             });
             this.editorPanel.setContainer(this.editorWindow);
             this.editorPanel.on('editorClosed', function () {

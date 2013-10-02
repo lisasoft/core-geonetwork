@@ -1,4 +1,5 @@
-﻿function GetID(ID) {
+﻿Ext.namespace('GeoNetwork');
+function GetID(ID) {
 
     var x = document.getElementById('E_any');
 
@@ -32,7 +33,7 @@
 
 
 Ext.onReady(function () {
-    // var x = Ext.get("searchBt").getPosition(true);
+    var x = Ext.getCmp("rd1");
 
     // radio button tooltip position - May 2013, Kalpesh
     var rd1_xy = Ext.getCmp("rd1").getPosition();
