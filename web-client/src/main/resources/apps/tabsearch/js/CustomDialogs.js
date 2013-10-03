@@ -136,6 +136,21 @@ OEH.Popup.show = function(type, url, options) {
 			window.open(url);
 		}
 	}
+function createThankYouPopup(type, panel, options) {
+		
+		var title = "Thank you";
+		var items = [
+			{
+				html: '<span class="oeh-popup-title-text">' + title + '</span>',
+				border : false,
+				cls: 'oeh-popup-title'
+			}
+		];
+		items.push(panel);
+		var window = createWindow(items);
+		return window;
+		
+	}
 	
 	/**
 	 * Creates a popup for licensed types (eg. licensed downloads and services).
@@ -479,12 +494,31 @@ OEH.Popup.show = function(type, url, options) {
 										var _chkIsTargetedForNewsandSurveysRequest=formPanel.getForm().findField("chkIsTargetedForNewsandSurveysRequest").getValue();
 										var _chkIsTargetedForUpdate=formPanel.getForm().findField("chkIsTargetedForUpdate").getValue();
 										
-										openUrl(this.catalogue.services.request_OEH+"?dataInfo="+url+"&nameUser="+_txtNameRequest
+										var urlPath = this.catalogue.services.request_OEH+"?dataInfo="+url+"&nameUser="+_txtNameRequest
 										+"&org="+_txtOrg+"&orgType="+_cmbOrg+"&email="+_txtEmailRequest+"&ReqGeoExtentofData="+_txtRequirements+"&IntendedUsage="
 										+_txtIntendedUseRequest+"&IsTargetedforNewsandSurveys="+_chkIsTargetedForNewsandSurveysRequest
-										+"&IsTargetedforUpdate="+_chkIsTargetedForUpdate);
+										+"&IsTargetedforUpdate="+_chkIsTargetedForUpdate;
+										window.close();
 										
-										window.close();	
+										var dynamicPanel = new Ext.Component({
+									           loader: {
+									              url: urlPath,
+									              renderer: 'html',
+									              autoLoad: true,
+									              scripts: true
+									              }
+									           });
+
+										popup2 = createThankYouPopup(type, dynamicPanel, options);
+
+
+										popup2.show();
+										
+
+										
+										//openUrl(urlPath);
+										
+										//window.close();	
 									}
 								} else if (item.id === "eoh-popup-reset") {
 									formPanel.getForm().reset();
