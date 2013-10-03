@@ -470,7 +470,8 @@ GeoNetwork.MetadataResultsToolbar = Ext.extend(Ext.Toolbar, {
                 },
                 scope: this
             });
-        
+        // LISAsoft OEH remove addLayerSelection - WLD
+        /*
         this.addLayerAction = new Ext.menu.Item({
             text: OpenLayers.i18n('addLayerSelection'),
             id: 'addLayerAction',
@@ -495,15 +496,15 @@ GeoNetwork.MetadataResultsToolbar = Ext.extend(Ext.Toolbar, {
             },
             scope: this
         });
-        
-        this.selectionActions.push(mefExportAction, csvExportAction, printAction, this.addLayerAction);
+        */
+        this.selectionActions.push(mefExportAction, csvExportAction, printAction);
         
         this.actionMenu.add(
             '<b class="menu-title">' + OpenLayers.i18n('onSelection') + '</b>',
             mefExportAction, 
             csvExportAction, 
-            printAction,
-            this.addLayerAction// ,{
+            printAction//,
+            //this.addLayerAction// ,{
         // text : 'Display selection only'
         // }
         );

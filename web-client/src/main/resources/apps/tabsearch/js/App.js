@@ -1441,6 +1441,8 @@ Ext.onReady(function () {
 
             // Override zoomToAction (maye better way?). TODO: Check as seem
             // calling old handler code
+            /* 
+            // OEH LISAsoft Removed this action - WLD
             aResTab.actionMenu.zoomToAction.setHandler(function () {
                 var uuid = this.record.get('uuid');
                 this.resultsView.zoomTo(uuid);
@@ -1448,6 +1450,7 @@ Ext.onReady(function () {
                 // Custom code to display Map tab
                 tabPanel.setActiveTab(tabPanel.items.itemAt(2));
             }, aResTab.actionMenu);
+            */
 
             aResTab.actionMenu.viewAction.hide();
 

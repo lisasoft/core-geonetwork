@@ -57,7 +57,7 @@ Ext.onReady(function () {
         anchor: 'top',
         //title: 'Mouse Track',
         // width: 200,
-        html: 'Search for downloads and web services.',
+        html: 'Search for downloads, web services and data available on request.',
         trackMouse: true,
         getTargetXY: function () {
             return [rd1_x, rd1_y];

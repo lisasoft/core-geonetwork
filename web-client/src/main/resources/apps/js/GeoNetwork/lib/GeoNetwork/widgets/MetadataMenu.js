@@ -179,7 +179,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
             },
             scope: this
         });
-        
+        /*
         this.zoomToAction = new Ext.Action({
             text: OpenLayers.i18n('zoomTo'),
             iconCls: 'zoomlayer',
@@ -189,7 +189,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
             },
             scope: this
         });
-        
+        */
         this.viewXMLAction = new Ext.Action({
             text: OpenLayers.i18n('saveXml'),
             iconCls: 'xmlIcon',
@@ -261,7 +261,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
         this.add(this.adminMenuSeparator);
         
         this.add(this.viewAction);
-        this.add(this.zoomToAction);
+        //this.add(this.zoomToAction);
         this.add(this.viewXMLAction);
         
         this.add(this.viewRDFAction);
