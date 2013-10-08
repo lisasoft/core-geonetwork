@@ -588,15 +588,17 @@ table.x-toolbar-ct, .x-toolbar-ct table {
 /* footer */
 #footer {
 	height: 100% !important;
+	text-align: initial;
 }
 
 .connect {
 	background-image: none !important;
 }
 
-.connect ul {
+/* .connect ul {
 	padding-left: 50px !important;
-}
+} */
+
 /* TODO: LISAsoft this is where the download link images are set */
 /* Custom icons for OEH customisation */
 .oeh-gearth {
