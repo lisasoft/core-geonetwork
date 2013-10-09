@@ -141,7 +141,7 @@ function createThankYouPopup(type, panel, options) {
 		var title = "Thank you";
 		var items = [
 			{
-				html: '<span class="oeh-popup-title-text">' + title + '</span>',
+				html: '<span class="oeh-popup-title-text">' + title + '</span><p>We will respond within two business days.</p>',
 				border : false,
 				cls: 'oeh-popup-title'
 			}
