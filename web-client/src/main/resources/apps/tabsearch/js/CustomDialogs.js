@@ -140,12 +140,22 @@ function createThankYouPopup(type, panel, options) {
 		
 		var title = "Thank you";
 		var items = [
+		
 			{
-				html: '<span class="oeh-popup-title-text">' + title + '</span>',
+				html: '<span class="oeh-popup-title-text">' + title + '</span><p></p><p>We will respond within two business days.</p>',
 				border : false,
 				cls: 'oeh-popup-title'
 			}
+			/* Commented because it gives grey background between title and text. - JD */
+			/* ,
+			{
+				html: 'We will respond within two business days.',
+				border : false,
+				cls: 'oeh-popup-subtitle'
+			} */
 		];
+		
+		
 		items.push(panel);
 		var window = createWindow(items);
 		return window;
@@ -172,10 +182,12 @@ function createThankYouPopup(type, panel, options) {
 		}
 		
 		var submitLabel = 'Acknowledge and Download';
+		var notifyText = 'To be notified of data updates, please provide your';
 		if (OEH.Popup.SERVICE_KML == type
 				|| OEH.Popup.SERVICE_REST == type
 				|| OEH.Popup.SERVICE_WMS == type) {
 			submitLabel = 'Acknowledge and Connect';
+			notifyText = 'To be notified of planned service changes or outages, please provide your';
 		}
 		
 		var leftButtonPanel = '';
@@ -264,7 +276,7 @@ function createThankYouPopup(type, panel, options) {
 							boxMaxWidth : 280
 						},
 						{
-							html: 'To be notified of data updates, please provide your',
+							html: notifyText,
 							border : false
 						},
 						{
