@@ -565,7 +565,7 @@ GeoNetwork.MetadataResultsToolbar = Ext.extend(Ext.Toolbar, {
                     items: [
                         '<b class="menu-title">' + OpenLayers.i18n('select') + '</b>',
                         selectAllAction, 
-                        selectAllInPageAction, 
+                        // selectAllInPageAction, Commented 11/11/2013 by JD to hide "All in page" option for issues #255 & #256
                         selectNoneAction]
                 }
             }];
