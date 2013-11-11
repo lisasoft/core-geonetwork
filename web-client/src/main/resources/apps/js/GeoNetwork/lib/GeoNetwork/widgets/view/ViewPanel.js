@@ -487,7 +487,12 @@ GeoNetwork.view.ViewPanel = Ext.extend(Ext.Panel, {
         this.tipTpl = new Ext.XTemplate(GeoNetwork.util.HelpTools.Templates.SIMPLE);
         this.relatedTpl = new Ext.XTemplate(this.relatedTpl || GeoNetwork.Templates.Relation.SHORT);
         
-        this.tbar = [this.createViewMenu(), this.createActionMenu(), '->', this.createPrintMenu(), this.createFeedbackMenu(), this.createTooltipMenu()];
+        this.tbar = [this.createViewMenu(),
+					this.createActionMenu(),
+					'->',
+					this.createPrintMenu(),
+					// this.createFeedbackMenu(), Commented 11/11/2013 by JD to hide feedback icon issue #265
+					this.createTooltipMenu()];
         
         GeoNetwork.view.ViewPanel.superclass.initComponent.call(this);
         this.metadataSchema = this.record ? this.record.get('schema') : '';
