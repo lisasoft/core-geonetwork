@@ -264,7 +264,7 @@ GeoNetwork.MetadataMenu = Ext.extend(Ext.menu.Menu, {
         //this.add(this.zoomToAction);
         this.add(this.viewXMLAction);
         
-        this.add(this.viewRDFAction);
+        // this.add(this.viewRDFAction); Commented 11/11/2013 by JD to hide Save as RFD for issue #267
         this.add(this.printAction);
         this.add(this.getMEFAction);
         
