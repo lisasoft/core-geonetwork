@@ -354,7 +354,7 @@ GeoNetwork.MetadataResultsView = Ext.extend(Ext.DataView, {
         // TODO : add utility to add/remove templates
         this.templates = this.templates || {
             SIMPLE: GeoNetwork.Templates.SIMPLE,
-            THUMBNAIL: GeoNetwork.Templates.THUMBNAIL,
+        //    THUMBNAIL: GeoNetwork.Templates.THUMBNAIL,  Commented by JD 11/11/2013 because we have no thumbnails
             FULL: GeoNetwork.Templates.FULL
         };
         
