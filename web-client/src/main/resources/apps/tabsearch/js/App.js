@@ -476,7 +476,7 @@ GeoNetwork.app = function () {
                                     listeners : {
                                         click : searchCb
                                     }
-                                })  /* ,    /* Hide reset button - JD 21/11/2013
+                                }),
                                 new Ext.Button({
                                     text : OpenLayers
                                             .i18n('reset'),
@@ -491,7 +491,7 @@ GeoNetwork.app = function () {
                                             Ext.getCmp('searchForm').getForm().reset();
                                         }
                                     }
-                                }) */
+                                })
                             ]
                     },
                     // Panel with Advanced search, Help and About Links
