@@ -1101,7 +1101,7 @@ GeoNetwork.app = function () {
                 maxDisplayedItems: GeoNetwork.Settings.facetMaxItems || 7,
                 facetListConfig: GeoNetwork.Settings.facetListConfig || []
             });
-            
+            facetsPanel.height = 300; // Added to make panel fit within OEH-styled page - JD 21/11/2013
             var viewport = new Ext.Viewport({
                 layout : 'border',
                 id : 'vp',
