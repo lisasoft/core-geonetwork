@@ -522,9 +522,9 @@ ul.x-tab-strip-top {
 	position:relative;
  }
 
-div#MetadataResultsToolbar, #metadataResultsView {
+/* div#MetadataResultsToolbar, #metadataResultsView {
 	width: 670px !important; /* 740px */
-}
+} */
 #metadataResultsView {
 	height: 498px !important;
 }

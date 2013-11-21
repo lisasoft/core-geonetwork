@@ -782,8 +782,8 @@ GeoNetwork.app = function () {
             catalogue : catalogue,
             searchBtCmp : Ext.getCmp('searchBt'),
             sortByCmp : Ext.getCmp('E_sortBy'),
-            metadataResultsView : metadataResultsView,
-            permalinkProvider : permalinkProvider
+            metadataResultsView : metadataResultsView /* ,  /* Hide permalink on results tab toolbar - JD 21/11/2013
+            permalinkProvider : permalinkProvider           */
         });
 
         bBar = createBBar();
