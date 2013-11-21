@@ -75,6 +75,8 @@ GeoNetwork.app = function () {
     var mainTagCloudViewPanel, tagCloudViewPanel;
 
     var visualizationModeInitialized = false;
+    
+     var tabPanel;
 
 
     function setTab(id) {
@@ -1136,7 +1138,7 @@ GeoNetwork.app = function () {
                                         Ext.get("GNtabs").scale(980,200);
                                     }
                                     if (tabs[0]) {
-                                        tabPanel.setActiveTab(tabs[0]);
+                                         setTab(id); //BK_19112013
                                     }
                                }
                                },
@@ -1392,8 +1394,8 @@ Ext.onReady(function () {
 
     // overwrite default detail-click action
     catalogue.metadataShow = function (uuid) {
-        var tabPanel = Ext.getCmp("GNtabs"), 
-             tabs = tabPanel.find('id', uuid);
+        tabPanel = Ext.getCmp("GNtabs"); 
+           var  tabs = tabPanel.find('id', uuid);
         
         if (tabs[0]) {
             tabPanel.setActiveTab(tabs[0]);
