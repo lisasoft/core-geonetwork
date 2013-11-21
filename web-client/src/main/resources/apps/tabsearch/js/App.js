@@ -1244,7 +1244,78 @@ GeoNetwork.app = function () {
                         .fireEvent('click');
             }
             if (urlParameters.uuid !== undefined) {
-                catalogue.metadataShow(urlParameters.uuid, true);
+                //catalogue.metadataShow(urlParameters.uuid, true);
+                catalogue.metadataShow = function (uuid) {
+                       
+                            // Retrieve information in synchrone mode todo: this doesn't work
+                                //HERE: result tab
+                            // here
+                            
+                            tabPanel = Ext.getCmp("GNtabs"); 
+                            var store = GeoNetwork.data.MetadataResultsFastStore();
+                            catalogue.kvpSearch("fast=index&uuid=" + uuid, null, null, null,
+                                    true, store, null, false);
+                            var record = store.getAt(store.find('uuid', uuid));
+                            var showFeedBackButton = record.get('email');
+                            var RowTitle = uuid;
+
+                            try {
+                                RowTitle = record.data.title;
+                            } catch (e) {
+                            }
+                            var RowLabel = RowTitle;
+                            if (RowLabel.length > 18) {
+                                RowLabel = RowLabel.substr(0, 17) + "...";
+                            }
+
+                            var aResTab = new GeoNetwork.view.ViewPanel({
+                                id:'aResTab',
+                                serviceUrl : catalogue.services.mdView + '?uuid=' + uuid,
+                                lang : catalogue.lang,
+                                autoScroll : true,
+                                resultsView : app.getMetadataResultsView(),
+                                layout : 'absolute',
+                                width:990,
+                                maxWidth:990,
+                                height: 550, // Was 580. Reduced to fix truncation of content in metadata tab. - JD
+                                layout : 'fit',
+                                // autoHeight:true,
+                                padding : '5px 0px 0px 25px',
+                                currTab : GeoNetwork.defaultViewMode || 'simple',
+                                printDefaultForTabs : GeoNetwork.printDefaultForTabs || false,
+                                catalogue : catalogue,
+                                // maximized: true,
+                                metadataUuid : uuid,
+                                showFeedBackButton: showFeedBackButton,
+                                record : record
+                            });
+
+                            // Override zoomToAction (maye better way?). TODO: Check as seem
+                            // calling old handler code
+                            /* 
+                            // OEH LISAsoft Removed this action - WLD
+                            aResTab.actionMenu.zoomToAction.setHandler(function () {
+                                var uuid = this.record.get('uuid');
+                                this.resultsView.zoomTo(uuid);
+
+                                // Custom code to display Map tab
+                                tabPanel.setActiveTab(tabPanel.items.itemAt(2));
+                            }, aResTab.actionMenu);
+                            */
+
+                            aResTab.actionMenu.viewAction.hide();
+
+                            tabPanel.add({
+                                title : RowLabel,
+                                tabTip : RowTitle,
+                                iconCls : 'tabs',
+                                id : uuid,
+                                closable : true,
+                                items : [ aResTab ]
+                            }).show();
+                        
+                    };
+                    catalogue.metadataShow(urlParameters.uuid);
             } else if (urlParameters.id !== undefined) {
                 catalogue.metadataShowById(urlParameters.id, true);
             }
