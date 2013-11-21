@@ -396,8 +396,8 @@ ul.x-tab-strip-top {
 	border-bottom-color: #8fb3e3;
 }
 
-/* Search and reset button styles*/
-/* #searchBt[style], #resetBt[style], #helpBt[style] {
+/* Search button styles*/
+/* #searchBt[style], #helpBt[style] {
 	background-color: transparent !important;
 	background-image: none !important;
 	top: -4px !important;
@@ -405,19 +405,13 @@ ul.x-tab-strip-top {
 #searchBt {
   margin-left: 6px;
 }
-#resetBt td, #AdvanceImg td {
-	background-image: none;
-}
-#resetBt[style] button, #helpBt[style] button {
-	text-decoration: underline;
-}
 #radiogroup label {
 	color: black;
 	border-bottom: 1px dashed #7F7F7F;
 	top: 0px;
 }
-/* Search and reset button styles*/
-#searchBt, #resetBt {
+/* Search button styles*/
+#searchBt {
 	margin-top: -3px;
 }
 /* #searchBt[style] button {
