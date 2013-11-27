@@ -1,4 +1,5 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- start inc_DECChead_v2 -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
 <!-- some old applications use inc_DECChead inc OEH homepage uses incOEHhomehead inc which will require any updates -->
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://www.environment.nsw.gov.au/favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -37,3 +38,5 @@
 <link rel="copyright" title="Copyright" href="http://www.environment.nsw.gov.au/help/copyright.htm" />
 <link rel="help" title="Help" href="http://www.environment.nsw.gov.au/help/index.htm" />
 <link rel="search" title="Search" href="http://www.environment.nsw.gov.au/Search/QuickSearch.aspx" />
+
+<!-- end inc_DECChead_v2 -->

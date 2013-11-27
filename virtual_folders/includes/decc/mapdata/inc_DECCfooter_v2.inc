@@ -8,11 +8,11 @@
 			<span>Connect</span>
 
 			<ul>
-				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="Twitter" class="f-twitter f-icon"></a></li>
-				<li><a class="f-facebook f-icon" title="Facebook" href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></a></li>
-				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="YouTube" class="f-youtube f-icon"></a></li>
-				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="Flickr" class="f-flickr f-icon"></a></li>
-				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="RSS" class="f-rss f-icon"></a></li>
+				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="Twitter" class="f-twitter f-icon sprite"></a></li>
+				<li><a class="f-facebook f-icon sprite" title="Facebook" href="http://www.environment.nsw.gov.au/contact/socialmedia.htm"></a></li>
+				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="YouTube" class="f-youtube f-icon sprite"></a></li>
+				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="Flickr" class="f-flickr f-icon sprite"></a></li>
+				<li><a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm" title="RSS" class="f-rss f-icon sprite"></a></li>
 			</ul>
 			
 			<a href="http://www.environment.nsw.gov.au/contact/SocialMedia.htm">Social Media Centre</a>
@@ -20,13 +20,13 @@
 			<ul>
 				<li>
 					<div class="icon-text">
-						<a href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm " title="E-news" class="f-enews f-icon"></a></br>
+						<a href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm " title="E-news" class="f-enews f-icon sprite"></a></br>
 						<a href="http://www.environment.nsw.gov.au/whatsnewarchive/subscribe.htm">E-news</a>
 					</div>
 				</li>
 				<li>
 					<div class="icon-text mob-div">
-						<a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile " class="f-mobile f-icon"></a></br>
+						<a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile " class="f-mobile f-icon sprite"></a></br>
 						<a href="http://www.environment.nsw.gov.au/contact/socialmedia.htm#mobile ">Mobile</a>
 					</div>
 				</li>
