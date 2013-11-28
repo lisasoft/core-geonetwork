@@ -588,7 +588,7 @@ table.x-toolbar-ct, .x-toolbar-ct table {
 /* footer */
 #footer {
 	height: 100% !important;
-	text-align: initial;
+	text-align: left;
 }
 
 .connect {
