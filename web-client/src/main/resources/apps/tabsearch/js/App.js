@@ -654,7 +654,7 @@ GeoNetwork.app = function () {
                          id: 'AdvanceImg',
                          xtype: 'button',
                          cls: 'AdvanceImgdown',
-                         text:'Show advanced options',
+                         text:'Advanced options', // Removed "Show " - JD 28/11/2013
                          width: 150,
                          handler: function()
                          {
@@ -670,7 +670,7 @@ GeoNetwork.app = function () {
                                  
                                  Ext.get("GNtabs").scale(980,200); 
                                  Ext.fly('AdvanceImg').replaceClass('AdvanceImgup', 'AdvanceImgdown'); 
-                                 this.setText("Show advanced options");
+                                 this.setText("Advanced options"); // Removed "Show " - JD 28/11/2013
                              }
                              else
                              {                             
@@ -682,7 +682,7 @@ GeoNetwork.app = function () {
                                 }); 
                                Ext.get("GNtabs").scale(980,520); 
                                Ext.fly('AdvanceImg').replaceClass('AdvanceImgdown', 'AdvanceImgup');
-                               this.setText("Hide advanced options");
+                               this.setText("Advanced options"); // Removed "Hide " - JD 28/11/2013
                              }
                          }
                           
