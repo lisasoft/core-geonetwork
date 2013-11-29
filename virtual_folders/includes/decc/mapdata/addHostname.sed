@@ -1,5 +1,4 @@
 # Add explicit hostname to URLs in head, banner, topNav and footer
-# run this over index*.html after updating head, banner, topNav and/or footer
 
 s|src="/images/footericons|src="http://www.environment.nsw.gov.au/images/footericons|g
 s|src="/images/admin|src="http://www.environment.nsw.gov.au/images/admin|g

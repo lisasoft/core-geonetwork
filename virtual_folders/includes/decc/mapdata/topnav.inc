@@ -224,6 +224,9 @@
 					<a href="http://www.environment.nsw.gov.au/publications/reporting.htm">Statewide environmental reporting</a>
 				</li>
 				<li class="">
+					<a href="http://mapdata.environment.nsw.gov.au/geonetwork/apps/tabsearch/">Maps and data</a>
+				</li>
+				<li class="">
 					<a href="http://www.environment.nsw.gov.au/research/">Research</a>
 				</li>
 				<li class="">
