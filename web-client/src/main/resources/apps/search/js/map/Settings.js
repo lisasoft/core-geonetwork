@@ -37,7 +37,7 @@ GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-180,-90,180,90);
 //GeoNetwork.map.EXTENT = new OpenLayers.Bounds(-5.1,41,9.7,51);
 
 GeoNetwork.map.BACKGROUND_LAYERS = [
-    new OpenLayers.Layer.WMS("Background layer", "http://oeh25703:6080/arcgis/services/Basemap/Basemap_Geonetwork/MapServer/WMSServer", {layers: '0,1,2,3,4,5,6,7,8', format: 'image/png'}, {isBaseLayer: true})
+    new OpenLayers.Layer.WMS("Background layer", "http://appmapdata.environment.nsw.gov.au/arcgiswa/services/Basemap/Basemap_Geonetwork/MapServer/WMSServer", {layers: '0,1,2,3,4,5,6,7,8', format: 'image/png'}, {isBaseLayer: true})
     //new OpenLayers.Layer.WMS("Background layer", "http://www2.demis.nl/mapserver/wms.asp?", {layers: 'Countries', format: 'image/jpeg'}, {isBaseLayer: true})
 ];
 
